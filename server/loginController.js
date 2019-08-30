@@ -19,7 +19,7 @@ let loginControl = async (req, res) => {
       //console.log(user[0]);
 
       req.session.user = {
-        id: user[0].user_id,
+        user_id: user[0].user_id,
         username: user[0].username,
         name: user[0].name,
         email: user[0].email,
@@ -43,7 +43,7 @@ let register = async (req, res) => {
     const newUser = await db.create_user([
       username,
       name,
-      hash,
+      hash, // hashed pasword into sql databaser
       email,
       avatarurl
     ]);
@@ -83,9 +83,24 @@ let logout = (req, res) => {
   return res.sendStatus(200);
 };
 
+let updatePassword = async (req, res) => {
+  const { newPassword, user_id } = req.body;
+  const db = req.app.get("db");
+
+  const hash = await bcrypt
+    .hash(newPassword, 10)
+    .catch(err => console.log(err));
+
+  await db.update_password([
+    user_id,
+    hash // hashed pasword into sql databaser
+  ]);
+};
+
 module.exports = {
-  updateUser,
   loginControl,
   register,
-  logout
+  updateUser,
+  logout,
+  updatePassword
 };
