@@ -49,7 +49,7 @@ let register = async (req, res) => {
     ]);
 
     req.session.user = {
-      id: newUser[0].user_id,
+      user_id: newUser[0].user_id,
       username,
       name,
       email,
@@ -60,47 +60,22 @@ let register = async (req, res) => {
 };
 
 let updateUser = async (req, res) => {
-  const {
-    username,
-    password,
-    address,
-    city,
-    state,
-    zipcode,
-    newPassword
-  } = req.body;
+  const { user_id, username, name, email, avatarurl } = req.body;
   const db = req.app.get("db");
-  {
-    //must be in [                         ]
-    const user = await db
-      .update_user([username, address, city, state, zipcode])
-      .catch(err => console.log(err)); //updates basic info
-    req.session.user = {
-      id: user[0].user_id,
-      username,
-      address,
-      city,
-      state,
-      zipcode
-    };
-  }
-  if (newPassword !== null) {
-    const hash = await bcrypt
-      .hash(newPassword, 10)
-      .catch(err => console.log(err));
-    const userpass = await db
-      .update_password([username, hash])
-      .catch(err => console.log(err));
-    req.session.user = {
-      id: userpass[0].user_id,
-      username,
-      address,
-      city,
-      state,
-      zipcode
-    };
-    res.json(req.session.user);
-  }
+
+  const user = await db
+    .update_user([user_id, username, name, email, avatarurl])
+    .catch(err => console.log(err)); //updates basic info
+
+  req.session.user = {
+    user_id: user[0].user_id,
+    username: user[0].username,
+    name: user[0].name,
+    email: user[0].email,
+    avatarurl: user[0].avatarurl
+  };
+
+  res.json(req.session.user);
 };
 
 let logout = (req, res) => {
