@@ -2,7 +2,7 @@
 const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
-const { loginControl, register, updateUser } = require("./loginController");
+const { loginControl, register, updateUser } = require("./LoginController");
 
 require("dotenv").config(); //get access to environmental variables
 
