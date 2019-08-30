@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import SearchMovie from "./components/SearchMovie/SearchMovie";
 import { HashRouter } from "react-router-dom";
 import routes from "./routes/routes";

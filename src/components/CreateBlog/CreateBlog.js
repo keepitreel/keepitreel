@@ -41,18 +41,60 @@ export default class CreateBlog extends Component {
           <h2>{res.Title}</h2>
           <p>{res.Plot}</p>
           <p>{res.Actors}</p>
-          <p>{res.Rated}</p>
-          <p>{res.Writer}</p>
-          <p>{res.Released}</p>
           <p>{res.Genre}</p>
         </div>
       );
     });
 
     return (
-      <div>
-        <img src={this.state.image}></img>
-        {movieInformation}
+      <div className="container">
+        <div>
+          <img src={this.state.image}></img>
+          {movieInformation}
+        </div>
+        <button className="createBlongButton">This is sso</button>
+        <div>
+          <form>
+            <label>
+              Title
+              <input></input>
+            </label>
+            <label>
+              Blog
+              <textarea></textarea>
+            </label>
+            <label>
+              <input type="radio" name="stars" value="1" />
+              <span class="icon">★</span>
+            </label>
+            <label>
+              <input type="radio" name="stars" value="2" />
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+            </label>
+            <label>
+              <input type="radio" name="stars" value="3" />
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+            </label>
+            <label>
+              <input type="radio" name="stars" value="4" />
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+            </label>
+            <label>
+              <input type="radio" name="stars" value="5" />
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+              <span class="icon">★</span>
+            </label>
+          </form>
+        </div>
       </div>
     );
   }
