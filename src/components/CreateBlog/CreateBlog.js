@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "../CreateBlog/CreateBlog.scss";
 
 export default class CreateBlog extends Component {
   constructor() {

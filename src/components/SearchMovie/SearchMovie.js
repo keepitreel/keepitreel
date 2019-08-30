@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Unsplash from "react-unsplash-wrapper";
 
 export default class SearchMovie extends Component {
   constructor() {
@@ -50,6 +51,14 @@ export default class SearchMovie extends Component {
 
     return (
       <div>
+        <div className={""}>
+          <Unsplash
+            width="1500"
+            height="1000"
+            collectionId="829179 2346803 3963214 1366240"
+          />
+        </div>
+
         <input
           name="movie"
           onChange={this.handleChnage}
