@@ -12,40 +12,45 @@ class Dashboard extends Component {
   }
 
   tabChange(tab) {
+    console.log(tab);
     this.setState({ tab });
   }
 
-  renderTab() {
-    switch (
-      this.state.tab
-      // case "friends":
-      //   return <Friends />;
-      // case "community":
-      //   return <Community />;
-      // case "favoriteBlogs":
-      //   return <FavoriteBlogs />;
-      // case "yourBlogs":
-      //   return <YourBlogs />;
-    ) {
-    }
-  }
+  //nested ternary
 
   render() {
+    console.log(this.state.tab);
     return (
-      <div className="dashboard-app">
-        <div className="dashboard-container">
-          <div className="profile-container">
-            <Profile />
-          </div>
-          <div className="dashboard-tabs">
-            <button className="btn" onClick="friends">
-              Friends
-            </button>
-          </div>
+      <div>
+        <div className="tabs">
+          <button className="tabBtns" onClick={() => this.tabChange("friends")}>
+            Friends
+          </button>
+          <button
+            className="tabBtns"
+            onClick={() => this.tabChange("community")}
+          >
+            Community
+          </button>
+          <button
+            className="tabBtns"
+            onClick={() => this.tabChange("favoriteTabs")}
+          >
+            Favorite Tabs
+          </button>
+          <button
+            className="tabBtns"
+            onClick={() => this.tabChange("yourTabs")}
+          >
+            Your Tabs
+          </button>
         </div>
-        <div className="create-blog-button">
-          <button>Create Blog</button>
-        </div>
+        {this.state.tab === "friends" ? <p>Friends Component</p> : null}
+        {this.state.tab === "community" ? <p>community Component</p> : null}
+        {this.state.tab === "favoriteTabs" ? (
+          <p>favoriteTabs Component</p>
+        ) : null}
+        {this.state.tab === "yourTabs" ? <p>yourTabs Component</p> : null}
       </div>
     );
   }
