@@ -1,12 +1,15 @@
 import React from "react";
-import Landing from "./components/Landing-login.component";
-import "./App.css";
+import "./App.scss";
+import SearchMovie from "./components/SearchMovie/SearchMovie";
+import { HashRouter } from "react-router-dom";
+import routes from "./routes/routes";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <Landing />
-    </div>
+    <HashRouter>
+      <div className="App">{routes}</div>
+    </HashRouter>
   );
 }
 

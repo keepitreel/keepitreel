@@ -1,0 +1,10 @@
+@import '../../App.scss';
+
+.container {
+  @include pageCenter(70%);
+
+  .createBlongButton {
+    @include button(50%, red, blue);
+
+  }
+}
