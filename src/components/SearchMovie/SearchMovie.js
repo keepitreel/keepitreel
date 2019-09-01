@@ -43,6 +43,7 @@ export default class SearchMovie extends Component {
   };
 
   search = () => {
+    this.setState({ pagination: [], displayButtons: "" });
     axios
       .get(
         `http://www.omdbapi.com/?s=${this.state.movie}&page=1&apikey=579b4fff`
@@ -87,12 +88,12 @@ export default class SearchMovie extends Component {
       return (
         <div className="movieDiv">
           <Link to={`/movie/${movie.imdbID}`}>
-            <h1>
-              {movie.Title}
-              {movie.Year}
-            </h1>
+            <h1>{movie.Year}</h1>
             {movie.Poster === "N/A" ? (
-              <img src={NoMovies}></img>
+              <div>
+                <img src={NoMovies}></img>
+                <h5>{movie.Title}</h5>
+              </div>
             ) : (
               <img src={movie.Poster}></img>
             )}
