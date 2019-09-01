@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Video from "../video/background.mp4";
+import Video from "../../video/background.mp4";
 
 import "./Landing-login.style.css";
 

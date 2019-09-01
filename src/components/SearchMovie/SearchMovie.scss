@@ -1,0 +1,37 @@
+@import '../../App.scss';
+
+.searchMoviePage {
+  @include pageCenter(100%, 90px);
+
+
+  .imageBackground {
+    @include backgroundDisplay();
+  }
+
+
+
+  .movieContainer {
+    @include overlay();
+    display: flex;
+    min-width: 100%;
+    min-height: 100%;
+
+
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+
+    .movieDiv {
+      @include overlay();
+    }
+
+    .searchDiv {
+      @include overlay();
+    }
+
+
+  }
+
+
+}

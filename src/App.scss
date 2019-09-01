@@ -2,7 +2,8 @@ $primaryColor: #D8062D;
 $secondaryColor: #F29763;
 $accentColor: #F2622E;
 $buttonColor: #404040;
-$pageColor: #D9D9D9;
+$pageColor: #0D0D0D;
+$textColor: #737373;
 
 $HeaderFont: 'Montserrat',
 sans-serif;
@@ -19,7 +20,8 @@ sans-serif;
 
 @mixin pageCenter($pagewidth, $marginTop) {
   margin: 0;
-  margin-top: $marginTop;
+  min-height: 100vh;
+  padding-top: $marginTop;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,6 +41,11 @@ sans-serif;
 }
 
 @mixin overlay() {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1;
 }
 
@@ -47,6 +54,7 @@ sans-serif;
 
 @mixin pageHeader () {
   font-family: $HeaderFont;
+  color: black;
   font-size: 50px;
   margin: 30px;
 }
@@ -57,5 +65,7 @@ sans-serif;
   min-height: 100vh;
   background-color: $pageColor;
   font-family: $TextFont;
+  color: $textColor;
   font-size: 2rem;
+
 }
