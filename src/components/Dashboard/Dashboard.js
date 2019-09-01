@@ -20,8 +20,6 @@ class Dashboard extends Component {
     this.setState({ tab });
   }
 
-  //nested ternary
-
   render() {
     console.log(this.state.tab);
     return (
