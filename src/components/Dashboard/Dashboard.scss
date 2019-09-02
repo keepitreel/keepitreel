@@ -8,28 +8,32 @@
 .grid-wrapper {
   height: 100vh;
   display: grid;
-  grid-template-columns:
-    [grid-start] 1fr [content-start] 1fr [content-end] 1fr [grid-end];
-  grid-template-rows:
-    [header-start] 1fr [header-end body-start] 5fr [body-end footer-start] 1fr [footer-end];
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr;
+  grid-template-areas:
+    "header header header header"
+    "profile main main main"
+    "profile main main main"
+    "button main main main";
+
 
 }
 
 .tabs-container {
-  grid-column: grid-start / grid-end;
   background: lightblue;
+  grid-area: header;
 }
 
 .tab-display {
-  grid-area: body-start / grid-start / footer-end / content-end;
   background: pink;
+  grid-area: main;
 }
 
 .profile-container {
   background: red;
+  grid-area: profile;
 }
 
 .button-container {
-  grid-column: content-end / grid-end;
-  background: black;
+  grid-area: button;
 }

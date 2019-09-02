@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Friend from "./Friend";
-// import { connect } from "react-redux";
-// import { getFriends } from "reducer";
+// import { connect } from 'react-redux';
+// import { getFriends } from 'reducer';
 
 class Friends extends Component {
   constructor() {

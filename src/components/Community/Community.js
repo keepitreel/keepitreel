@@ -1,22 +1,34 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import { getBlogs } from "reducer";
+import axios from "axios";
+// import { connect } from 'react-redux';
+// import { getBlogs } from 'reducer';
 
 class Community extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      blog: []
+    };
   }
 
-  //need backend to send blogs based on most recent****************
+  //need backend to send blogs id based on most recent****************
   componentDidMount() {
-    this.props.getBlogs();
+    axios
+      .get(`/api/blog/${this.props.match.params.id}`)
+      .then(res => {
+        this.setState({ blog: res.data });
+      })
+      .catch(error => console.log(error));
   }
 
   render() {
-    // let displayBlogs = this.props.blogs.map(blog => {
-    //   return <Blog blog={blog} />;
+    const { username } = this.props.session;
+    const { blog } = this.state;
+    const { id } = this.props.match.params;
+    // let displayBlogs = blog.map(card => {
+    //   return <this will be the component where card is built and props is passed/>;
     // });
+
     return (
       <>
         <div className="community-container">
@@ -30,7 +42,7 @@ class Community extends Component {
 
 let mapStatetoProps = reduxState => {
   return {
-    community: reduxState.community.community
+    community: reduxState.community
   };
 };
 

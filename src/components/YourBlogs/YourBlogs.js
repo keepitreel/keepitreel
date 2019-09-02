@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import YourBlog from "./YourBlog";
-// import { connect } from "react-redux";
-// import { getUserBlogs} from "reducer"
+// import { connect } from 'react-redux';
+// import { getUserBlogs} from 'reducer'
 
 class YourBlogs extends Component {
   constructor() {
@@ -16,7 +16,7 @@ class YourBlogs extends Component {
 
   render() {
     // let displayUserBlogs = this.props.blogs.map(blog => {
-    //   return <Blog blog="blog"/>
+    //   return <Blog blog='blog'/>
     // })
     return (
       <>
