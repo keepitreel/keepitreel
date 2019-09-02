@@ -13,18 +13,19 @@ class Community extends Component {
 
   //need backend to send blogs id based on most recent****************
   componentDidMount() {
-    axios
-      .get(`/api/blog/${this.props.match.params.id}`)
-      .then(res => {
-        this.setState({ blog: res.data });
-      })
-      .catch(error => console.log(error));
+    // axios
+    //   .get(`/api/blog/${this.props.match.params.id}`)
+    //   .then(res => {
+    //     this.setState({ blog: res.data });
+    //   })
+    //   .catch(error => console.log(error));
   }
 
   render() {
-    const { username } = this.props.session;
-    const { blog } = this.state;
-    const { id } = this.props.match.params;
+    // const { username } = this.props.session;
+    // const { blog } = this.state;
+    // const { id } = this.props.match.params;
+
     // let displayBlogs = blog.map(card => {
     //   return <this will be the component where card is built and props is passed/>;
     // });
