@@ -1,18 +1,30 @@
 import React, { Component } from "react";
 import Video from "../../video/curtain.mp4";
 import { Redirect } from "react-router-dom";
-
+import { login } from "../../redux/authReducer";
 import "./Landing-login.style.css";
+import Axios from "axios";
+import { connect } from "react-redux";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       username: "",
-      password: "",
-      signin: false
+      password: ""
+      // login: false
     };
+  }
+
+  //redirect to dashboard
+  async login(e) {
+    const { username, password } = this.state;
+    await this.props
+      .login({ username, password })
+      .catch(error => console.log(error));
+    // if (res.data.loggedIn) this.setState({ login: true });
+    // this.props(res.data.loggedIn);
   }
 
   validateForm() {
@@ -36,6 +48,9 @@ export default class Login extends Component {
   }
 
   render() {
+    if (this.props.checkLogin === true) {
+      return <Redirect to="/dashboard" />;
+    }
     return (
       <div className="container">
         <video id="background-video" autoPlay>
@@ -73,3 +88,12 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = reduxState => {
+  return { session: reduxState.authReducer };
+};
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
