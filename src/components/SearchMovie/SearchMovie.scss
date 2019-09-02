@@ -1,0 +1,88 @@
+@import '../../App.scss';
+
+.searchMoviePage {
+  @include pageCenter(100%, 90px);
+  min-height: 100%;
+
+  .imageBackground {
+    @include backgroundDisplay();
+    background-color: $pageColor;
+
+  }
+
+  .movieContainer {
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    align-items: center;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
+
+
+    .searchDiv {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 90px;
+
+
+
+      input {
+        height: 35px;
+        font-size: 20px;
+        margin: 5px;
+        border-radius: 5px;
+      }
+
+      button {
+        height: 36px;
+        font-size: 20px;
+        border-radius: 5px;
+      }
+    }
+
+    .searchResults {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+
+
+      .displayMovies {
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+
+      .movieDiv {
+        width: 17%;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        a {
+          width: 100%;
+          text-decoration: none;
+          font-size: 15px;
+          color: $textColor;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          img {
+            width: 70%;
+            border: 2px solid red;
+
+
+          }
+        }
+      }
+    }
+  }
+
+}

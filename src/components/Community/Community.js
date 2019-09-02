@@ -27,9 +27,10 @@ class Community extends Component {
   }
 
   render() {
+    const { post } = this.state;
     return (
       <>
-        {console.log(this.state.post)}
+        return (<div className="wrapper"></div>){console.log(this.state.post)}
         {this.state.post.map(card => (
           <div key={card.post_id}>
             <h1>{card.user_id}</h1>

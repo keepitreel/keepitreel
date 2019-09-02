@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Video from "../video/background.mp4";
+import Video from "../../video/curtain.mp4";
+import { Redirect } from "react-router-dom";
 
 import "./Landing-login.style.css";
 
@@ -28,13 +29,21 @@ export default class Login extends Component {
     console.log(event.target.value);
   };
 
+  componentDidMount() {
+    this.setState({
+      video: true
+    });
+  }
+
   render() {
     return (
       <div className="container">
-        <video id="background-video" loop autoPlay>
-          <source src={Video} type="video/mp4" />
+        <video id="background-video" autoPlay>
+          <source muted src={Video} type="video/mp4" />
         </video>
         <div className="sign-in-container">
+          <h1>Keep it Reel</h1>
+          <p>Social Media for Film Enthusiast. Real People...Reel reviews.</p>
           <form>
             <span className="username-input-box">
               <input

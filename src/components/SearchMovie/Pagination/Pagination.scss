@@ -1,0 +1,11 @@
+@import'../../../App.scss';
+
+.pageButton {
+  background-color: $primaryColor;
+  border: 1px solid $accentColor;
+  font-size: 18px;
+}
+
+.pageButton:hover {
+  transform: scale(1.1)
+}
