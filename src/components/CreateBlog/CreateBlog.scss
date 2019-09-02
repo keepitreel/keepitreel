@@ -3,10 +3,62 @@
 
 
 
-.container {
-  @include pageCenter(70%, 100px);
+.CreateBlogPage {
+  @include pageCenter(100%, 150px);
 
-  .createBlongButton {
-    color: red;
+
+  .ContainerBlog {
+
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    .DisplayMovieDiv {
+      min-height: 800px;
+      width: 40%;
+    }
+
+    .formDiv {
+      width: 40%;
+
+      label {
+        width: 100%;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+
+
+        input {
+          height: 50px;
+          font-size: 30px;
+          border-radius: 5px;
+
+        }
+
+        textarea {
+          font-size: 20px;
+          height: 200px;
+          border-radius: 5px;
+        }
+
+
+      }
+
+      .ratingDiv {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row-reverse;
+
+        label {
+          display: flex;
+        }
+      }
+
+    }
   }
+
+
+
+
+
 }
