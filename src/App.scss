@@ -1,52 +1,64 @@
+$primaryColor: #7E0000;
+$secondaryColor: #F29763;
+$accentColor: #F2622E;
+$buttonColor: #404040;
+$pageColor: #0D0D0D;
+$textColor: #737373;
+
+$HeaderFont: 'Montserrat',
+sans-serif;
+$TextFont: 'Abel',
+sans-serif;
+
+// quotes: single quotes;
+// events: use e
+// error : use error
+// request & response: use req & res
+// sql files: undersore
+// everyOther file: Pascale
+// variables : camelCase
+
+@mixin pageCenter($pagewidth, $marginTop) {
+  margin: 0;
+  min-height: 100vh;
+  padding-top: $marginTop;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: $pagewidth;
+  font-family: $TextFont;
+
+}
+
+@mixin backgroundDisplay() {
+  height: 100%;
+  min-width: 100vw;
+  position: fixed;
+  z-index: 0;
+}
+
+@mixin overlay() {
+  z-index: 1;
+}
+
+
+
+
+@mixin pageHeader () {
+  font-family: $HeaderFont;
+  color: black;
+  font-size: 50px;
+  margin: 30px;
+}
+
+
 .App {
-
-  // quotes: single quotes;
-  // events: use e
-  // error : use error
-  // request & response: use req & res
-  // sql files: undersore
-  // everyOther file: Pascale
-  // variables : camelCase
-
-
-
-
-  $primaryColor: #D8062D;
-  $secondaryColor: #F29763;
-  $accentColor: #F2622E;
-  $buttonColor: #404040;
-  $pageColor: #D9D9D9;
-
-  $HeaderFont: 'Montserrat', sans-serif;
-  $TextFont: 'Abel', sans-serif;
-
-
-  @mixin pageCenter ($pagewidth) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background: $pageBackground;
-    width: $pagewidth;
-    height: 80%;
-    padding-top: 80px;
-    font-family: $TextFont;
-
-  }
-
-
-
-
-
-  @mixin pageHeader {
-    font-family: $HeaderFont;
-    font-size: 50px;
-    margin: 30px;
-  }
-
-  .App {
-    min-width: 100vw;
-    min-height: 100vh;
-    background-color: $pageColor;
-  }
+  min-height: 100vh;
+  background-color: $pageColor;
+  font-family: $TextFont;
+  color: $textColor;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
 }

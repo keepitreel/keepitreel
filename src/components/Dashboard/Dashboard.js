@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import Profile from "../Profile/Profile";
+import Friends from "../Friends/Friends";
+import Community from "../Community/Community";
+import Favorites from "../Favorites/Favorites";
+import YourBlogs from "../YourBlogs/YourBlogs";
 import "./Dashboard.scss";
 
 class Dashboard extends Component {
@@ -12,38 +16,47 @@ class Dashboard extends Component {
   }
 
   tabChange(tab) {
+    console.log(tab);
     this.setState({ tab });
   }
 
-  renderTab() {
-    switch (
-      this.state.tab
-      // case "friends":
-      //   return <Friends />;
-      // case "community":
-      //   return <Community />;
-      // case "favoriteBlogs":
-      //   return <FavoriteBlogs />;
-      // case "yourBlogs":
-      //   return <YourBlogs />;
-    ) {
-    }
-  }
-
   render() {
+    console.log(this.state.tab);
     return (
-      <div className="dashboard-app">
-        <div className="dashboard-container">
-          <div className="profile-container">
-            <Profile />
-          </div>
-          <div className="dashboard-tabs">
-            <button className="btn" onClick="friends">
-              Friends
-            </button>
-          </div>
+      <div className="grid-wrapper">
+        <div className="tabs-container box-1">
+          <button className="tabBtns" onClick={() => this.tabChange("friends")}>
+            Friends
+          </button>
+          <button
+            className="tabBtns"
+            onClick={() => this.tabChange("community")}
+          >
+            Community
+          </button>
+          <button
+            className="tabBtns"
+            onClick={() => this.tabChange("favorites")}
+          >
+            Favorites
+          </button>
+          <button
+            className="tabBtns"
+            onClick={() => this.tabChange("yourBlogs")}
+          >
+            Your Blogs
+          </button>
         </div>
-        <div className="create-blog-button">
+        <div className="profile-container box-2">
+          <Profile />
+        </div>
+        <div className="tab-display box-3">
+          {this.state.tab === "friends" ? <Friends /> : null}
+          {this.state.tab === "community" ? <Community /> : null}
+          {this.state.tab === "favorites" ? <Favorites /> : null}
+          {this.state.tab === "yourBlogs" ? <YourBlogs /> : null}
+        </div>
+        <div className="button-container box-4" id="4">
           <button>Create Blog</button>
         </div>
       </div>
