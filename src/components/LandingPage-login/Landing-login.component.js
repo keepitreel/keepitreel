@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Video from "../video/background.mp4";
+import Video from "../../video/background.mp4";
+import Nav from "../Nav/Nav";
 
 import "./Landing-login.style.css";
 
@@ -31,6 +32,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="container">
+        <Nav />
         <video id="background-video" loop autoPlay>
           <source src={Video} type="video/mp4" />
         </video>
