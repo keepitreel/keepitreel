@@ -1,14 +1,39 @@
-.dashboard-container {
- border: 1px solid blue;
- display: flex;
- justify-content: space-evenly;
- align-items: center;
- flex-direction: row;
- width: 100%;
- height: 100%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
- .dashboard-tabs {
-  display: inline-block;
-  vertical-align: top;
- }
+
+.grid-wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr;
+  grid-template-areas:
+    "header header header header"
+    "profile main main main"
+    "profile main main main"
+    "button main main main";
+
+
+}
+
+.tabs-container {
+  background: lightblue;
+  grid-area: header;
+}
+
+.tab-display {
+  background: pink;
+  grid-area: main;
+}
+
+.profile-container {
+  background: red;
+  grid-area: profile;
+}
+
+.button-container {
+  grid-area: button;
 }
