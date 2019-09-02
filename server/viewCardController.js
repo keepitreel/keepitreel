@@ -2,14 +2,18 @@ let follow = async (req, res) => {
   const { user_id, following_user_id } = req.body;
   const db = req.app.get("db");
 
-  await db.start_following([user_id, following_user_id]);
+  await db
+    .start_following([user_id, following_user_id])
+    .catch(error => console.log(error));
 };
 
 let unFollow = async (req, res) => {
   const { user_id, following_user_id } = req.body;
   const db = req.app.get("db");
 
-  await db.stop_following([user_id, following_user_id]);
+  await db
+    .stop_following([user_id, following_user_id])
+    .catch(error => console.log(error));
 };
 
 let userFollow = async (req, res) => {
