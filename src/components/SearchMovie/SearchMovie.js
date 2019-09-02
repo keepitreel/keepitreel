@@ -6,6 +6,7 @@ import "./SearchMovie.scss";
 import { thisExpression } from "@babel/types";
 import Pagination from "./Pagination/Pagination";
 import NoMovies from "../../img/NoImage.png";
+import DisplayMovie from "../DisplayMovie/DisplayMovie";
 
 export default class SearchMovie extends Component {
   constructor() {
@@ -28,6 +29,7 @@ export default class SearchMovie extends Component {
 
   buildButtons = () => {
     let { buttons, pagination } = this.state;
+
     if (buttons > 0) {
       for (let i = 0; i < buttons; i++) {
         pagination.push(
@@ -49,7 +51,7 @@ export default class SearchMovie extends Component {
         `http://www.omdbapi.com/?s=${this.state.movie}&page=1&apikey=579b4fff`
       )
       .then(response => {
-        console.log(response.data.totalResults);
+        console.log(response);
         response.data.Response === "True"
           ? this.setState({
               movies: response.data.Search,
@@ -57,8 +59,13 @@ export default class SearchMovie extends Component {
               totalResults: Number(response.data.totalResults),
               buttons: Math.ceil(Number(response.data.totalResults) / 10)
             })
-          : this.setState({ movies: [], error: response.data.Error });
-        this.buildButtons();
+          : this.setState({
+              movies: [],
+              error: response.data.Error,
+              pagination: [],
+              displayButtons: ""
+            });
+        response.data.Response === "True" && this.buildButtons();
       });
   };
 
@@ -95,26 +102,21 @@ export default class SearchMovie extends Component {
                 <h5>{movie.Title}</h5>
               </div>
             ) : (
-              <img src={movie.Poster}></img>
+              <img
+                src={`http://img.omdbapi.com/?i=${movie.imdbID}&h=900&apikey=579b4fff`}
+                onerror="this.src='https://placeimg.com/200/300/animals';"
+              ></img>
             )}
           </Link>
         </div>
       );
     });
-
-    console.log(buttons);
-
     return (
       <div ref="hello" className="searchMoviePage">
         <div className={"imageBackground"}>
-          <Unsplash
-            width="1500"
-            height="1000"
-            collectionId="829179 2346803 3963214 1366240"
-          />
+          <Unsplash width="1500" height="1000" collectionId="5048230 2597671" />
         </div>
 
-        {error && error}
         <div className="movieContainer">
           <div idName={"searchDiv"} className="searchDiv">
             <input
@@ -124,9 +126,13 @@ export default class SearchMovie extends Component {
             />
             <button onClick={this.search}>Search</button>
           </div>
-
-          {displayMovies && displayMovies}
-          {displayButtons && displayButtons}
+          {error && error}
+          {displayMovies && (
+            <div className="searchResults">
+              <div className="displayMovies">{displayMovies}</div>
+              <div className="buttonsDiv">{displayButtons}</div>
+            </div>
+          )}
         </div>
       </div>
     );

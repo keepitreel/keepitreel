@@ -1,4 +1,4 @@
-$primaryColor: #D8062D;
+$primaryColor: #7E0000;
 $secondaryColor: #F29763;
 $accentColor: #F2622E;
 $buttonColor: #404040;
@@ -35,17 +35,10 @@ sans-serif;
   height: 100%;
   min-width: 100vw;
   position: fixed;
-  margin: auto;
-  padding: 0;
   z-index: 0;
 }
 
 @mixin overlay() {
-  min-width: 100%;
-  min-height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 1;
 }
 
@@ -61,11 +54,11 @@ sans-serif;
 
 
 .App {
-  @include pageCenter(100%, 0px);
   min-height: 100vh;
   background-color: $pageColor;
   font-family: $TextFont;
   color: $textColor;
   font-size: 2rem;
-
+  display: flex;
+  flex-direction: column;
 }
