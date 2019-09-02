@@ -4,14 +4,14 @@ let loginControl = async (req, res) => {
   const { username, password } = req.body;
   const db = req.app.get("db");
 
-  const user = await db.check_user(username).catch(err => console.log(err));
+  const user = await db.check_user(username).catch(error => console.log(error));
 
   if (!user[0]) {
     res.status(401).json("Incorrect username or password");
   } else {
     const isAuthorized = await bcrypt
       .compare(password, user[0].password)
-      .catch(err => console.log(err));
+      .catch(error => console.log(error));
 
     if (!isAuthorized) {
       res.status(401).json("Incorrect username or password");
@@ -34,16 +34,18 @@ let register = async (req, res) => {
   const { username, name, password, email, avatarurl } = req.body;
   const db = req.app.get("db");
 
-  const user = await db.check_user(username).catch(err => console.log(err));
+  const user = await db.check_user(username).catch(error => console.log(error));
   if (user[0]) {
     res.status(401).json("Username is already taken");
   } else {
-    const hash = await bcrypt.hash(password, 10).catch(err => console.log(err));
+    const hash = await bcrypt
+      .hash(password, 10)
+      .catch(error => console.log(error));
 
     const newUser = await db.create_user([
       username,
       name,
-      hash, // hashed pasword into sql databaser
+      hash, // hashed pasword into sql database
       email,
       avatarurl
     ]);
@@ -65,7 +67,7 @@ let updateUser = async (req, res) => {
 
   const user = await db
     .update_user([user_id, username, name, email, avatarurl])
-    .catch(err => console.log(err)); //updates basic info
+    .catch(error => console.log(error)); //updates basic info
 
   req.session.user = {
     user_id: user[0].user_id,
@@ -84,16 +86,17 @@ let logout = (req, res) => {
 };
 
 let updatePassword = async (req, res) => {
+  //this takes in new password and hashes for sql replace
   const { newPassword, user_id } = req.body;
   const db = req.app.get("db");
 
   const hash = await bcrypt
     .hash(newPassword, 10)
-    .catch(err => console.log(err));
+    .catch(error => console.log(error));
 
   await db.update_password([
     user_id,
-    hash // hashed pasword into sql databaser
+    hash // hashed pasword into sql database
   ]);
 };
 
