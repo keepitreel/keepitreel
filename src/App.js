@@ -14,13 +14,8 @@ function App() {
   return (
     <HashRouter>
       <div className="App">
-<<<<<<< HEAD
-        {routes}
-        <Register />
-=======
         <Nav />
         {routes}
->>>>>>> master
       </div>
     </HashRouter>
   );

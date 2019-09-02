@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-import Video from "../../video/background.mp4";
-import Nav from "../Nav/Nav";
-=======
 import Video from "../../video/curtain.mp4";
 import { Redirect } from "react-router-dom";
->>>>>>> master
 
 import "./Landing-login.style.css";
 
@@ -43,14 +38,8 @@ export default class Login extends Component {
   render() {
     return (
       <div className="container">
-<<<<<<< HEAD
-        <Nav />
-        <video id="background-video" loop autoPlay>
-          <source src={Video} type="video/mp4" />
-=======
         <video id="background-video" autoPlay>
           <source muted src={Video} type="video/mp4" />
->>>>>>> master
         </video>
         <div className="sign-in-container">
           <h1>Keep it Reel</h1>
