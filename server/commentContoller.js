@@ -1,10 +1,10 @@
 let createComment = async (req, res) => {
   //creates comment
-  const { post_id, user_id, text } = req.body;
+  const { post_id, user_id, text, title } = req.body;
   const db = req.app.get("db");
 
   const newComment = await db
-    .create_comment([post_id, user_id, text])
+    .create_comment([post_id, user_id, text, title])
     .catch(error => console.log(error));
 
   console.log(newComment);
