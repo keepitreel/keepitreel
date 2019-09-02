@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { login } from "../../redux/authReducer";
 import "./Landing-login.style.css";
 import Axios from "axios";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 class Login extends Component {
   constructor(props) {
@@ -89,11 +89,13 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
-  return { session: reduxState.authReducer };
-};
+// const mapStateToProps = reduxState => {
+//   return { session: reduxState.authReducer };
+// };
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+// export default connect(
+//   mapStateToProps,
+//   { login }
+// )(Login);
+
+export default Login;

@@ -4,7 +4,6 @@ const initialState = {
   username: "",
   password: "",
   user_id: "",
-  username: "",
   name: "",
   email: "",
   avatarurl: ""
@@ -45,7 +44,7 @@ export function authReducer(state = initialState, action) {
       };
     case `${CREATE_USER}_PENDING`:
       return { ...state, pending: true };
-    case `CHECK_LOGIN`:
+    case CHECK_LOGIN:
       console.log(action.payload);
       return { ...action.payload, error: "", pending: false };
     default:
