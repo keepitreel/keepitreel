@@ -65,6 +65,17 @@ class Profile extends Component {
   render() {
     return (
       <div className="editForm">
+        <div className="profile">
+          <h2>Welcome Tommy</h2>
+          <img
+            // profileImage: `url(${profile-image})`
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREYl2tzcj9JJH4GwR2KU1Y5r15kp1e8Tumw9e81XBnupbru1UA"
+            alt="tommy"
+          />
+          <span>Tommy</span>
+          <span>Tommy@callahans.com</span>
+          <button>Edit</button>
+        </div>
         <form onSubmit>
           <h2 className="header">Edit Profile</h2>
           <input
@@ -88,18 +99,6 @@ class Profile extends Component {
           </button>
         </form>
       </div>
-
-      // <div className="profile">
-      //   <h2>Welcome Tommy</h2>
-      //   <img
-      //     // profileImage: `url(${profile-image})`
-      //     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREYl2tzcj9JJH4GwR2KU1Y5r15kp1e8Tumw9e81XBnupbru1UA"
-      //     alt="tommy"
-      //   />
-      //   <span>Tommy</span>
-      //   <span>Tommy@callahans.com</span>
-      //   <button>Edit</button>
-      // </div>
     );
   }
 }
