@@ -7,37 +7,12 @@ import Axios from "axios";
 import { connect } from "react-redux";
 
 class Login extends Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     // username: "",
-  //     // password: ""
-  //     // // login: false
-  //   };
-  // }
-
-  //redirect to dashboard
-  // async login(e) {
-  //   e.preventDefault();
-  //   const { username, password } = this.state;
-  //   await this.props.login({ username, password });
-  // .catch(error => console.log(error));
-  // if (res.data.loggedIn) this.setState({ login: true });
-  // this.props(res.data.loggedIn);
-  // }
-
-  // validateForm() {
-  //   return this.state.username.length > 0 && this.state.password.length > 0;
-  // }
-
   handleChange = e => {
     this.props.updateLogin(e.target.name, e.target.value);
   };
   handleLogin = event => {
     event.preventDefault();
     this.props.login(this.props.username, this.props.password);
-    //axios post endpoint
   };
   handleRegister = event => {
     this.props.register(
@@ -46,7 +21,6 @@ class Login extends Component {
       this.props.password,
       this.props.email
     );
-    //axios post endpoint
   };
 
   componentDidMount() {
@@ -136,5 +110,3 @@ export default connect(
   mapStateToProps,
   { login, updateLogin, register }
 )(Login);
-
-// export default Login;
