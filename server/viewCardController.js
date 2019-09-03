@@ -5,6 +5,7 @@ let follow = async (req, res) => {
   await db
     .start_following([user_id, following_user_id])
     .catch(error => console.log(error));
+  return res.sendStatus(200);
 };
 
 let unFollow = async (req, res) => {
@@ -14,6 +15,7 @@ let unFollow = async (req, res) => {
   await db
     .stop_following([user_id, following_user_id])
     .catch(error => console.log(error));
+  return res.sendStatus(200);
 };
 
 let userFollow = async (req, res) => {
