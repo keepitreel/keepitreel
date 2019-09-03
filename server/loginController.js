@@ -85,7 +85,7 @@ let logout = (req, res) => {
 
 let updatePassword = async (req, res) => {
   //this takes in new password and hashes for sql replace
-  const { newPassword, user_id } = req.body;
+  const { user_id, newPassword } = req.body;
   const db = req.app.get("db");
 
   const hash = await bcrypt
@@ -96,6 +96,7 @@ let updatePassword = async (req, res) => {
     user_id,
     hash // hashed pasword into sql database
   ]);
+  return res.sendStatus(200);
 };
 
 module.exports = {
