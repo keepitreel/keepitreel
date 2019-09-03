@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../../redux/authReducer";
 import Logo2 from "../../img/Logo2.png";
 import "./Nav.scss";
 
 class Nav extends Component {
+  handleLogout = e => {
+    console.log("hit");
+    this.props.logout();
+  };
+
   render() {
     return (
       <div className="navPage">
@@ -16,9 +23,29 @@ class Nav extends Component {
             Home
           </Link>
         </div>
+        <div className="linkWrap">
+          {this.props.user_id ? (
+            <Link to={"/"} onClick={this.handleLogout} className="links">
+              Logout
+            </Link>
+          ) : null}
+        </div>
       </div>
     );
   }
 }
 
-export default Nav;
+let mapStateToProps = reduxState => {
+  return {
+    username: reduxState.authReducer.username,
+    password: reduxState.authReducer.password,
+    user_id: reduxState.authReducer.user_id,
+    name: reduxState.authReducer.name,
+    email: reduxState.authReducer.email
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Nav);

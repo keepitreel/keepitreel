@@ -11,6 +11,7 @@ const initialState = {
 const LOGIN_USER = "LOGIN_USER";
 const REGISTER = "REGISTER";
 const UPDATE_LOGIN = "UPDATE_LOGIN";
+const LOGOUT = "LOGOUT";
 
 export function login(username, password) {
   let data = axios.post("/api/login", { username, password });
@@ -37,6 +38,14 @@ export function updateLogin(name, value) {
   return {
     type: UPDATE_LOGIN,
     payload: { name, value }
+  };
+}
+
+export function logout() {
+  axios.post("./api/login/logout");
+  return {
+    type: LOGOUT,
+    payload: initialState
   };
 }
 
@@ -78,7 +87,12 @@ export function authReducer(state = initialState, action) {
       return { ...state, password: "", username: "", error: "register" };
     case `${REGISTER}_PENDING`:
       return { ...state, password: "", username: "", error: "" };
-
+    case `${LOGOUT}`:
+      return { ...state, ...payload };
+    case `${LOGOUT}_REJECTED`:
+      return { ...state, error: "logout" };
+    case `${LOGOUT}_PENDING`:
+      return { ...state, error: "" };
     case UPDATE_LOGIN:
       return { ...state, [payload.name]: payload.value };
     default:
