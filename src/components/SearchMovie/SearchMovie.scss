@@ -16,10 +16,17 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;    align-items: center;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
     background: rgba(0, 0, 0, 0.6);
 
+    .buttonsDivContainer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+    }
 
     .searchDiv {
 
@@ -45,7 +52,7 @@
     }
 
     .searchResults {
-      width: 100%;
+      width: 80%;
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
@@ -76,7 +83,7 @@
 
           img {
             width: 70%;
-            border: 2px solid red;
+            border: 2px solid $primaryColor;
 
 
           }

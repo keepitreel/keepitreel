@@ -8,7 +8,12 @@ function Pagination(props) {
   let buildButtons = [];
   for (let i = 0; i < props.buttons; i++) {
     buildButtons.push(
-      <button onClick={() => props.getPage(props.movie, i + 1)}>{i + 1}</button>
+      <button
+        className="pageButton"
+        onClick={() => props.getPage(props.movie, i + 1)}
+      >
+        {i + 1}
+      </button>
     );
   }
 
@@ -16,11 +21,12 @@ function Pagination(props) {
     return button;
   });
 
-  return <div>{displayButtons}</div>;
+  return <div className="buttonsDiv">{displayButtons}</div>;
 }
 const mapStateToProps = reduxState => {
   return {
     movies: reduxState.movieReducer.movies,
+    movie: reduxState.movieReducer.movie,
     error: reduxState.movieReducer.error,
     totoalResults: reduxState.movieReducer.totoalResults,
     buttons: reduxState.movieReducer.buttons,

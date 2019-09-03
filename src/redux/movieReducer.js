@@ -1,5 +1,4 @@
 import axios from "axios";
-import Pagination from "../components/SearchMovie/Pagination/Pagination";
 const { REACT_APP_MOVIEAPI } = process.env;
 
 const initialState = {
@@ -9,11 +8,13 @@ const initialState = {
   totalResults: 0,
   buttons: 0,
   pagination: [],
-  displayButtons: ""
+  displayButtons: "",
+  loading: false
 };
 
 const FETCH_MOVIES = "FETCH_MOVIES";
 const FETCH_MOVIES_PAGE = "FETCH_MOVIES_PAGE";
+const SET_MOVIE = "SET_MOVIE";
 
 export function getMovies(movie) {
   return {
@@ -21,6 +22,13 @@ export function getMovies(movie) {
     payload: axios.get(
       `http://www.omdbapi.com/?s=${movie}&page=1&apikey=${REACT_APP_MOVIEAPI}`
     )
+  };
+}
+
+export function setMovie(movie) {
+  return {
+    type: SET_MOVIE,
+    payload: movie
   };
 }
 
@@ -37,21 +45,19 @@ export function getPage(movie, page) {
 }
 
 export function movieReducer(state = initialState, action) {
-  const { type, payload, movie } = action;
+  const { type, payload } = action;
   switch (type) {
     case `${FETCH_MOVIES}_PENDING`:
       return { ...state, loading: true };
 
     case `${FETCH_MOVIES}_FULFILLED`:
-      console.log(movie);
       return payload.data.Response === "True"
         ? {
             ...state,
             loading: false,
             movies: payload.data.Search,
             totalResults: Number(payload.data.totalResults),
-            buttons: Math.ceil(Number(payload.data.totalResults) / 10),
-            movie: movie
+            buttons: Math.ceil(Number(payload.data.totalResults) / 10)
           }
         : {
             movies: [],
@@ -65,7 +71,7 @@ export function movieReducer(state = initialState, action) {
 
     case `${FETCH_MOVIES_PAGE}_FULFILLED`:
       return payload.data.Response
-        ? { ...state, movies: payload.data.Search }
+        ? { ...state, movies: payload.data.Search, loading: false }
         : { movies: [], error: payload.data.Error };
 
     case `${FETCH_MOVIES_PAGE}_PENDING`:
@@ -73,6 +79,9 @@ export function movieReducer(state = initialState, action) {
 
     case `${FETCH_MOVIES_PAGE}_REJECTED`:
       return { error: "Site is currently down" };
+
+    case SET_MOVIE:
+      return { ...state, movie: payload };
     default:
       return state;
   }
