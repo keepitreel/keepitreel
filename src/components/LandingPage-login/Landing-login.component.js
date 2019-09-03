@@ -1,44 +1,26 @@
 import React, { Component } from "react";
 import Video from "../../video/curtain.mp4";
 import { Redirect } from "react-router-dom";
-import { login } from "../../redux/authReducer";
+import { login, updateLogin, register } from "../../redux/authReducer";
 import "./Landing-login.style.css";
 import Axios from "axios";
 import { connect } from "react-redux";
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: "",
-      password: ""
-      // login: false
-    };
-  }
-
-  //redirect to dashboard
-  async login(e) {
-    const { username, password } = this.state;
-    await this.props
-      .login({ username, password })
-      .catch(error => console.log(error));
-    // if (res.data.loggedIn) this.setState({ login: true });
-    // this.props(res.data.loggedIn);
-  }
-
-  validateForm() {
-    return this.state.username.length > 0 && this.state.password.length > 0;
-  }
-
-  handleUsername = event => {
-    this.setState({ username: event.target.value });
-    console.log(event.target.value);
+  handleChange = e => {
+    this.props.updateLogin(e.target.name, e.target.value);
   };
-
-  handlePassword = event => {
-    this.setState({ password: event.target.value });
-    console.log(event.target.value);
+  handleLogin = event => {
+    event.preventDefault();
+    this.props.login(this.props.username, this.props.password);
+  };
+  handleRegister = event => {
+    this.props.register(
+      this.props.username,
+      this.props.name,
+      this.props.password,
+      this.props.email
+    );
   };
 
   componentDidMount() {
@@ -48,9 +30,8 @@ class Login extends Component {
   }
 
   render() {
-    if (this.props.checkLogin === true) {
-      return <Redirect to="/dashboard" />;
-    }
+    console.log(this.props.user_id);
+
     return (
       <div className="container">
         <video id="background-video" autoPlay>
@@ -62,38 +43,70 @@ class Login extends Component {
           <form>
             <span className="username-input-box">
               <input
+                name="username"
                 placeholder="Username"
                 type="text"
                 required
-                onChange={this.handleUsername}
+                onChange={this.handleChange}
               ></input>
             </span>
             <br />
             <span className="password-input-box">
               <input
+                name="password"
                 placeholder="Password"
                 type="password"
-                onChange={this.handlePassword}
+                onChange={this.handleChange}
                 required
               ></input>
             </span>
             <br />
+            <div className="register-form">
+              <input
+                name="username"
+                placeholder="username"
+                onChange={this.handleChange}
+              />
+              <input
+                name="name"
+                placeholder="name"
+                onChange={this.handleChange}
+              />
+              <input
+                name="password"
+                placeholder="password"
+                onChange={this.handleChange}
+              />
+              <input
+                name="email"
+                placeholder="email"
+                onChange={this.handleChange}
+              />
+            </div>
             <div className="buttons">
-              <button>Register</button>
-              <button>Login</button>
+              <button onClick={this.handleRegister}>Register</button>
+              <button onClick={this.handleLogin}>Login</button>
             </div>
           </form>
         </div>
+        {console.log(this.props.user_id)}
+        {this.props.user_id !== "" && <Redirect to="/dashboard" />}
       </div>
     );
   }
 }
 
 const mapStateToProps = reduxState => {
-  return { session: reduxState.authReducer };
+  return {
+    username: reduxState.authReducer.username,
+    password: reduxState.authReducer.password,
+    user_id: reduxState.authReducer.user_id,
+    name: reduxState.authReducer.name,
+    email: reduxState.authReducer.email
+  };
 };
 
 export default connect(
   mapStateToProps,
-  { login }
+  { login, updateLogin, register }
 )(Login);
