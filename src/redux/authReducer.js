@@ -4,50 +4,97 @@ const initialState = {
   username: "",
   password: "",
   user_id: "",
-  username: "",
   name: "",
-  email: "",
-  avatarurl: ""
+  email: ""
 };
 
-const CREATE_USER = "CREATE_USER";
-const CHECK_LOGIN = "CHECK_LOGIN";
+const LOGIN_USER = "LOGIN_USER";
+const REGISTER = "REGISTER";
+const UPDATE_LOGIN = "UPDATE_LOGIN";
+const LOGOUT = "LOGOUT";
 
 export function login(username, password) {
+  let data = axios.post("/api/login", { username, password });
   return {
-    type: CREATE_USER,
-    payload: axios.post("/api/login", { username, password }).then(res => {
-      return res.data;
-    })
+    type: LOGIN_USER,
+    payload: data
   };
 }
 
-export function checkLogin(value) {
+export function register(username, name, password, email) {
+  let data = axios.post("/api/login/register", {
+    username,
+    name,
+    password,
+    email
+  });
   return {
-    type: CHECK_LOGIN,
-    payload: value
+    type: REGISTER,
+    payload: data
+  };
+}
+
+export function updateLogin(name, value) {
+  return {
+    type: UPDATE_LOGIN,
+    payload: { name, value }
+  };
+}
+
+export function logout() {
+  axios.post("./api/login/logout");
+  return {
+    type: LOGOUT,
+    payload: initialState
   };
 }
 
 export function authReducer(state = initialState, action) {
-  switch (action.type) {
-    case `${CREATE_USER}_FULFILLED`:
+  console.log(action);
+  const { type, payload } = action;
+  console.log(type, payload);
+  switch (type) {
+    case `${LOGIN_USER}_FULFILLED`:
       return {
-        ...action.payload,
+        ...state,
+        username: payload.data.username,
+        user_id: payload.data.user_id,
+        email: payload.data.email,
+        avatarurl: payload.data.avatarurl,
+        name: payload.data.name,
         error: "",
         pending: false
       };
-    case `${CREATE_USER}_REJECTED`:
+    // console.log(state)
+
+    case `${LOGIN_USER}_REJECTED`:
       return {
         ...state,
         error: "email or password incorrect",
         pending: false
       };
-    case `${CREATE_USER}_PENDING`:
+    case `${LOGIN_USER}_PENDING`:
       return { ...state, pending: true };
-    case `CHECK_LOGIN`:
-      console.log(action.payload);
-      return { ...action.payload, error: "", pending: false };
+    case `${REGISTER}_FULFILLED`:
+      return {
+        ...state,
+        username: payload.data.username,
+        email: payload.data.email,
+        user_id: payload.data.user_id,
+        name: payload.data.name
+      };
+    case `${REGISTER}_REJECTED`:
+      return { ...state, password: "", username: "", error: "register" };
+    case `${REGISTER}_PENDING`:
+      return { ...state, password: "", username: "", error: "" };
+    case `${LOGOUT}`:
+      return { ...state, ...payload };
+    case `${LOGOUT}_REJECTED`:
+      return { ...state, error: "logout" };
+    case `${LOGOUT}_PENDING`:
+      return { ...state, error: "" };
+    case UPDATE_LOGIN:
+      return { ...state, [payload.name]: payload.value };
     default:
       return state;
   }

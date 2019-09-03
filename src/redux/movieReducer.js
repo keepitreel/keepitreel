@@ -44,7 +44,7 @@ export function getPage(movie, page) {
   };
 }
 
-export function movieReducer(state = initialState, action) {
+export default function movieReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case `${FETCH_MOVIES}_PENDING`:

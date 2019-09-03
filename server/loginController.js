@@ -31,7 +31,7 @@ let loginControl = async (req, res) => {
 };
 
 let register = async (req, res) => {
-  const { username, name, password, email, avatarurl } = req.body;
+  const { username, name, password, email } = req.body;
   const db = req.app.get("db");
 
   const user = await db.check_user(username).catch(error => console.log(error));
@@ -46,16 +46,14 @@ let register = async (req, res) => {
       username,
       name,
       hash, // hashed pasword into sql database
-      email,
-      avatarurl
+      email
     ]);
 
     req.session.user = {
       user_id: newUser[0].user_id,
       username,
       name,
-      email,
-      avatarurl
+      email
     };
     res.json(req.session.user);
   }
