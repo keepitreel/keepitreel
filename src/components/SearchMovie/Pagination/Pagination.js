@@ -21,7 +21,6 @@ function Pagination(props) {
 const mapStateToProps = reduxState => {
   return {
     movies: reduxState.movieReducer.movies,
-    movie: reduxState.movieReducer.movie,
     error: reduxState.movieReducer.error,
     totoalResults: reduxState.movieReducer.totoalResults,
     buttons: reduxState.movieReducer.buttons,
