@@ -10,9 +10,15 @@ export default class CreateBlog extends Component {
       movie: [],
       error: "",
       image: "",
-      rating: 0
+      rating: 0,
+      submit: false
     };
   }
+
+  handleSubmit = () => {
+    axios.post().then();
+    this.setState({ submit: true });
+  };
 
   componentDidMount() {
     axios

@@ -1,25 +1,20 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Unsplash from "react-unsplash-wrapper";
 import "./SearchMovie.scss";
-import { thisExpression } from "@babel/types";
 import Pagination from "./Pagination/Pagination";
 import NoMovies from "../../img/NoImage.png";
-import DisplayMovie from "../DisplayMovie/DisplayMovie";
+import Gif from "../../img/loading.gif";
 
-export default class SearchMovie extends Component {
+import { getMovies, getPage, setMovie } from "../../redux/movieReducer";
+
+class SearchMovie extends Component {
   constructor() {
     super();
 
     this.state = {
-      movies: [],
-      movie: "",
-      error: "",
-      totalResults: 0,
-      buttons: 0,
-      pagination: [],
-      displayButtons: ""
+      movie: ""
     };
   }
 
@@ -27,86 +22,37 @@ export default class SearchMovie extends Component {
     this.setState({ [e.target.name]: e.target.value.replace(" ", "-") });
   };
 
-  buildButtons = () => {
-    let { buttons, pagination } = this.state;
-
-    if (buttons > 0) {
-      for (let i = 0; i < buttons; i++) {
-        pagination.push(
-          <Pagination name={i} getPage={this.getPage} index={i} />
-        );
-      }
-    }
-    let displayButtons = pagination.map(button => {
-      return button;
-    });
-
-    this.setState({ displayButtons });
-  };
-
   search = () => {
-    this.setState({ pagination: [], displayButtons: "" });
-    axios
-      .get(
-        `http://www.omdbapi.com/?s=${this.state.movie}&page=1&apikey=579b4fff`
-      )
-      .then(response => {
-        console.log(response);
-        response.data.Response === "True"
-          ? this.setState({
-              movies: response.data.Search,
-              error: "",
-              totalResults: Number(response.data.totalResults),
-              buttons: Math.ceil(Number(response.data.totalResults) / 10)
-            })
-          : this.setState({
-              movies: [],
-              error: response.data.Error,
-              pagination: [],
-              displayButtons: ""
-            });
-        response.data.Response === "True" && this.buildButtons();
-      });
+    console.log("hit");
+    this.props.setMovie(this.state.movie);
+    this.props.getMovies(this.state.movie);
   };
 
   getPage = pageNumber => {
     console.log("hit");
     console.log(pageNumber);
-
-    axios
-      .get(
-        `http://www.omdbapi.com/?s=${this.state.movie}&page=${pageNumber}&apikey=579b4fff`
-      )
-      .then(response => {
-        console.log(response);
-        response.data.Response === "True"
-          ? this.setState({
-              movies: response.data.Search
-            })
-          : this.setState({ movies: [], error: response.data.Error });
-      });
-    this.refs.hello.scrollIntoView({ behavior: "smooth" });
+    this.props.getPage(this.state.movie, pageNumber);
   };
 
   render() {
-    let { error, movies, buttons, displayButtons } = this.state;
-    console.log(this.state);
+    let { error, movies } = this.props;
+    console.log(this.props);
+    movies ? console.log("hello") : console.log("goodbye");
+
     let displayMovies = movies.map(movie => {
       return (
         <div className="movieDiv">
           <Link to={`/movie/${movie.imdbID}`}>
-            <h1>{movie.Year}</h1>
             {movie.Poster === "N/A" ? (
               <div>
                 <img src={NoMovies}></img>
-                <h5>{movie.Title}</h5>
               </div>
             ) : (
-              <img
-                src={`http://img.omdbapi.com/?i=${movie.imdbID}&h=900&apikey=579b4fff`}
-                onerror="this.src='https://placeimg.com/200/300/animals';"
-              ></img>
+              <img src={movie.Poster}></img>
             )}
+            <h4>
+              {movie.Title}-{movie.Year}
+            </h4>
           </Link>
         </div>
       );
@@ -114,7 +60,7 @@ export default class SearchMovie extends Component {
     return (
       <div ref="hello" className="searchMoviePage">
         <div className={"imageBackground"}>
-          <Unsplash width="1500" height="1000" collectionId="5048230 2597671" />
+          <Unsplash width="1800" height="1000" collectionId="5048230 2597671" />
         </div>
 
         <div className="movieContainer">
@@ -127,10 +73,20 @@ export default class SearchMovie extends Component {
             <button onClick={this.search}>Search</button>
           </div>
           {error && error}
+          {this.props.loading && (
+            <div className="searchResults">
+              <div className="displayMovies">
+                <img src={Gif}></img>
+              </div>
+            </div>
+          )}
           {displayMovies && (
             <div className="searchResults">
               <div className="displayMovies">{displayMovies}</div>
-              <div className="buttonsDiv">{displayButtons}</div>
+              {console.log(this.state.movie)}
+              <div className="buttonsDivContainer">
+                <Pagination />
+              </div>
             </div>
           )}
         </div>
@@ -138,3 +94,21 @@ export default class SearchMovie extends Component {
     );
   }
 }
+
+const mapStateToProps = reduxState => {
+  return {
+    movies: reduxState.movieReducer.movies,
+    movie: reduxState.movieReducer.movie,
+    error: reduxState.movieReducer.error,
+    totoalResults: reduxState.movieReducer.totoalResults,
+    buttons: reduxState.movieReducer.buttons,
+    pagination: reduxState.movieReducer.pagination,
+    displayButtons: reduxState.movieReducer.displayButtons,
+    loading: reduxState.movieReducer.loading
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getMovies, getPage, setMovie }
+)(SearchMovie);

@@ -1,11 +1,26 @@
 @import'../../../App.scss';
 
-.pageButton {
-  background-color: $primaryColor;
-  border: 1px solid $accentColor;
-  font-size: 18px;
-}
 
-.pageButton:hover {
-  transform: scale(1.1)
+.buttonsDiv {
+
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  flex-wrap: wrap;
+
+
+  .pageButton {
+    background-color: $primaryColor;
+    border: 1px solid $accentColor;
+    font-size: 18px;
+    padding: 5px;
+    margin: 5px;
+    min-width: 50px;
+    ;
+  }
+
+  .pageButton:hover {
+    transform: scale(1.1)
+  }
+
 }
