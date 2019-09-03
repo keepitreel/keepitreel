@@ -1,5 +1,5 @@
-INSERT INTO movie_user (username, name, password, email, avatarurl)
-VALUES ($1,$2,$3,$4,$5)
+INSERT INTO movie_user (username, name, password, email)
+VALUES ($1,$2,$3,$4)
 returning *
 
 
