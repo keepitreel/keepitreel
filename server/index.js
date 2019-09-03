@@ -76,7 +76,9 @@ app.post("/api/blog/createpost", createPost);
 
 //commentController.js
 app.post("/api/comment/createcomment", createComment); //creates comment
-app.get("/api/comment", getComments); //get all comments for post_id
+app.get("/api/comment/:post_id", getComments); //get all comments for post_id //written with req.params //postman call http://localhost:4050/api/comment/1
+//
+//app.get("/api/comment", getComments); //get all comments for post_id using req.query  //postman call http://localhost:4050/api/comment/?post_id=1
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../build/index.html"));
