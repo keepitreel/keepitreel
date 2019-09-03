@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { updateUser } from "../../redux/authReducer";
 import "./Profile.scss";
 
 class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      profiles: []
+      username: "",
+      password: "",
+      user_id: "",
+      name: "",
+      email: "",
+      avatarurl: ""
     };
   }
 
@@ -36,4 +44,12 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = reduxState => {
+  return {
+    session: reduxState.authReducer
+  };
+};
+export default connect(
+  mapStateToProps,
+  { updateUser }
+)(Profile);
