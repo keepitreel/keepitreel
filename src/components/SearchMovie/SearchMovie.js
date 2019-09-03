@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Unsplash from "react-unsplash-wrapper";
 import "./SearchMovie.scss";
-import { thisExpression } from "@babel/types";
 import Pagination from "./Pagination/Pagination";
 import NoMovies from "../../img/NoImage.png";
-import DisplayMovie from "../DisplayMovie/DisplayMovie";
 
-export default class SearchMovie extends Component {
+import { getMovies, getPage } from "../../redux/movieReducer";
+import { get } from "http";
+
+class SearchMovie extends Component {
   constructor() {
     super();
 
@@ -40,57 +41,62 @@ export default class SearchMovie extends Component {
     let displayButtons = pagination.map(button => {
       return button;
     });
-
     this.setState({ displayButtons });
   };
 
   search = () => {
-    this.setState({ pagination: [], displayButtons: "" });
-    axios
-      .get(
-        `http://www.omdbapi.com/?s=${this.state.movie}&page=1&apikey=579b4fff`
-      )
-      .then(response => {
-        console.log(response);
-        response.data.Response === "True"
-          ? this.setState({
-              movies: response.data.Search,
-              error: "",
-              totalResults: Number(response.data.totalResults),
-              buttons: Math.ceil(Number(response.data.totalResults) / 10)
-            })
-          : this.setState({
-              movies: [],
-              error: response.data.Error,
-              pagination: [],
-              displayButtons: ""
-            });
-        response.data.Response === "True" && this.buildButtons();
-      });
+    console.log("hit");
+    this.props.getMovies(this.state.movie);
+
+    // this.setState({ pagination: [], displayButtons: "" });
+    // axios
+    //   .get(
+    //     `http://www.omdbapi.com/?s=${this.state.movie}&page=1&apikey=579b4fff`
+    //   )
+    //   .then(response => {
+    //     console.log(response);
+    //     response.data.Response === "True"
+    //       ? this.setState({
+    //           movies: response.data.Search,
+    //           error: "",
+    //           totalResults: Number(response.data.totalResults),
+    //           buttons: Math.ceil(Number(response.data.totalResults) / 10)
+    //         })
+    //       : this.setState({
+    //           movies: [],
+    //           error: response.data.Error,
+    //           pagination: [],
+    //           displayButtons: ""
+    //         });
+    //     response.data.Response === "True" && this.buildButtons();
+    //   });
   };
 
   getPage = pageNumber => {
     console.log("hit");
     console.log(pageNumber);
+    this.props.getPage(this.state.movie, pageNumber);
 
-    axios
-      .get(
-        `http://www.omdbapi.com/?s=${this.state.movie}&page=${pageNumber}&apikey=579b4fff`
-      )
-      .then(response => {
-        console.log(response);
-        response.data.Response === "True"
-          ? this.setState({
-              movies: response.data.Search
-            })
-          : this.setState({ movies: [], error: response.data.Error });
-      });
-    this.refs.hello.scrollIntoView({ behavior: "smooth" });
+    // axios
+    //   .get(
+    //     `http://www.omdbapi.com/?s=${this.state.movie}&page=${pageNumber}&apikey=579b4fff`
+    //   )
+    //   .then(response => {
+    //     console.log(response);
+    //     response.data.Response === "True"
+    //       ? this.setState({
+    //           movies: response.data.Search
+    //         })
+    //       : this.setState({ movies: [], error: response.data.Error });
+    //   });
+    // this.refs.hello.scrollIntoView({ behavior: "smooth" });
   };
 
   render() {
-    let { error, movies, buttons, displayButtons } = this.state;
-    console.log(this.state);
+    let { error, movies } = this.props;
+    console.log(this.props);
+    movies ? console.log("hello") : console.log("goodbye");
+
     let displayMovies = movies.map(movie => {
       return (
         <div className="movieDiv">
@@ -130,7 +136,8 @@ export default class SearchMovie extends Component {
           {displayMovies && (
             <div className="searchResults">
               <div className="displayMovies">{displayMovies}</div>
-              <div className="buttonsDiv">{displayButtons}</div>
+              {console.log(this.state.movie)}
+              <Pagination movie={this.state.movie} />
             </div>
           )}
         </div>
@@ -138,3 +145,20 @@ export default class SearchMovie extends Component {
     );
   }
 }
+
+const mapStateToProps = reduxState => {
+  return {
+    movies: reduxState.movieReducer.movies,
+    movie: reduxState.movieReducer.movie,
+    error: reduxState.movieReducer.error,
+    totoalResults: reduxState.movieReducer.totoalResults,
+    buttons: reduxState.movieReducer.buttons,
+    pagination: reduxState.movieReducer.pagination,
+    displayButtons: reduxState.movieReducer.displayButtons
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getMovies, getPage }
+)(SearchMovie);
