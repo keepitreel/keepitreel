@@ -13,7 +13,43 @@
   top: 0;
   float: left;
   padding: 0;
-  z-index: 9;
+  z-index: 0;
+}
+.movie-poster-images {
+  height: 50%;
+  width: 50%;
+  position: absolute;
+
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+
+.batman-poster {
+  position: relative;
+  z-index: 7;
+  width: 27.3%;
+  height: 100%;
+}
+
+.johnwick-poster {
+  position: relative;
+  z-index: 7;
+  width: 27.3%;
+  height: 100%;
+}
+.marvel-poster {
+  position: relative;
+  z-index: 7;
+  width: 27.3%;
+  height: 100%;
+}
+.titanic-poster {
+  position: relative;
+  z-index: 7;
+  width: 27.3%;
+  height: 100%;
 }
 
 .sign-in-container {
@@ -23,24 +59,21 @@
   justify-content: center;
   align-items: center;
   z-index: 10;
-
-  background-image: url('../../img/greatestFilms.jpg');
+  text-shadow: 1px 1px 1px red;
   min-width: 100vh;
   min-height: 50vh;
   color: black;
 
   animation: fade 8s ease-in;
-
 }
 
 @keyframes fade {
-
   0% {
-    opacity: 0
+    opacity: 0;
   }
 
   100% {
-    opacity: 1
+    opacity: 1;
   }
 }
 

@@ -1,28 +1,46 @@
 import React, { Component } from "react";
-import YourBlog from "./YourBlog";
-// import { connect } from 'react-redux';
-// import { getUserBlogs} from 'reducer'
+import Card from "../Card/Card";
+import { connect } from "react-redux";
+import axios from "axios";
 
 class YourBlogs extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      yourBlogs: []
+    };
   }
 
   //need backend to send user's blogs data******************
   componentDidMount() {
-    // this.props.getUserBlogs()
+    axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
+      this.setState({
+        yourBlogs: res.data
+      });
+    });
   }
 
   render() {
-    // let displayUserBlogs = this.props.blogs.map(blog => {
-    //   return <Blog blog='blog'/>
-    // })
     return (
       <>
-        <div className="yourBlogs-container">
+        <div className="friends-container">
           <h1>Your Blogs</h1>
-          {/* <div>{displayUserBlogs}</div> */}
+          <div>
+            {this.state.yourBlogs.map(yourBlog => (
+              <Card
+                name={yourBlog.name}
+                post_id={yourBlog.post_id}
+                key={yourBlog.post_id}
+                user_id={yourBlog.user_id}
+                text={yourBlog.text}
+                posterurl={yourBlog.posterurl}
+                title={yourBlog.title}
+                blogtitle={yourBlog.blogtitle}
+                avatarurl={yourBlog.avatarurl}
+                rating={yourBlog.rating}
+              />
+            ))}
+          </div>
         </div>
       </>
     );
@@ -31,10 +49,8 @@ class YourBlogs extends Component {
 
 let mapStatetoProps = reduxState => {
   return {
-    blogs: reduxState.blogs.blogs
+    user_id: reduxState.authReducer.user_id
   };
 };
 
-// export default connect(mapStatetoProps, {getUserBlogs})(YourBlogs)
-
-export default YourBlogs;
+export default connect(mapStatetoProps)(YourBlogs);

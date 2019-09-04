@@ -1,54 +1,58 @@
 import React, { Component } from "react";
+import Card from "../Card/Card";
 import axios from "axios";
-// import { connect } from 'react-redux';
-// import { getBlogs } from 'reducer';
+import { connect } from "react-redux";
 
 class Community extends Component {
   constructor() {
     super();
     this.state = {
-      post: []
+      community: []
     };
   }
 
   //need backend to send blogs id based on most recent****************
   //get time for blogs
   componentDidMount() {
-    axios
-      .get("/api/communitypost")
-      .then(res => {
-        {
-          console.log(res.data);
-        }
-        this.setState({ post: res.data });
-      })
-      .catch(error => console.log(error));
-    console.log(this.post);
+    axios.get("/api/communitypost").then(res => {
+      {
+        console.log(res.data);
+      }
+      this.setState({ community: res.data });
+    });
   }
 
   render() {
-    const { post } = this.state;
     return (
       <>
-        return (<div className="wrapper"></div>){console.log(this.state.post)}
-        {this.state.post.map(card => (
-          <div key={card.post_id}>
-            <h1>{card.user_id}</h1>
-
-            <img src={card.posterurl} />
+        <div className="friends-container">
+          <h1>Community</h1>
+          <div>
+            {this.state.community.map(commCard => (
+              <Card
+                name={commCard.name}
+                post_id={commCard.post_id}
+                key={commCard.post_id}
+                user_id={commCard.user_id}
+                text={commCard.text}
+                posterurl={commCard.posterurl}
+                title={commCard.title}
+                blogtitle={commCard.blogtitle}
+                avatarurl={commCard.avatarurl}
+                rating={commCard.rating}
+              />
+            ))}
           </div>
-        ))}
+        </div>
       </>
     );
   }
 }
 
-// let mapStatetoProps = reduxState => {
-//   return {
-//     community: reduxState.community
-//   };
-// };
+let mapStatetoProps = reduxState => {
+  return {
+    user_id: reduxState.authReducer.user_id
+  };
+};
 
-// export default connect(mapStatetoProps, {getBlogs})(Community)
-
-export default Community;
+export default connect(mapStatetoProps)(Community);
