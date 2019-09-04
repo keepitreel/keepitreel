@@ -5,6 +5,7 @@ let follow = async (req, res) => {
   await db
     .start_following([user_id, following_user_id])
     .catch(error => console.log(error));
+  return res.sendStatus(200);
 };
 
 let unFollow = async (req, res) => {
@@ -14,11 +15,12 @@ let unFollow = async (req, res) => {
   await db
     .stop_following([user_id, following_user_id])
     .catch(error => console.log(error));
+  return res.sendStatus(200);
 };
 
 let userFollow = async (req, res) => {
   // returns all people user_id is following
-  const { user_id } = req.body;
+  const { user_id } = req.params;
   const db = req.app.get("db");
 
   const user = await db
@@ -30,7 +32,7 @@ let userFollow = async (req, res) => {
 
 let userFollowCount = async (req, res) => {
   // returns count of all people who follow user_id
-  const { user_id } = req.body;
+  const { user_id } = req.params;
   const db = req.app.get("db");
 
   const user = await db
