@@ -14,6 +14,14 @@ const REGISTER = "REGISTER";
 const UPDATE_LOGIN = "UPDATE_LOGIN";
 const LOGOUT = "LOGOUT";
 const UPDATE_USER = "UPDATE_USER";
+const CHECK_FOR_LOGIN = "CHECK_FOR_LOGIN";
+
+export function checkForLogin(value) {
+  return {
+    type: CHECK_FOR_LOGIN,
+    payload: value
+  };
+}
 
 export function login(username, password) {
   let data = axios.post("/api/login", { username, password });
@@ -105,7 +113,9 @@ export function authReducer(state = initialState, action) {
     case UPDATE_LOGIN:
       return { ...state, [payload.name]: payload.value };
     case `${UPDATE_USER}`:
-      return { ...action.payload, error: "", pending: false };
+      return { ...state, error: "", pending: false };
+    case `${CHECK_FOR_LOGIN}`:
+      return { ...payload, error: "", pending: false };
     default:
       return state;
   }
