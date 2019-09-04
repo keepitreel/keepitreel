@@ -7,7 +7,6 @@ let follow = async (req, res) => {
     .catch(error => console.log(error));
   return res.sendStatus(200);
 };
-
 let unFollow = async (req, res) => {
   const { user_id, following_user_id } = req.body;
   const db = req.app.get("db");
@@ -17,7 +16,6 @@ let unFollow = async (req, res) => {
     .catch(error => console.log(error));
   return res.sendStatus(200);
 };
-
 let userFollow = async (req, res) => {
   // returns all people user_id is following
   const { user_id } = req.params;
@@ -29,7 +27,6 @@ let userFollow = async (req, res) => {
 
   res.json(user);
 };
-
 let userFollowCount = async (req, res) => {
   // returns count of all people who follow user_id
   const { user_id } = req.params;
@@ -41,10 +38,50 @@ let userFollowCount = async (req, res) => {
 
   res.json(user);
 };
+let startLikingPost = async (req, res) => {
+  const { user_id, post_id } = req.body;
+  const db = req.app.get("db");
+
+  await db
+    .start_liking_post([user_id, post_id])
+    .catch(error => console.log(error));
+  return res.sendStatus(200);
+};
+let stopLikingPost = async (req, res) => {
+  const { user_id, post_id } = req.body;
+  const db = req.app.get("db");
+
+  await db
+    .stop_liking_post([user_id, post_id])
+    .catch(error => console.log(error));
+  return res.sendStatus(200);
+};
+let startDislikingPost = async (req, res) => {
+  const { user_id, post_id } = req.body;
+  const db = req.app.get("db");
+
+  await db
+    .start_disliking_post([user_id, post_id])
+    .catch(error => console.log(error));
+  return res.sendStatus(200);
+};
+let stopDislikingPost = async (req, res) => {
+  const { user_id, post_id } = req.body;
+  const db = req.app.get("db");
+
+  await db
+    .stop_disliking_post([user_id, post_id])
+    .catch(error => console.log(error));
+  return res.sendStatus(200);
+};
 
 module.exports = {
   follow,
   unFollow,
   userFollow,
-  userFollowCount
+  userFollowCount,
+  startLikingPost,
+  stopLikingPost,
+  startDislikingPost,
+  stopDislikingPost
 };
