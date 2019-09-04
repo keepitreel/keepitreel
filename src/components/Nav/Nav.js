@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Logo from "../../img/Logo.jpg";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout, checkForLogin } from "../../redux/authReducer";
