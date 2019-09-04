@@ -1,0 +1,15 @@
+@import '../../App.scss';
+
+.BlogPage {
+  @include pageCenter(100%, 90px);
+
+
+  .top {
+
+    .movieContainer {}
+
+    .blogStuff {}
+  }
+
+  .bottom {}
+}

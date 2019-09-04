@@ -39,6 +39,7 @@ class CreateBlog extends Component {
         rating,
         time,
         genre,
+        title,
         blogtitle
       })
       .then(response => {

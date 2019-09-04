@@ -1,0 +1,11 @@
+@import '../../App.scss';
+
+.FollowDiv {
+  .follow {
+    color: $textColor;
+  }
+
+  .unfollow {
+    color: $primaryColor;
+  }
+}
