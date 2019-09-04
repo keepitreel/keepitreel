@@ -99,10 +99,15 @@ let updatePassword = async (req, res) => {
   return res.sendStatus(200);
 };
 
+let getSession = (req, res) => {
+  req.session.user ? res.json(req.session.user) : res.sendStatus(403);
+};
+
 module.exports = {
   loginControl,
   register,
   updateUser,
   logout,
-  updatePassword
+  updatePassword,
+  getSession
 };
