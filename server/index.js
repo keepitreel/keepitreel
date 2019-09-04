@@ -7,14 +7,14 @@ const {
   register,
   updateUser,
   updatePassword,
-  logout
+  logout,
+  getSession
 } = require("./LoginController");
 const {
   follow,
   unFollow,
   userFollow,
-  userFollowCount,
-  getSession
+  userFollowCount
 } = require("./viewCardController");
 const { getUserPost } = require("./yourBlogsController");
 const { getCommunityPost } = require("./communityController");
