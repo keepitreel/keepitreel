@@ -10,7 +10,7 @@ export default (
   <Switch>
     <Route exact path="/" component={LandingPageLogin}></Route>
     <Route path="/movie/:id" component={CreateBlog}></Route>
-    <Route path="/moviesSearch" component={SearchMovie}></Route>
+    <Route path="/search" component={SearchMovie}></Route>
     <Route path="/dashboard" component={Dashboard}></Route>
     <Route path="/blog/:id" component={Blog}></Route>
   </Switch>

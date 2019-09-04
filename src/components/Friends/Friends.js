@@ -25,6 +25,7 @@ class Friends extends Component {
       <>
         <h1>Friends</h1>
         <div className="friends-container">
+<<<<<<< HEAD
           <div classname="card">
             {this.state.friends.map(friend => (
               <Card
@@ -41,6 +42,11 @@ class Friends extends Component {
               />
             ))}
           </div>
+=======
+          <h1>Friends</h1>
+          {/* <div>{displayFriends}</div> */}
+          {/* <Card /> */}
+>>>>>>> master
         </div>
       </>
     );
