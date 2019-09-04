@@ -24,7 +24,7 @@ class Friends extends Component {
         <div className="friends-container">
           <h1>Friends</h1>
           {/* <div>{displayFriends}</div> */}
-          <Card />
+          {/* <Card /> */}
         </div>
       </>
     );

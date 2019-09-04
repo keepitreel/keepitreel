@@ -4,6 +4,7 @@ import axios from "axios";
 import "../CreateBlog/CreateBlog.scss";
 import DisplayMovie from "../DisplayMovie/DisplayMovie";
 import { Redirect } from "react-router-dom";
+import Rating from "../Star/Rating";
 
 class CreateBlog extends Component {
   constructor() {
@@ -18,6 +19,10 @@ class CreateBlog extends Component {
       blogTitle: ""
     };
   }
+
+  updateRating = value => {
+    this.setState({ rating: value });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -103,64 +108,7 @@ class CreateBlog extends Component {
                 Blog
                 <textarea name="text" onChange={this.handleChange}></textarea>
               </label>
-              <div className="ratingDiv">
-                <label>
-                  <input
-                    required
-                    type="radio"
-                    name="rating"
-                    value="1"
-                    onChange={this.handleChange}
-                  />
-                  <span class="icon">★</span>
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="rating"
-                    value="2"
-                    onChange={this.handleChange}
-                  />
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="rating"
-                    value="3"
-                    onChange={this.handleChange}
-                  />
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="rating"
-                    value="4"
-                    onChange={this.handleChange}
-                  />
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="rating"
-                    value="5"
-                    onChange={this.handleChange}
-                  />
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                  <span class="icon">★</span>
-                </label>
-              </div>
+              <Rating updateRating={this.updateRating} />
               <button onClick={this.handleSubmit}>Submit</button>
             </form>
           </div>
