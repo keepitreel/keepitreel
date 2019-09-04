@@ -29,7 +29,8 @@ const {
   likedGenreFilter,
   communityGenreFilter,
   deletePost,
-  getPost
+  getPost,
+  updatePost
 } = require("./dashboardController");
 
 require("dotenv").config(); //get access to environmental variables
@@ -99,6 +100,7 @@ app.get("/api/dashboard/communitygenrefilter/:genre", communityGenreFilter); // 
 app.get("/api/dashboard/friendgenrefilter/:user_id/:genre", friendGenreFilter); // returns filtered friends posts by user_id and genre
 app.put("/api/dashboard/deletepost/:post_id", deletePost); //deletes post given post_id
 app.get("/api/dashboard/getpost/:post_id", getPost); //gets single post given post_id
+app.put("/api/dashboard/update/post", updatePost); //updates post given post_id
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../build/index.html"));
