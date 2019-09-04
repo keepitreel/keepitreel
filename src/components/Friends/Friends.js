@@ -11,9 +11,6 @@ class Friends extends Component {
     };
   }
 
-  //need backend to send friends data****************
-  // app.get("/api/friendspost/:user_id", getFriendsPost);
-  // get user id from session
   componentDidMount() {
     axios.get(`/api/friendspost/${this.props.user_id}`).then(res => {
       console.log(this.props.user_id);
@@ -31,7 +28,7 @@ class Friends extends Component {
       <>
         <div className="friends-container">
           <h1>Friends</h1>
-          <div>
+          <div classname="card">
             {this.state.friends.map(friend => (
               <Card
                 name={friend.name}

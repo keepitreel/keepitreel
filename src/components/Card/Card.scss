@@ -1,28 +1,30 @@
 * {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .card-wrapper {
- background: white;
- height: 50vh;
- display: grid;
- grid-template-columns: 1fr 2fr;
- grid-template-rows: 1fr 2fr;
- grid-template-areas:
-  "poster info"
-  "poster post"
+  background: white;
+  height: 50vh;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 2fr;
+  grid-template-areas:
+    "poster info"
+    "poster post"
 }
 
-.blog-info {
- grid-area: info;
+h2,
+h3 {
+  grid-area: info;
 }
 
 .poster {
- grid-area: poster;
+  grid-area: poster;
 }
 
-.blog-post {
- grid-area: post;
+p {
+  grid-area: post;
 }
