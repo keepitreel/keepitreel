@@ -28,22 +28,8 @@ class Friends extends Component {
       <>
         <div className="friends-container">
           <h1>Friends</h1>
-          <div classname="card">
-            {this.state.friends.map(friend => (
-              <Card
-                name={friend.name}
-                post_id={friend.post_id}
-                key={friend.post_id}
-                user_id={friend.user_id}
-                text={friend.text}
-                posterurl={friend.posterurl}
-                title={friend.title}
-                blogtitle={friend.blogtitle}
-                avatarurl={friend.avatarurl}
-                rating={friend.rating}
-              />
-            ))}
-          </div>
+          {/* <div>{displayFriends}</div> */}
+          {/* <Card /> */}
         </div>
       </>
     );
