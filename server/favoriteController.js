@@ -1,6 +1,6 @@
 let getLikedPost = async (req, res) => {
   // returns all  posts that user_id has liked
-  const { user_id } = req.body;
+  const { user_id } = req.params;
   const db = req.app.get("db");
 
   const posts = await db

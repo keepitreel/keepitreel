@@ -11,7 +11,7 @@ let getGenres = async (req, res) => {
 
 let userPostGenreFilter = async (req, res) => {
   // returns filtered user posts by user_id and genre
-  const { user_id, genre } = req.body;
+  const { user_id, genre } = req.params;
   const db = req.app.get("db");
 
   const posts = await db
@@ -23,7 +23,7 @@ let userPostGenreFilter = async (req, res) => {
 
 let friendGenreFilter = async (req, res) => {
   // returns filtered friends posts by user_id and genre
-  const { user_id, genre } = req.body;
+  const { user_id, genre } = req.params;
   const db = req.app.get("db");
 
   const posts = await db
@@ -35,7 +35,7 @@ let friendGenreFilter = async (req, res) => {
 
 let likedGenreFilter = async (req, res) => {
   // returns filtered liked posts by user_id and genre
-  const { user_id, genre } = req.body;
+  const { user_id, genre } = req.params;
   const db = req.app.get("db");
 
   const posts = await db
@@ -47,7 +47,7 @@ let likedGenreFilter = async (req, res) => {
 
 let communityGenreFilter = async (req, res) => {
   // returns filtered community posts by genre
-  const { genre } = req.body;
+  const { genre } = req.params;
   const db = req.app.get("db");
 
   const posts = await db
@@ -59,7 +59,7 @@ let communityGenreFilter = async (req, res) => {
 
 let deletePost = async (req, res) => {
   //deletes post given post_id
-  const { post_id } = req.body;
+  const { post_id } = req.params;
   const db = req.app.get("db");
 
   await db.delete_post(post_id).catch(error => console.log(error));

@@ -20,7 +20,7 @@ let unFollow = async (req, res) => {
 
 let userFollow = async (req, res) => {
   // returns all people user_id is following
-  const { user_id } = req.body;
+  const { user_id } = req.params;
   const db = req.app.get("db");
 
   const user = await db
@@ -32,7 +32,7 @@ let userFollow = async (req, res) => {
 
 let userFollowCount = async (req, res) => {
   // returns count of all people who follow user_id
-  const { user_id } = req.body;
+  const { user_id } = req.params;
   const db = req.app.get("db");
 
   const user = await db
