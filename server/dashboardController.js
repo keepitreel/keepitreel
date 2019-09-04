@@ -75,6 +75,39 @@ let getPost = async (req, res) => {
 
   res.json(post);
 };
+let updatePost = async (req, res) => {
+  ///updates post per post_id given
+  const {
+    post_id,
+    user_id,
+    text,
+    imdbid,
+    posterurl,
+    rating,
+    time,
+    genre,
+    title,
+    blogtitle
+  } = req.body;
+  const db = req.app.get("db");
+
+  const post = await db
+    .update_post([
+      post_id,
+      user_id,
+      text,
+      imdbid,
+      posterurl,
+      rating,
+      time,
+      genre,
+      title,
+      blogtitle
+    ])
+    .catch(error => console.log(error));
+
+  res.json(post);
+};
 
 module.exports = {
   getGenres,
@@ -83,5 +116,6 @@ module.exports = {
   likedGenreFilter,
   communityGenreFilter,
   deletePost,
-  getPost
+  getPost,
+  updatePost
 };
