@@ -1,24 +1,29 @@
 import React, { Component } from "react";
-import Friend from "./Friend";
 import Card from "../Card/Card";
-// import { connect } from 'react-redux';
-// import { getFriends } from 'reducer';
+import { connect } from "react-redux";
+import axios from "axios";
 
 class Friends extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      friends: []
+    };
   }
 
-  //need backend to send friends data****************
   componentDidMount() {
-    // this.props.getFriends();
+    axios.get(`/api/friendspost/${this.props.user_id}`).then(res => {
+      console.log(this.props.user_id);
+      console.log(res.data);
+      this.setState({
+        friends: res.data
+      });
+      console.log(this.state);
+    });
   }
 
   render() {
-    // let displayFriends = this.props.friends.map(friend => {
-    //   return <Friend friend={friend} />;
-    // });
+    console.log(this.state.friends);
     return (
       <>
         <div className="friends-container">
@@ -33,13 +38,10 @@ class Friends extends Component {
 
 let mapStatetoProps = reduxState => {
   return {
-    friends: reduxState.friends.friends
+    user_id: reduxState.authReducer.user_id
   };
 };
 
-// export default connect(
-//   mapStatetoProps,
-//   { getFriends }
-// )(Friends);
+export default connect(mapStatetoProps)(Friends);
 
-export default Friends;
+// export default Friends;
