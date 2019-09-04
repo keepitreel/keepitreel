@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Friend from "./Friend";
+
 import Card from "../Card/Card";
 // import { connect } from 'react-redux';
-// import { getFriends } from 'reducer';
 
 class Friends extends Component {
   constructor() {
@@ -24,22 +24,11 @@ class Friends extends Component {
         <div className="friends-container">
           <h1>Friends</h1>
           {/* <div>{displayFriends}</div> */}
-          <Card />
+          {/* <Card /> */}
         </div>
       </>
     );
   }
 }
-
-let mapStatetoProps = reduxState => {
-  return {
-    friends: reduxState.friends.friends
-  };
-};
-
-// export default connect(
-//   mapStatetoProps,
-//   { getFriends }
-// )(Friends);
 
 export default Friends;
