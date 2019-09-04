@@ -14,7 +14,11 @@ const {
   follow,
   unFollow,
   userFollow,
-  userFollowCount
+  userFollowCount,
+  startLikingPost,
+  stopLikingPost,
+  startDislikingPost,
+  stopDislikingPost
 } = require("./viewCardController");
 const { getUserPost } = require("./yourBlogsController");
 const { getCommunityPost } = require("./communityController");
@@ -66,10 +70,15 @@ app.post("/api/login/logout", logout); //calls destroy session
 app.get("/api/login/sessionuser", getSession); // checks if user is on session and returns req.session.user else 403
 
 //viewCardController.js
-app.post("/api/viewcard/follow", follow);
+app.post("/api/viewcard/follow", follow); //starts following following_user_id by user_id
 app.put("/api/viewcard/unfollow", unFollow); //deletes follow given user_id AND following_user_id
 app.get("/api/viewcard/userfollow/:user_id", userFollow); // returns all people user_id is following
 app.get("/api/viewcard/followcount/:user_id", userFollowCount); // returns count of all people who follow user_id
+//
+app.post("/api/viewcard/like", startLikingPost); //start LikingPost given user_id, post_id
+app.put("/api/viewcard/stoplike", stopLikingPost); //stop LikingPost given user_id, post_id
+app.post("/api/viewcard/dislike", startDislikingPost); //start DisikingPost given user_id, post_id
+app.put("/api/viewcard/stopdislike", stopDislikingPost); //stop DislikingPost given user_id, post_id
 
 //yourBlogsController.js   returns all user_id post
 app.get("/api/userpost/:user_id", getUserPost);
