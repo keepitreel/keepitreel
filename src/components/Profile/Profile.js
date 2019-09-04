@@ -19,13 +19,7 @@ class Profile extends Component {
   }
 
   //Once user logs in or registers they are sent to dashboard, the profile container will display relevant user data provided by backend
-  componentDidMount() {
-    axios.get("/auth/getSession").then(res => {
-      this.setState({
-        profiles: res.data
-      });
-    });
-  }
+  componentDidMount() {}
 
   render() {
     return (

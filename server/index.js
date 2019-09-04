@@ -13,7 +13,8 @@ const {
   follow,
   unFollow,
   userFollow,
-  userFollowCount
+  userFollowCount,
+  getSession
 } = require("./viewCardController");
 const { getUserPost } = require("./yourBlogsController");
 const { getCommunityPost } = require("./communityController");
@@ -21,6 +22,15 @@ const { getLikedPost } = require("./favoriteController");
 const { getFriendsPost } = require("./friendsController");
 const { createPost } = require("./createBlogController");
 const { createComment, getComments } = require("./commentContoller");
+const {
+  getGenres,
+  userPostGenreFilter,
+  friendGenreFilter,
+  likedGenreFilter,
+  communityGenreFilter,
+  deletePost,
+  getPost
+} = require("./dashboardController");
 
 require("dotenv").config(); //get access to environmental variables
 
@@ -52,6 +62,7 @@ app.post("/api/login/register", register);
 app.put("/api/login/update/user", updateUser); //updates all basic user info except password
 app.put("/api/login/update/password", updatePassword); //updates and hashes new password
 app.post("/api/login/logout", logout); //calls destroy session
+app.get("/api/login/sessionuser", getSession); // checks if user is on session and returns req.session.user else 403
 
 //viewCardController.js
 app.post("/api/viewcard/follow", follow);
@@ -79,6 +90,15 @@ app.post("/api/comment/createcomment", createComment); //creates comment
 app.get("/api/comment/:post_id", getComments); //get all comments for post_id //written with req.params //postman call http://localhost:4050/api/comment/1
 //
 //app.get("/api/comment", getComments); //get all comments for post_id using req.query  //postman call http://localhost:4050/api/comment/?post_id=1
+
+//dashboardController.js
+app.get("/api/dashboard/usergenrefilter", userPostGenreFilter); // returns filtered user posts by user_id and genre
+app.get("/api/dashboard/getgenres", getGenres); //returns a list of distinct genres in post currently
+app.get("/api/dashboard/likedgenrefilter", likedGenreFilter); // returns filtered liked posts by user_id and genre
+app.get("/api/dashboard/communitygenrefilter", communityGenreFilter); // returns filtered community posts by genre
+app.get("/api/dashboard/friendgenrefilter", friendGenreFilter); // returns filtered friends posts by user_id and genre
+app.put("/api/dashboard/deletepost", deletePost); //deletes post given post_id
+app.get("/api/dashboard/getpost/:post_id", getPost); //gets single post given post_id
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../build/index.html"));
