@@ -104,5 +104,6 @@ module.exports = {
   register,
   updateUser,
   logout,
-  updatePassword
+  updatePassword,
+  getSession
 };

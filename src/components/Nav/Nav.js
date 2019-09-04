@@ -1,11 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../../redux/authReducer";
+import { logout, checkForLogin } from "../../redux/authReducer";
 import Logo2 from "../../img/Logo2.png";
 import "./Nav.scss";
+import axios from "axios";
 
 class Nav extends Component {
+  componentDidMount() {
+    axios.get("/api/login/sessionuser").then(res => {
+      console.log(res);
+      if (res.data.user_id) {
+        this.props.checkForLogin(res.data);
+      }
+    });
+  }
+
   handleLogout = e => {
     console.log("hit");
     this.props.logout();
@@ -47,5 +57,5 @@ let mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, checkForLogin }
 )(Nav);
