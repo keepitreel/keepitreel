@@ -12,7 +12,7 @@ export default class DisplayMovie extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    console.log("hit");
     axios
       .get(` http://www.omdbapi.com/?i=${this.props.ImdbID}&apikey=579b4fff`)
       .then(response => {

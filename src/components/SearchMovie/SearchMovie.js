@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+
 import Unsplash from "react-unsplash-wrapper";
 import "./SearchMovie.scss";
 import Pagination from "./Pagination/Pagination";
@@ -59,6 +60,7 @@ class SearchMovie extends Component {
     });
     return (
       <div ref="hello" className="searchMoviePage">
+        {!this.props.user_id && <Redirect to="/" />}
         <div className={"imageBackground"}>
           <Unsplash width="1800" height="1000" collectionId="5048230 2597671" />
         </div>
@@ -69,6 +71,7 @@ class SearchMovie extends Component {
               name="movie"
               onChange={this.handleChnage}
               placeholder="search for movie"
+              autoFocus
             />
             <button onClick={this.search}>Search</button>
           </div>
@@ -104,7 +107,8 @@ const mapStateToProps = reduxState => {
     buttons: reduxState.movieReducer.buttons,
     pagination: reduxState.movieReducer.pagination,
     displayButtons: reduxState.movieReducer.displayButtons,
-    loading: reduxState.movieReducer.loading
+    loading: reduxState.movieReducer.loading,
+    user_id: reduxState.authReducer.user_id
   };
 };
 
