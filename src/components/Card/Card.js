@@ -44,4 +44,4 @@ const mapStateToProps = reduxState => {
   };
 };
 
-// export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps)(Card);

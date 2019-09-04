@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
+import "./Friends.scss";
 
 class Friends extends Component {
   constructor() {
@@ -13,21 +14,17 @@ class Friends extends Component {
 
   componentDidMount() {
     axios.get(`/api/friendspost/${this.props.user_id}`).then(res => {
-      console.log(this.props.user_id);
-      console.log(res.data);
       this.setState({
         friends: res.data
       });
-      console.log(this.state);
     });
   }
 
   render() {
-    console.log(this.state.friends);
     return (
       <>
+        <h1>Friends</h1>
         <div className="friends-container">
-          <h1>Friends</h1>
           <div classname="card">
             {this.state.friends.map(friend => (
               <Card
