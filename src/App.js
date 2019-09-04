@@ -8,7 +8,6 @@ import Landing from "./components/LandingPage-login/Landing-login.component";
 import Register from "./components/LandingPage-register/Landing-register.component";
 import { Link } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Nav from "./components/Nav/Nav";
 
 function App() {
   return (
