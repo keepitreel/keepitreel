@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import axios from "axios";
 import "../CreateBlog/CreateBlog.scss";
 import DisplayMovie from "../DisplayMovie/DisplayMovie";
+import { Redirect } from "react-router-dom";
 
-export default class CreateBlog extends Component {
+class CreateBlog extends Component {
   constructor() {
     super();
     this.state = {
@@ -11,13 +13,49 @@ export default class CreateBlog extends Component {
       error: "",
       image: "",
       rating: 0,
-      submit: false
+      submit: false,
+      text: "",
+      blogTitle: ""
     };
   }
 
-  handleSubmit = () => {
-    axios.post().then();
-    this.setState({ submit: true });
+  handleSubmit = e => {
+    e.preventDefault();
+
+    let { movie, text, blogtitle, rating } = this.state;
+    let imdbid = movie[0].imdbID;
+    let posterurl = movie[0].Poster;
+    let genre = movie[0].Genre;
+    let title = movie[0].Title;
+    let user_id = this.props.user_id;
+    let time = +new Date();
+    console.log(this.state);
+    axios
+      .post("/api/blog/createpost", {
+        user_id,
+        text,
+        imdbid,
+        posterurl,
+        rating,
+        time,
+        genre,
+        blogtitle
+      })
+      .then(response => {
+        console.log(response);
+        this.setState({
+          submit: true
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   componentDidMount() {
@@ -42,8 +80,10 @@ export default class CreateBlog extends Component {
       .catch(error => console.log(error));
   }
   render() {
+    console.log(this.state);
     return (
       <div className="CreateBlogPage">
+        {(!this.props.user_id || this.state.submit) && <Redirect to="/" />}
         <div className="ContainerBlog">
           <div className="DisplayMovieDiv">
             <DisplayMovie ImdbID={this.props.match.params.id} />
@@ -52,37 +92,68 @@ export default class CreateBlog extends Component {
             <form>
               <label>
                 Title
-                <input></input>
+                <input
+                  required
+                  name="blogtitle"
+                  onChange={this.handleChange}
+                  autoFocus
+                ></input>
               </label>
               <label>
                 Blog
-                <textarea></textarea>
+                <textarea name="text" onChange={this.handleChange}></textarea>
               </label>
               <div className="ratingDiv">
                 <label>
-                  <input type="radio" name="stars" value="1" />
+                  <input
+                    required
+                    type="radio"
+                    name="rating"
+                    value="1"
+                    onChange={this.handleChange}
+                  />
                   <span class="icon">★</span>
                 </label>
                 <label>
-                  <input type="radio" name="stars" value="2" />
+                  <input
+                    type="radio"
+                    name="rating"
+                    value="2"
+                    onChange={this.handleChange}
+                  />
                   <span class="icon">★</span>
                   <span class="icon">★</span>
                 </label>
                 <label>
-                  <input type="radio" name="stars" value="3" />
+                  <input
+                    type="radio"
+                    name="rating"
+                    value="3"
+                    onChange={this.handleChange}
+                  />
                   <span class="icon">★</span>
                   <span class="icon">★</span>
                   <span class="icon">★</span>
                 </label>
                 <label>
-                  <input type="radio" name="stars" value="4" />
+                  <input
+                    type="radio"
+                    name="rating"
+                    value="4"
+                    onChange={this.handleChange}
+                  />
                   <span class="icon">★</span>
                   <span class="icon">★</span>
                   <span class="icon">★</span>
                   <span class="icon">★</span>
                 </label>
                 <label>
-                  <input type="radio" name="stars" value="5" />
+                  <input
+                    type="radio"
+                    name="rating"
+                    value="5"
+                    onChange={this.handleChange}
+                  />
                   <span class="icon">★</span>
                   <span class="icon">★</span>
                   <span class="icon">★</span>
@@ -90,6 +161,7 @@ export default class CreateBlog extends Component {
                   <span class="icon">★</span>
                 </label>
               </div>
+              <button onClick={this.handleSubmit}>Submit</button>
             </form>
           </div>
         </div>
@@ -97,3 +169,11 @@ export default class CreateBlog extends Component {
     );
   }
 }
+
+const mapStateToProps = reduxState => {
+  return {
+    user_id: reduxState.authReducer.user_id
+  };
+};
+
+export default connect(mapStateToProps)(CreateBlog);
