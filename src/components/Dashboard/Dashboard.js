@@ -4,6 +4,7 @@ import Friends from "../Friends/Friends";
 import Community from "../Community/Community";
 import Favorites from "../Favorites/Favorites";
 import YourBlogs from "../YourBlogs/YourBlogs";
+import { connect } from "react-redux";
 import "./Dashboard.scss";
 
 class Dashboard extends Component {
@@ -48,7 +49,7 @@ class Dashboard extends Component {
           </button>
         </div>
         <div className="profile-container box-2">
-          <Profile />
+          <Profile user_id={this.props.user_id} />
         </div>
         <div className="tab-display box-3">
           {this.state.tab === "friends" ? <Friends /> : null}
@@ -64,4 +65,10 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = reduxState => {
+  return {
+    session: reduxState.authReducer,
+    user_id: reduxState.authReducer.user_id
+  };
+};
+export default connect(mapStateToProps)(Dashboard);

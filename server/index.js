@@ -8,7 +8,8 @@ const {
   updateUser,
   updatePassword,
   logout,
-  getSession
+  getSession,
+  getUserData
 } = require("./LoginController");
 const {
   follow,
@@ -73,6 +74,7 @@ app.put("/api/login/update/user", updateUser); //updates all basic user info exc
 app.put("/api/login/update/password", updatePassword); //updates and hashes new password
 app.post("/api/login/logout", logout); //calls destroy session
 app.get("/api/login/sessionuser", getSession); // checks if user is on session and returns req.session.user else 403
+app.get("/api/login/data/user/:user_id", getUserData); //get user data for user page
 
 //viewCardController.js
 app.post("/api/viewcard/follow", follow); //starts following following_user_id by user_id
