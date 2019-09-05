@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Rating from "../Star/Rating";
 
 export default class DisplayMovie extends Component {
   constructor() {
