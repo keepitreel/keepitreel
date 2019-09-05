@@ -24,12 +24,13 @@ class Friends extends Component {
   render() {
     return (
       <>
-        <h1>Friends</h1>
-        <div className="friends-container">
-          <div classname="card">
+        <div className="friends-wrapper">
+          <h3>Friends</h3>
+          <div className="card">
             {this.state.friends.map(friend => (
               <Link to={`/blog/${friend.post_id}`}>
                 <Card
+                  className="card"
                   name={friend.name}
                   post_id={friend.post_id}
                   key={friend.post_id}
@@ -57,5 +58,3 @@ let mapStatetoProps = reduxState => {
 };
 
 export default connect(mapStatetoProps)(Friends);
-
-// export default Friends;

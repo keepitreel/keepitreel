@@ -25,7 +25,7 @@ class Dashboard extends Component {
     console.log(this.state.tab);
     return (
       <div className="grid-wrapper">
-        <div className="tabs-container box-1">
+        <div className="tabs-container">
           <button className="tabBtns" onClick={() => this.tabChange("friends")}>
             Friends
           </button>
@@ -48,16 +48,16 @@ class Dashboard extends Component {
             Your Blogs
           </button>
         </div>
-        <div className="profile-container box-2">
+        <div className="profile-container">
           <Profile user_id={this.props.user_id} />
         </div>
-        <div className="tab-display box-3">
+        <div className="tab-display">
           {this.state.tab === "friends" ? <Friends /> : null}
           {this.state.tab === "community" ? <Community /> : null}
           {this.state.tab === "favorites" ? <Favorites /> : null}
           {this.state.tab === "yourBlogs" ? <YourBlogs /> : null}
         </div>
-        <div className="button-container box-4" id="4">
+        <div className="button-container">
           <button>Create Blog</button>
         </div>
       </div>
