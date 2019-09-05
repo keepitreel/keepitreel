@@ -18,7 +18,12 @@ const {
   startLikingPost,
   stopLikingPost,
   startDislikingPost,
-  stopDislikingPost
+  stopDislikingPost,
+  checkIfFollowed,
+  checkIfLiked,
+  checkIfDisliked,
+  thumbsUP,
+  thumbsDOWN
 } = require("./viewCardController");
 const { getUserPost } = require("./yourBlogsController");
 const { getCommunityPost } = require("./communityController");
@@ -75,10 +80,16 @@ app.put("/api/viewcard/unfollow", unFollow); //deletes follow given user_id AND 
 app.get("/api/viewcard/userfollow/:user_id", userFollow); // returns all people user_id is following
 app.get("/api/viewcard/followcount/:user_id", userFollowCount); // returns count of all people who follow user_id
 //
-app.post("/api/viewcard/like", startLikingPost); //start LikingPost given user_id, post_id
-app.put("/api/viewcard/stoplike", stopLikingPost); //stop LikingPost given user_id, post_id
-app.post("/api/viewcard/dislike", startDislikingPost); //start DisikingPost given user_id, post_id
-app.put("/api/viewcard/stopdislike", stopDislikingPost); //stop DislikingPost given user_id, post_id
+app.post("/api/viewcard/like", startLikingPost); //start LikingPost given user_id, post_id  //thumbsup we hit
+app.put("/api/viewcard/stoplike", stopLikingPost); //stop LikingPost given user_id, post_id //thumbs down we hit
+app.post("/api/viewcard/dislike", startDislikingPost); //start DisikingPost given user_id, post_id //thumbs down we hit
+app.put("/api/viewcard/stopdislike", stopDislikingPost); //stop DislikingPost given user_id, post_id //thumbsup we hit
+//
+app.put("/api/viewcard/followed", checkIfFollowed); // check if followed
+app.put("/api/viewcard/liked", checkIfLiked); // check if liked
+app.put("/api/viewcard/disliked", checkIfDisliked); // check if disliked
+app.put("/api/viewcard/thumbsup", thumbsUP); // thumbs up adds to like table and deletes from dislike
+app.put("/api/viewcard/thumbsdown", thumbsDOWN); // thumbs down adds to dislike table and deletes from like
 
 //yourBlogsController.js   returns all user_id post
 app.get("/api/userpost/:user_id", getUserPost);
