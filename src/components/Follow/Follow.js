@@ -35,8 +35,11 @@ class Follow extends Component {
   };
 
   render() {
+    console.log(this.props);
+    let { user_id, following_user_id } = this.props;
     return (
       <div className="FollowDiv">
+        <p>{user_id}</p>
         {this.state.follow ? (
           <i class="fas fa-user-plus unfollow" onClick={this.unfollow}></i>
         ) : (

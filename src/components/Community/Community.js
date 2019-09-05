@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "../Card/Card";
 import axios from "axios";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Community extends Component {
   constructor() {
@@ -25,22 +26,24 @@ class Community extends Component {
   render() {
     return (
       <>
-        <div className="friends-container">
-          <h1>Community</h1>
+        <h1>Community</h1>
+        <div className="community-container">
           <div>
             {this.state.community.map(commCard => (
-              <Card
-                name={commCard.name}
-                post_id={commCard.post_id}
-                key={commCard.post_id}
-                user_id={commCard.user_id}
-                text={commCard.text}
-                posterurl={commCard.posterurl}
-                title={commCard.title}
-                blogtitle={commCard.blogtitle}
-                avatarurl={commCard.avatarurl}
-                rating={commCard.rating}
-              />
+              <Link to={`/blog/${commCard.post_id}`}>
+                <Card
+                  name={commCard.name}
+                  post_id={commCard.post_id}
+                  key={commCard.post_id}
+                  user_id={commCard.user_id}
+                  text={commCard.text}
+                  posterurl={commCard.posterurl}
+                  title={commCard.title}
+                  blogtitle={commCard.blogtitle}
+                  avatarurl={commCard.avatarurl}
+                  rating={commCard.rating}
+                />
+              </Link>
             ))}
           </div>
         </div>
