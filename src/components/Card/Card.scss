@@ -1,29 +1,12 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .card-wrapper {
-  background: white;
-  height: 50vh;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 2fr;
-  grid-template-areas:
-    "poster info"
-    "poster post"
-}
+  display: flex;
+  border: 1px solid green;
+  height: 200px;
+  width: 400px;
+  justify-content: space-between;
+  overflow: scroll;
 
-.blog-info {
-  grid-area: info;
-}
-
-.poster {
-  grid-area: poster;
-}
-
-.blog-post {
-  grid-area: post;
+  img {
+    height: 200px
+  }
 }
