@@ -26,8 +26,8 @@ class Card extends Component {
           <img src={posterurl} />
         </div>
         <div className="blog-info">
-          <h2>{blogtitle}</h2>
-          <h3>by {name}</h3>
+          <h4>{blogtitle}</h4>
+          <h5>by {name}</h5>
         </div>
         <div className="blog-post">
           <p>{text}</p>

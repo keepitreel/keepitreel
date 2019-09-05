@@ -13,6 +13,7 @@ class YourBlogs extends Component {
   }
 
   //need backend to send user's blogs data******************
+  //pass in user id through props similar to profile comp
   componentDidMount() {
     axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
       this.setState({

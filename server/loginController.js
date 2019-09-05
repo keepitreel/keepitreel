@@ -103,11 +103,22 @@ let getSession = (req, res) => {
   req.session.user ? res.json(req.session.user) : res.sendStatus(403);
 };
 
+let getUserData = async (req, res) => {
+  const { user_id } = req.params;
+  const db = req.app.get("db");
+
+  const user = await db
+    .get_user_data([user_id])
+    .catch(error => console.log(error));
+
+  res.json(user);
+};
 module.exports = {
   loginControl,
   register,
   updateUser,
   logout,
   updatePassword,
-  getSession
+  getSession,
+  getUserData
 };
