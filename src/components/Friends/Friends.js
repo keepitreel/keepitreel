@@ -14,7 +14,7 @@ class Friends extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/friendspost/${this.props.user_id}`).then(res => {
+    axios.get(`/api/friendspost/recent/${this.props.user_id}`).then(res => {
       this.setState({
         friends: res.data
       });

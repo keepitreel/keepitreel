@@ -157,6 +157,17 @@ let thumbsDOWN = async (req, res) => {
     return res.sendStatus(200);
   }
 };
+let getFollow = async (req, res) => {
+  // returns all people user_id is following but just following_user_id
+  const { user_id } = req.params;
+  const db = req.app.get("db");
+
+  const user = await db
+    .get_followers(user_id)
+    .catch(error => console.log(error));
+
+  res.json(user);
+};
 
 module.exports = {
   follow,
@@ -171,5 +182,6 @@ module.exports = {
   checkIfLiked,
   checkIfDisliked,
   thumbsUP,
-  thumbsDOWN
+  thumbsDOWN,
+  getFollow
 };
