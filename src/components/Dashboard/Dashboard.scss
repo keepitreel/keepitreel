@@ -4,6 +4,9 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
 
 .grid-wrapper {
   height: 100vh;
@@ -34,6 +37,7 @@
 
 .tab-display {
   grid-area: main;
+
 }
 
 .profile-container {
