@@ -111,7 +111,7 @@ let thumbsUP = async (req, res) => {
     .catch(error => console.log(error));
   if (likeduser[0]) {
     //if liked user exists
-    res.status(200); //return success
+    res.sendStatus(200); //return success
   } else {
     await db
       .start_liking_post([user_id, post_id]) //else add like to table
@@ -131,7 +131,7 @@ let thumbsDOWN = async (req, res) => {
     .check_disliked([user_id, post_id])
     .catch(error => console.log(error));
   if (hateduser[0]) {
-    res.status(200); //if userpost is already disliked, exists//return success
+    res.sendStatus(200); //if userpost is already disliked, exists//return success
   } else {
     await db
       .start_disliking_post([user_id, post_id]) //else add dislike to table
