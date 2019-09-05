@@ -108,7 +108,7 @@ let getUserData = async (req, res) => {
   const db = req.app.get("db");
 
   const user = await db
-    .get_user_data([user_id])
+    .get_user_data(user_id)
     .catch(error => console.log(error));
 
   res.json(user);
