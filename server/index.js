@@ -120,7 +120,7 @@ app.get("/api/dashboard/getgenres", getGenres); //returns a list of distinct gen
 app.get("/api/dashboard/likedgenrefilter/:user_id/:genre", likedGenreFilter); // returns filtered liked posts by user_id and genre
 app.get("/api/dashboard/communitygenrefilter/:genre", communityGenreFilter); // returns filtered community posts by genre
 app.get("/api/dashboard/friendgenrefilter/:user_id/:genre", friendGenreFilter); // returns filtered friends posts by user_id and genre
-app.put("/api/dashboard/deletepost/:post_id", deletePost); //deletes post given post_id
+app.delete("/api/dashboard/deletepost/:post_id", deletePost); //deletes post given post_id
 app.get("/api/dashboard/getpost/:post_id", getPost); //gets single post given post_id
 app.put("/api/dashboard/update/post", updatePost); //updates post given post_id
 
