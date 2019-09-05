@@ -82,7 +82,12 @@ let checkIfFollowed = async (req, res) => {
   const user = await db
     .check_followed([user_id, following_user_id])
     .catch(error => console.log(error));
-  return res.status(200).json(user);
+
+  if (user[0]) {
+    return res.status(200).json(true);
+  } else {
+    return res.status(400).json(false);
+  }
 };
 let checkIfLiked = async (req, res) => {
   const { user_id, post_id } = req.body;
@@ -91,7 +96,12 @@ let checkIfLiked = async (req, res) => {
   const user = await db
     .check_liked([user_id, post_id])
     .catch(error => console.log(error));
-  return res.status(200).json(user);
+
+  if (user[0]) {
+    return res.status(200).json(true);
+  } else {
+    return res.status(400).json(false);
+  }
 };
 let checkIfDisliked = async (req, res) => {
   const { user_id, post_id } = req.body;
@@ -100,7 +110,11 @@ let checkIfDisliked = async (req, res) => {
   const user = await db
     .check_disliked([user_id, post_id])
     .catch(error => console.log(error));
-  return res.status(200).json(user);
+  if (user[0]) {
+    return res.status(200).json(true);
+  } else {
+    return res.status(400).json(false);
+  }
 };
 let thumbsUP = async (req, res) => {
   const { user_id, post_id } = req.body;
