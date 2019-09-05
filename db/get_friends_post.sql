@@ -7,7 +7,6 @@ ORDER BY time DESC;
 
 
 
-
 -- SELECT * FROM post
 -- WHERE post.user_id IN (SELECT following_user_id
 -- FROM following
