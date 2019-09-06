@@ -34,6 +34,18 @@ class Follow extends Component {
     this.setState({ follow: !this.state.follow });
   };
 
+  componentDidMount() {
+    let { user_id, following_user_id } = this.props;
+    axios
+      .put("/api/viewcard/followed", { user_id, following_user_id })
+      .then(res => {
+        this.setState({ follow: res.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     console.log(this.props);
     let { user_id, following_user_id } = this.props;

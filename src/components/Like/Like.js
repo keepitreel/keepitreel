@@ -77,14 +77,12 @@ class Like extends Component {
           : this.setState({
               like: false,
               likeClass: "",
-
               dislikeClass: ""
             });
 
         axios
           .put("/api/viewcard/disliked", { user_id, post_id })
           .then(respond => {
-            console.log(respond);
             respond.data
               ? this.setState({
                   dislike: true,
@@ -96,6 +94,9 @@ class Like extends Component {
                   dislike: false,
                   dislikeClass: ""
                 });
+          })
+          .catch(error2 => {
+            console.log(error2);
           });
       })
       .catch(error => {
