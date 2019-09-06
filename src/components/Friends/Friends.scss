@@ -9,10 +9,14 @@
  display: flex;
  flex-direction: row;
  flex-wrap: wrap;
+ justify-content: space-evenly;
+ margin-bottom: 10px;
 }
 
 .card {
  display: flex;
  flex-wrap: wrap;
- width: 900px
+ width: 33%;
+ flex-grow: 1;
+
 }

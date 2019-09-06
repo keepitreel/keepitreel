@@ -27,8 +27,8 @@ class Card extends Component {
         </div>
         <div>
           <div className="blog-info">
-            <h4>{blogtitle}</h4>
-            <h5>by {name}</h5>
+            <h5>{blogtitle}</h5>
+            <h6>by {name}</h6>
           </div>
           <div className="blog-post">
             <p>{text}</p>
@@ -40,10 +40,7 @@ class Card extends Component {
 }
 
 const mapStateToProps = reduxState => {
-  return {
-    // session: reduxState.authReducer,
-    // movies: reduxState.movieReducer.movies
-  };
+  return {};
 };
 
 export default connect(mapStateToProps)(Card);
