@@ -106,8 +106,9 @@ app.get("/api/communitypost", getCommunityPost);
 app.get("/api/favoritepost/:user_id", getLikedPost);
 
 //friendsController.js    returns all  posts from friends, or followers of user_id
+//app.get("/api/friendspost/recent/:user_id", getFriendsRecentPost);
+app.get("/api/friendspost/recent", getFriendsRecentPost);
 app.get("/api/friendspost/:user_id", getFriendsPost);
-app.get("/api/friendspost/recent/:user_id", getFriendsRecentPost);
 
 //createBlogController.js create post
 app.post("/api/blog/createpost", createPost);

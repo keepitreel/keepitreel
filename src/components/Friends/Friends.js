@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Card from "../Card/Card";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import "./Friends.scss";
 import { checkForLogin } from "../../redux/authReducer";
@@ -14,28 +14,43 @@ class Friends extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   axios.get("/api/login/sessionuser").then(res => {
+  //     //this fixes the
+  //     if (res.data.user_id) {
+  //       this.props.checkForLogin(res.data);
+  //       axios
+  //         .get(`/api/friendspost/recent/${this.props.user_id}`)
+  //         .then(res => {
+  //           console.log(res);
+  //           this.setState({
+  //             friends: res.data
+  //           });
+  //         })
+  //         .catch(error => console.log(error));
+  //     }
+  //   });
+  //   console.log("friends didmount and this.props.user_id is");
+  //   console.log(this.props.user_id);
+  // }
+
+  //or
   componentDidMount() {
-    axios.get("/api/login/sessionuser").then(res => {
-      if (res.data.user_id) {
-        this.props.checkForLogin(res.data);
-        axios
-          .get(`/api/friendspost/recent/${this.props.user_id}`)
-          .then(res => {
-            console.log(res);
-            this.setState({
-              friends: res.data
-            });
-          })
-          .catch(error => console.log(error));
-      }
-    });
-    console.log("friends didmount and this.props.user_id is");
-    console.log(this.props.user_id);
+    axios
+      .get(`/api/friendspost/recent`)
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          friends: res.data
+        });
+      })
+      .catch(error => console.log(error));
   }
 
   render() {
     return (
       <>
+        {!this.props.user_id && <Redirect to="/" />}
         <div className="friends-wrapper">
           <h3>Friends</h3>
           <div className="card">
@@ -62,14 +77,6 @@ class Friends extends Component {
     );
   }
 }
-
-// let mapStatetoProps = reduxState => {
-//   return {
-//     user_id: reduxState.authReducer.user_id
-//   };
-// };
-
-// export default connect(mapStatetoProps)(Friends);
 
 let mapStateToProps = reduxState => {
   return {
