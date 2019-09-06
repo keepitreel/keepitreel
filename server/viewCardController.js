@@ -86,7 +86,7 @@ let checkIfFollowed = async (req, res) => {
   if (user[0]) {
     return res.status(200).json(true);
   } else {
-    return res.status(400).json(false);
+    return res.status(200).json(false);
   }
 };
 let checkIfLiked = async (req, res) => {
@@ -100,7 +100,7 @@ let checkIfLiked = async (req, res) => {
   if (user[0]) {
     return res.status(200).json(true);
   } else {
-    return res.status(400).json(false);
+    return res.status(200).json(false);
   }
 };
 let checkIfDisliked = async (req, res) => {
@@ -113,7 +113,7 @@ let checkIfDisliked = async (req, res) => {
   if (user[0]) {
     return res.status(200).json(true);
   } else {
-    return res.status(400).json(false);
+    return res.status(200).json(false);
   }
 };
 let thumbsUP = async (req, res) => {
