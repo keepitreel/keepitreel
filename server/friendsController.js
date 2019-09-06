@@ -11,7 +11,10 @@ let getFriendsPost = async (req, res) => {
 };
 let getFriendsRecentPost = async (req, res) => {
   // returns all  posts from friends, or followers of user_id MOST RECENT
-  const { user_id } = req.params;
+  // console.log("req.session inside is");
+  // console.log(req.session);
+  const { user_id } = req.session.user;
+  //const { user_id } = req.params;
   const db = req.app.get("db");
 
   const posts = await db
