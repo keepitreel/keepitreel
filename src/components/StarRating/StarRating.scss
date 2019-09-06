@@ -1,9 +1,21 @@
 @import "../../App.scss";
 
-.starContainer {
-  .star {
-    color: $accentColor;
+.StarContainer {
+  .Star1 {
+    color: #ff0000;
   }
-  .emoji {
+  .Star2 {
+    color: #ff4d4d;
   }
+  .Star3 {
+    color: #ff8000;
+  }
+  .Star4 {
+    color: #ff9933;
+  }
+  .Star5 {
+    color: yellow;
+  }
+  // .emoji {
+  // }
 }

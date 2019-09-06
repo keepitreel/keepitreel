@@ -46,6 +46,10 @@ $TextFont: "Abel", sans-serif;
   margin: 30px;
 }
 
+// @mixin starContainer() {
+//   background-color: $accentColor;
+// }
+
 .App {
   min-height: 100vh;
   background-color: $pageColor;

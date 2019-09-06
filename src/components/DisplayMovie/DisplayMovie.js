@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./DisplayMovie.scss";
 
 export default class DisplayMovie extends Component {
   constructor() {
@@ -36,8 +37,8 @@ export default class DisplayMovie extends Component {
     let movieInformation = movie.map(res => {
       console.log(res);
       return (
-        <div>
-          <img src={this.state.image}></img>
+        <div className="DisplayMovieContainer">
+          <img className="MoviePoster" src={this.state.image}></img>
           <h2>{res.Title}</h2>
           <p>{res.Plot}</p>
           <p>{res.Type}</p>
