@@ -1,3 +1,5 @@
+@import "../../App.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -8,42 +10,64 @@ a {
   text-decoration: none;
 }
 
-.grid-wrapper {
-  display: grid;
-  grid-template-columns: 150px 1fr 1fr 1fr;
-  grid-template-rows: 1fr 2fr 2fr 1fr;
-  grid-template-areas:
-    "header header header header"
-    "profile main main main"
-    "profile main main main"
-    "button main main main";
+.Dashboard-wrapper {
+  @include pageCenter(100%, 100px);
 
 
-}
+  .Content-wrapper {
+    display: flex;
+    width: 100%;
 
-.tabBtns {
-  margin-top: 90px;
-}
-
-
-.tabs-container {
-  height: 7vh;
-  grid-area: header;
-}
+    .Profile-container {
+      width: 20%
+    }
 
 
-.tab-display {
-  grid-area: main;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-  padding-left: 40px;
-}
 
-.profile-container {
-  grid-area: profile;
-}
+    .Master-container {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-.button-container {
-  grid-area: button;
+
+      .tabs-container {
+        // border: 1px solid greenyellow;
+        display: flex;
+
+        width: 100%;
+        justify-content: flex;
+        background: $buttonColor;
+
+        button {
+          width: 100px;
+          height: 50px;
+          border-radius: 5%;
+          background: $textColor;
+          color: white;
+          font-size: 18px;
+        }
+
+        button:focus {
+          background-color: $primaryColor;
+          border: none;
+          color: $textColor;
+        }
+      }
+
+      .tab-display {
+        width: 100%;
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
 }

@@ -26,23 +26,23 @@ class Community extends Component {
     return (
       <>
         <div className="community-wrapper">
-          <h4>Community</h4>
-          <div>
+          <div className="tabTitle">
+            <h4>Community</h4>
+          </div>
+          <div className="mappedCard">
             {this.state.community.map(commCard => (
-              <Link to={`/blog/${commCard.post_id}`}>
-                <Card
-                  name={commCard.name}
-                  post_id={commCard.post_id}
-                  key={commCard.post_id}
-                  user_id={commCard.user_id}
-                  text={commCard.text}
-                  posterurl={commCard.posterurl}
-                  title={commCard.title}
-                  blogtitle={commCard.blogtitle}
-                  avatarurl={commCard.avatarurl}
-                  rating={commCard.rating}
-                />
-              </Link>
+              <Card
+                name={commCard.name}
+                post_id={commCard.post_id}
+                key={commCard.post_id}
+                user_id={commCard.user_id}
+                text={commCard.text}
+                posterurl={commCard.posterurl}
+                title={commCard.title}
+                blogtitle={commCard.blogtitle}
+                avatarurl={commCard.avatarurl}
+                rating={commCard.rating}
+              />
             ))}
           </div>
         </div>

@@ -11,22 +11,25 @@ class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: "",
-      user_id: "",
-      name: "",
-      email: "",
-      avatarurl: ""
+      user: []
     };
   }
+  // componentDidMount() {
+  //   axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
+  //     this.setState({
+  //       username: res.data,
+  //       password: res.data,
+  //       user_id: res.data,
+  //       name: res.data,
+  //       email: res.data
+  //     });
+  //   });
+  // }
 
-  //Once user logs in or registers they are sent to dashboard, the profile container will display relevant user data provided by backend
   componentDidMount() {
-    // axios to backend, this.props.user_id , app.get("/api/userpost/:user_id", getUserPost);
-
-    axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
+    axios.get(`/api/login/data/user/${this.props.user_id}`).then(res => {
       this.setState({
-        user_id: res.data
+        user: res.data
       });
     });
   }
@@ -55,10 +58,12 @@ class Profile extends Component {
   };
 
   render() {
+    console.log(this.state);
+
     return (
       <div className="editForm">
         <div className="profile">
-          <h2>Welcome Tommy</h2>
+          <h2>Welcome {this.state.name}</h2>
           <img
             // profileImage: `url(${profile-image})`
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREYl2tzcj9JJH4GwR2KU1Y5r15kp1e8Tumw9e81XBnupbru1UA"

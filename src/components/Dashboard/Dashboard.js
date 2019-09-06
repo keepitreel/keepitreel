@@ -25,43 +25,50 @@ class Dashboard extends Component {
   render() {
     console.log(this.state.tab);
     return (
-      <div className="grid-wrapper">
-        <div className="tabs-container">
-          <button
-            className="tabBtns"
-            onClick={() => this.tabChange("yourBlogs")}
-          >
-            Your Blogs
-          </button>
-          <button className="tabBtns" onClick={() => this.tabChange("friends")}>
-            Friends
-          </button>
-          <button
-            className="tabBtns"
-            onClick={() => this.tabChange("community")}
-          >
-            Community
-          </button>
-          <button
-            className="tabBtns"
-            onClick={() => this.tabChange("favorites")}
-          >
-            Favorites
-          </button>
-        </div>
-        <div className="profile-container">
-          <Profile user_id={this.props.user_id} />
-        </div>
-        <div className="tab-display">
-          {this.state.tab === "friends" ? (
-            <Friends user_id={this.props.user_id} />
-          ) : null}
-          {this.state.tab === "community" ? <Community /> : null}
-          {this.state.tab === "favorites" ? <Favorites /> : null}
-          {this.state.tab === "yourBlogs" ? <YourBlogs /> : null}
-        </div>
-        <div className="button-container">
-          <button>Create Blog</button>
+      <div className="Dashboard-wrapper">
+        <div className="Content-wrapper">
+          <div className="Profile-container">
+            <div className="button-container">
+              <button>Create Blog</button>
+            </div>
+            <Profile user_id={this.props.user_id} />
+          </div>
+          <div className="Master-container">
+            <div className="tabs-container">
+              <button
+                className="tabBtns"
+                onClick={() => this.tabChange("yourBlogs")}
+              >
+                Your Blogs
+              </button>
+              <button
+                className="tabBtns"
+                onClick={() => this.tabChange("friends")}
+              >
+                Friends
+              </button>
+              <button
+                className="tabBtns"
+                onClick={() => this.tabChange("community")}
+              >
+                Community
+              </button>
+              <button
+                className="tabBtns"
+                onClick={() => this.tabChange("favorites")}
+              >
+                Favorites
+              </button>
+            </div>
+            <div className="tab-display">
+              {this.state.tab === "friends" ? (
+                <Friends user_id={this.props.user_id} />
+              ) : null}
+              {this.state.tab === "community" ? <Community /> : null}
+              {this.state.tab === "favorites" ? <Favorites /> : null}
+              {this.state.tab === "yourBlogs" ? <YourBlogs /> : null}
+            </div>
+          </div>
         </div>
       </div>
     );
