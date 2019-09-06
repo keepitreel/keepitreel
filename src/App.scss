@@ -1,6 +1,6 @@
 $primaryColor: #7E0000;
 $secondaryColor: #F29763;
-$accentColor: #F2622E;
+$accentColor: #FF9801;
 $buttonColor: #404040;
 $pageColor: #0D0D0D;
 $textColor: #AFAAAA;
@@ -40,6 +40,34 @@ sans-serif;
 
 @mixin overlay() {
   z-index: 1;
+}
+
+@mixin tooltip() {
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: $primaryColor;
+    color: $textColor;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    top: 40px;
+    font-size: 15px;
+
+    position: absolute;
+    z-index: 1;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
 }
 
 

@@ -1,0 +1,35 @@
+@import '../../App.scss';
+
+
+.LikeComponent {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include tooltip();
+
+
+  .tooltip:hover {
+    .fa-thumbs-up {
+      transform: scale(1.3);
+      color: $accentColor;
+    }
+
+    .likeActive {
+      transform: scale(1.3);
+      color: $accentColor;
+    }
+
+    .dislikeActive {
+      transform: scale(1.3);
+      color: $primaryColor;
+    }
+
+    .fa-thumbs-down {
+      transform: scale(1.3);
+      color: $primaryColor;
+    }
+
+
+  }
+}

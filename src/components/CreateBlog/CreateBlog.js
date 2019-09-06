@@ -33,7 +33,7 @@ class CreateBlog extends Component {
     let genre = movie[0].Genre;
     let title = movie[0].Title;
     let user_id = this.props.user_id;
-    let time = +new Date();
+    let time = Date(Date.now());
     console.log(this.state);
     axios
       .post("/api/blog/createpost", {

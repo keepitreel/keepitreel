@@ -1,11 +1,21 @@
 @import '../../App.scss';
 
-.FollowDiv {
+.FollowComponent {
+  @include tooltip();
+
   .follow {
     color: $textColor;
   }
 
+  .follow:hover {
+    color: $accentColor;
+    transform: scale(1.3)
+  }
+
+
+
   .unfollow {
-    color: $primaryColor;
+    color: $accentColor;
+    transform: scale(1.3)
   }
 }
