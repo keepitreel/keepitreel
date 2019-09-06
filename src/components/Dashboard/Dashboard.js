@@ -4,13 +4,15 @@ import Friends from "../Friends/Friends";
 import Community from "../Community/Community";
 import Favorites from "../Favorites/Favorites";
 import YourBlogs from "../YourBlogs/YourBlogs";
+import axios from "axios";
+import { connect } from "react-redux";
 import "./Dashboard.scss";
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: "friends"
+      tab: "yourBlogs"
     };
     this.tabChange = this.tabChange.bind(this);
   }
@@ -24,7 +26,13 @@ class Dashboard extends Component {
     console.log(this.state.tab);
     return (
       <div className="grid-wrapper">
-        <div className="tabs-container box-1">
+        <div className="tabs-container">
+          <button
+            className="tabBtns"
+            onClick={() => this.tabChange("yourBlogs")}
+          >
+            Your Blogs
+          </button>
           <button className="tabBtns" onClick={() => this.tabChange("friends")}>
             Friends
           </button>
@@ -40,23 +48,19 @@ class Dashboard extends Component {
           >
             Favorites
           </button>
-          <button
-            className="tabBtns"
-            onClick={() => this.tabChange("yourBlogs")}
-          >
-            Your Blogs
-          </button>
         </div>
-        <div className="profile-container box-2">
-          <Profile />
+        <div className="profile-container">
+          <Profile user_id={this.props.user_id} />
         </div>
-        <div className="tab-display box-3">
-          {this.state.tab === "friends" ? <Friends /> : null}
+        <div className="tab-display">
+          {this.state.tab === "friends" ? (
+            <Friends user_id={this.props.user_id} />
+          ) : null}
           {this.state.tab === "community" ? <Community /> : null}
           {this.state.tab === "favorites" ? <Favorites /> : null}
           {this.state.tab === "yourBlogs" ? <YourBlogs /> : null}
         </div>
-        <div className="button-container box-4" id="4">
+        <div className="button-container">
           <button>Create Blog</button>
         </div>
       </div>
@@ -64,4 +68,10 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = reduxState => {
+  return {
+    session: reduxState.authReducer,
+    user_id: reduxState.authReducer.user_id
+  };
+};
+export default connect(mapStateToProps)(Dashboard);

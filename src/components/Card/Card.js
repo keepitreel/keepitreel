@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./Card.scss";
 
@@ -22,26 +23,27 @@ class Card extends Component {
     } = this.props;
     return (
       <div className="card-wrapper">
-        <div className="poster">
-          <img src={posterurl} />
-        </div>
-        <div className="blog-info">
-          <h2>{blogtitle}</h2>
-          <h3>by {name}</h3>
-        </div>
-        <div className="blog-post">
-          <p>{text}</p>
-        </div>
+        <Link to={`/blog/${this.props.post_id}`}>
+          <div className="poster">
+            <img src={posterurl} />
+          </div>
+          <div className="info-wrapper">
+            <div className="blog-info">
+              <h5>{blogtitle}</h5>
+              <h6>by {name}</h6>
+            </div>
+            <div className="blog-post">
+              <p>{text}</p>
+            </div>
+          </div>
+        </Link>
       </div>
     );
   }
 }
 
 const mapStateToProps = reduxState => {
-  return {
-    // session: reduxState.authReducer,
-    // movies: reduxState.movieReducer.movies
-  };
+  return {};
 };
 
 export default connect(mapStateToProps)(Card);

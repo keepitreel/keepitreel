@@ -36,6 +36,7 @@ export default class Blog extends Component {
           <p>{blog.post_id}</p>
           <h1>{blog.blogtitle}</h1>
           <h3>{blog.username}</h3>
+
           <Follow following_user_id={blog.user_id} />
           <Like post_id={blog.post_id} />
           <StarRating rating={blog.rating} />

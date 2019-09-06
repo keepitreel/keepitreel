@@ -4,11 +4,13 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
 
 .grid-wrapper {
-  height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 150px 1fr 1fr 1fr;
   grid-template-rows: 1fr 2fr 2fr 1fr;
   grid-template-areas:
     "header header header header"
@@ -19,21 +21,23 @@
 
 }
 
+.tabBtns {
+  margin-top: 90px;
+}
+
+
 .tabs-container {
   height: 7vh;
   grid-area: header;
 }
 
-.tabBtns {
-  margin-top: 90px;
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: center;
-  // align-items: center;
-}
 
 .tab-display {
   grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  padding-left: 40px;
 }
 
 .profile-container {
