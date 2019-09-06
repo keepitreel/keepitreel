@@ -8,6 +8,7 @@ function Star({
   handleClick,
   isFilled
 }) {
+  console.log(value);
   if (!handleHover) {
     return (
       <span

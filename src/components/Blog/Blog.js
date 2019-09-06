@@ -7,6 +7,7 @@ import Follow from "../Follow/Follow";
 import Like from "../Like/Like";
 import DeletePost from "../DeletePost/DeletePost";
 import { connect } from "react-redux";
+import StarRating from "../StarRating/StarRating";
 
 class Blog extends Component {
   constructor() {
@@ -30,7 +31,7 @@ class Blog extends Component {
     let { post } = this.state;
 
     let blogStuff = post.map(blog => {
-      console.log(blog);
+      console.log("RATING", blog.rating);
       return (
         <div>
           <p>{blog.post_id}</p>
@@ -47,40 +48,9 @@ class Blog extends Component {
             </div>
           )}
 
-          {blog.rating == 1 ? (
-            <div className="rating">
-              <span class="icon">★</span>
-            </div>
-          ) : blog.rating == 2 ? (
-            <div className="rating">
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-            </div>
-          ) : blog.rating == 3 ? (
-            <div className="rating">
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-            </div>
-          ) : blog.rating == 4 ? (
-            <div className="rating">
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-            </div>
-          ) : (
-            <div className="rating">
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-              <span class="icon">★</span>
-            </div>
-          )}
-          <p>{blog.time}</p>
-          <p>{blog.text}</p>
-
+          <Follow following_user_id={blog.user_id} />
+          <Like post_id={blog.post_id} />
+          <StarRating rating={blog.rating} />
           <div className="movieContainer">
             <DisplayMovie ImdbID={blog.imdbid} />
           </div>

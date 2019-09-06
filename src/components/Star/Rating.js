@@ -6,8 +6,8 @@ class Rating extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dynamicValue: props.stars,
-      value: 0
+      dynamicValue: props.rate || 0,
+      value: props.rate || 0
     };
     this._colors = {
       1: "#f44336",

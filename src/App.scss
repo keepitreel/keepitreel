@@ -1,13 +1,13 @@
-$primaryColor: #7E0000;
-$secondaryColor: #F29763;
-$accentColor: #FF9801;
+$primaryColor: #7e0000;
+$secondaryColor: #f29763;
+$accentColor: #f54504;
 $buttonColor: #404040;
-$pageColor: #0D0D0D;
-$textColor: #AFAAAA;
+$pageColor: #0d0d0d;
+$textColor: #afaaaa;
 
-$HeaderFont: 'Montserrat',
+$HeaderFont: "Montserrat",
 sans-serif;
-$TextFont: 'Abel',
+$TextFont: "Abel",
 sans-serif;
 
 // quotes: single quotes;
@@ -28,7 +28,6 @@ sans-serif;
   align-items: center;
   width: $pagewidth;
   font-family: $TextFont;
-
 }
 
 @mixin backgroundDisplay() {
@@ -80,6 +79,9 @@ sans-serif;
   margin: 30px;
 }
 
+// @mixin starContainer() {
+//   background-color: $accentColor;
+// }
 
 .App {
   min-height: 100vh;
