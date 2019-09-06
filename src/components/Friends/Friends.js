@@ -14,7 +14,7 @@ class Friends extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/friendspost/recent/${this.props.user_id}`).then(res => {
+    axios.get(`/api/friendspost/${this.props.user_id}`).then(res => {
       this.setState({
         friends: res.data
       });
@@ -28,21 +28,19 @@ class Friends extends Component {
           <h3>Friends</h3>
           <div className="card">
             {this.state.friends.map(friend => (
-              <Link to={`/blog/${friend.post_id}`}>
-                <Card
-                  className="card"
-                  name={friend.name}
-                  post_id={friend.post_id}
-                  key={friend.post_id}
-                  user_id={friend.user_id}
-                  text={friend.text}
-                  posterurl={friend.posterurl}
-                  title={friend.title}
-                  blogtitle={friend.blogtitle}
-                  avatarurl={friend.avatarurl}
-                  rating={friend.rating}
-                />
-              </Link>
+              <Card
+                className="card"
+                name={friend.name}
+                post_id={friend.post_id}
+                key={friend.post_id}
+                user_id={friend.user_id}
+                text={friend.text}
+                posterurl={friend.posterurl}
+                title={friend.title}
+                blogtitle={friend.blogtitle}
+                avatarurl={friend.avatarurl}
+                rating={friend.rating}
+              />
             ))}
           </div>
         </div>
@@ -53,8 +51,11 @@ class Friends extends Component {
 
 let mapStatetoProps = reduxState => {
   return {
+    session: reduxState.authReducer,
     user_id: reduxState.authReducer.user_id
   };
 };
 
 export default connect(mapStatetoProps)(Friends);
+
+// export default Friends;

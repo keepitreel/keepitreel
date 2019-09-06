@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./Card.scss";
 
@@ -22,18 +23,20 @@ class Card extends Component {
     } = this.props;
     return (
       <div className="card-wrapper">
-        <div className="poster">
-          <img src={posterurl} />
-        </div>
-        <div>
-          <div className="blog-info">
-            <h5>{blogtitle}</h5>
-            <h6>by {name}</h6>
+        <Link to={`/blog/${this.props.post_id}`}>
+          <div className="poster">
+            <img src={posterurl} />
           </div>
-          <div className="blog-post">
-            <p>{text}</p>
+          <div className="info-wrapper">
+            <div className="blog-info">
+              <h5>{blogtitle}</h5>
+              <h6>by {name}</h6>
+            </div>
+            <div className="blog-post">
+              <p>{text}</p>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     );
   }
