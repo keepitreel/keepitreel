@@ -9,8 +9,8 @@ import { connect } from "react-redux";
 import "./Dashboard.scss";
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       tab: "yourBlogs"
     };

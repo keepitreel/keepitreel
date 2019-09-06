@@ -21,6 +21,7 @@ class Friends extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <>
         <h1>Friends</h1>

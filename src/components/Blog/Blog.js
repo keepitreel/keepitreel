@@ -5,9 +5,11 @@ import "./Blog.scss";
 import Comments from "../Comments/Comments";
 import Follow from "../Follow/Follow";
 import Like from "../Like/Like";
+import DeletePost from "../DeletePost/DeletePost";
+import { connect } from "react-redux";
 import StarRating from "../StarRating/StarRating";
 
-export default class Blog extends Component {
+class Blog extends Component {
   constructor() {
     super();
     this.state = {
@@ -27,7 +29,6 @@ export default class Blog extends Component {
   }
   render() {
     let { post } = this.state;
-    console.log(post);
 
     let blogStuff = post.map(blog => {
       console.log("RATING", blog.rating);
@@ -36,6 +37,16 @@ export default class Blog extends Component {
           <p>{blog.post_id}</p>
           <h1>{blog.blogtitle}</h1>
           <h3>{blog.username}</h3>
+          {this.props.user_id == blog.user_id ? (
+            <div className="features">
+              <DeletePost post_id={blog.post_id} />
+            </div>
+          ) : (
+            <div className="features">
+              <Follow following_user_id={blog.user_id} />
+              <Like post_id={blog.post_id} post_user_id={blog.user_id} />
+            </div>
+          )}
 
           <Follow following_user_id={blog.user_id} />
           <Like post_id={blog.post_id} />
@@ -58,3 +69,12 @@ export default class Blog extends Component {
     );
   }
 }
+
+const mapStateToProps = reduxState => {
+  return {
+    user_id: reduxState.authReducer.user_id,
+    username: reduxState.authReducer.username
+  };
+};
+
+export default connect(mapStateToProps)(Blog);

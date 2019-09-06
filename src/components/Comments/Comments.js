@@ -25,7 +25,8 @@ class Comments extends Component {
         title
       })
       .then(res => {
-        this.setState({ comment: [...this.state.comment, res.data] });
+        console.log(res.data[0]);
+        this.setState({ comments: [res.data[0], ...this.state.comments] });
       })
       .catch(error => {
         console.log(error);

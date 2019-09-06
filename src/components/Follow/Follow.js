@@ -34,16 +34,34 @@ class Follow extends Component {
     this.setState({ follow: !this.state.follow });
   };
 
+  componentDidMount() {
+    let { user_id, following_user_id } = this.props;
+    axios
+      .put("/api/viewcard/followed", { user_id, following_user_id })
+      .then(res => {
+        this.setState({ follow: res.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     console.log(this.props);
     let { user_id, following_user_id } = this.props;
     return (
-      <div className="FollowDiv">
+      <div className="FollowComponent">
         <p>{user_id}</p>
         {this.state.follow ? (
-          <i class="fas fa-user-plus unfollow" onClick={this.unfollow}></i>
+          <div className="tooltip">
+            <i class="fas fa-user-plus unfollow" onClick={this.unfollow}></i>
+            <span class="tooltiptext">Unfollow user</span>
+          </div>
         ) : (
-          <i class="fas fa-user-plus follow" onClick={this.follow}></i>
+          <div className="tooltip">
+            <i class="fas fa-user-plus follow" onClick={this.follow}></i>
+            <span class="tooltiptext">Follow User</span>
+          </div>
         )}
       </div>
     );

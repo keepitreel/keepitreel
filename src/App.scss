@@ -5,8 +5,10 @@ $buttonColor: #404040;
 $pageColor: #0d0d0d;
 $textColor: #afaaaa;
 
-$HeaderFont: "Montserrat", sans-serif;
-$TextFont: "Abel", sans-serif;
+$HeaderFont: "Montserrat",
+sans-serif;
+$TextFont: "Abel",
+sans-serif;
 
 // quotes: single quotes;
 // events: use e
@@ -39,7 +41,38 @@ $TextFont: "Abel", sans-serif;
   z-index: 1;
 }
 
-@mixin pageHeader() {
+@mixin tooltip() {
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: $primaryColor;
+    color: $textColor;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    top: 40px;
+    font-size: 15px;
+
+    position: absolute;
+    z-index: 1;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+}
+
+
+
+
+@mixin pageHeader () {
   font-family: $HeaderFont;
   color: black;
   font-size: 50px;
