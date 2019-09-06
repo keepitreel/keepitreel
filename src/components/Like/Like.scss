@@ -15,6 +15,17 @@
       color: $accentColor;
     }
 
+
+
+    .fa-thumbs-down {
+      transform: scale(1.3);
+      color: $primaryColor;
+    }
+
+
+  }
+
+  .tooltip {
     .likeActive {
       transform: scale(1.3);
       color: $accentColor;
@@ -25,11 +36,8 @@
       color: $primaryColor;
     }
 
-    .fa-thumbs-down {
-      transform: scale(1.3);
-      color: $primaryColor;
-    }
-
 
   }
+
+
 }
