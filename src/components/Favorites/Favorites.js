@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./Favorites.scss";
 
 class Favorites extends Component {
   constructor() {
@@ -23,8 +24,10 @@ class Favorites extends Component {
   render() {
     return (
       <>
-        <h1>Favorites</h1>
-        <div className="favorites-container">
+        <div className="favorites-wrapper">
+          <div className="tabTitle">
+            <h5>Favorites</h5>
+          </div>
           <div>
             {this.state.favorites.map(favorite => (
               <Link to={`/blog/${favorite.post_id}`}>

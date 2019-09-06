@@ -26,7 +26,7 @@ class Community extends Component {
     return (
       <>
         <div className="community-wrapper">
-          <h1>Community</h1>
+          <h4>Community</h4>
           <div>
             {this.state.community.map(commCard => (
               <Link to={`/blog/${commCard.post_id}`}>

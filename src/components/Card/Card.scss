@@ -1,18 +1,48 @@
+@import '../../App.scss';
+
 .card-wrapper {
-  display: flex;
-  border: 1px solid green;
-  height: 170px;
- width: 300px;
+
+
+  height: 150px;
+  width: 300px;
   justify-content: space-between;
   overflow: hidden;
   margin: 10px;
-  // overflow: scroll;
+  background-image: url('../../img/ticket.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-wrap: wrap;
 
-  p {
-    font-size: 0.7em;
+  a {
+    font-size: 20px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    color: $textColor;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .poster {
+      padding: 5px;
+      width: 33%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .info-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      width: 66%;
+
+      .blog-info {}
+
+      .blog-post {}
+    }
   }
 
-  img {
-    height: 200px
-  }
 }

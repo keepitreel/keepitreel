@@ -52,24 +52,24 @@ class Friends extends Component {
       <>
         {!this.props.user_id && <Redirect to="/" />}
         <div className="friends-wrapper">
-          <h3>Friends</h3>
+          <div className="tabTitle">
+            <h5>Friends</h5>
+          </div>
           <div className="card">
             {this.state.friends.map(friend => (
-              <Link to={`/blog/${friend.post_id}`}>
-                <Card
-                  className="card"
-                  name={friend.name}
-                  post_id={friend.post_id}
-                  key={friend.post_id}
-                  user_id={friend.user_id}
-                  text={friend.text}
-                  posterurl={friend.posterurl}
-                  title={friend.title}
-                  blogtitle={friend.blogtitle}
-                  avatarurl={friend.avatarurl}
-                  rating={friend.rating}
-                />
-              </Link>
+              <Card
+                className="card"
+                name={friend.name}
+                post_id={friend.post_id}
+                key={friend.post_id}
+                user_id={friend.user_id}
+                text={friend.text}
+                posterurl={friend.posterurl}
+                title={friend.title}
+                blogtitle={friend.blogtitle}
+                avatarurl={friend.avatarurl}
+                rating={friend.rating}
+              />
             ))}
           </div>
         </div>

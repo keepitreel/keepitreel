@@ -4,6 +4,7 @@ import Friends from "../Friends/Friends";
 import Community from "../Community/Community";
 import Favorites from "../Favorites/Favorites";
 import YourBlogs from "../YourBlogs/YourBlogs";
+import axios from "axios";
 import { connect } from "react-redux";
 import "./Dashboard.scss";
 
@@ -11,7 +12,7 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: "friends"
+      tab: "yourBlogs"
     };
     this.tabChange = this.tabChange.bind(this);
   }
@@ -26,6 +27,12 @@ class Dashboard extends Component {
     return (
       <div className="grid-wrapper">
         <div className="tabs-container">
+          <button
+            className="tabBtns"
+            onClick={() => this.tabChange("yourBlogs")}
+          >
+            Your Blogs
+          </button>
           <button className="tabBtns" onClick={() => this.tabChange("friends")}>
             Friends
           </button>
@@ -41,18 +48,14 @@ class Dashboard extends Component {
           >
             Favorites
           </button>
-          <button
-            className="tabBtns"
-            onClick={() => this.tabChange("yourBlogs")}
-          >
-            Your Blogs
-          </button>
         </div>
         <div className="profile-container">
           <Profile user_id={this.props.user_id} />
         </div>
         <div className="tab-display">
-          {this.state.tab === "friends" ? <Friends /> : null}
+          {this.state.tab === "friends" ? (
+            <Friends user_id={this.props.user_id} />
+          ) : null}
           {this.state.tab === "community" ? <Community /> : null}
           {this.state.tab === "favorites" ? <Favorites /> : null}
           {this.state.tab === "yourBlogs" ? <YourBlogs /> : null}
