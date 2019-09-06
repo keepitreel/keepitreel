@@ -25,7 +25,9 @@ class Friends extends Component {
     return (
       <>
         <div className="friends-wrapper">
-          <h3>Friends</h3>
+          <div className="tabTitle">
+            <h5>Friends</h5>
+          </div>
           <div className="card">
             {this.state.friends.map(friend => (
               <Card
