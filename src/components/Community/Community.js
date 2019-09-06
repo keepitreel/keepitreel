@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import "./Community.scss";
 
 class Community extends Component {
   constructor() {
@@ -12,8 +13,6 @@ class Community extends Component {
     };
   }
 
-  //need backend to send blogs id based on most recent****************
-  //get time for blogs
   componentDidMount() {
     axios.get("/api/communitypost").then(res => {
       {
@@ -26,8 +25,8 @@ class Community extends Component {
   render() {
     return (
       <>
-        <h1>Community</h1>
-        <div className="community-container">
+        <div className="community-wrapper">
+          <h4>Community</h4>
           <div>
             {this.state.community.map(commCard => (
               <Link to={`/blog/${commCard.post_id}`}>

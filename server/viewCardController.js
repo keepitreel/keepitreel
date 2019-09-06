@@ -82,7 +82,12 @@ let checkIfFollowed = async (req, res) => {
   const user = await db
     .check_followed([user_id, following_user_id])
     .catch(error => console.log(error));
-  return res.status(200).json(user);
+
+  if (user[0]) {
+    return res.status(200).json(true);
+  } else {
+    return res.status(400).json(false);
+  }
 };
 let checkIfLiked = async (req, res) => {
   const { user_id, post_id } = req.body;
@@ -91,7 +96,12 @@ let checkIfLiked = async (req, res) => {
   const user = await db
     .check_liked([user_id, post_id])
     .catch(error => console.log(error));
-  return res.status(200).json(user);
+
+  if (user[0]) {
+    return res.status(200).json(true);
+  } else {
+    return res.status(400).json(false);
+  }
 };
 let checkIfDisliked = async (req, res) => {
   const { user_id, post_id } = req.body;
@@ -100,7 +110,11 @@ let checkIfDisliked = async (req, res) => {
   const user = await db
     .check_disliked([user_id, post_id])
     .catch(error => console.log(error));
-  return res.status(200).json(user);
+  if (user[0]) {
+    return res.status(200).json(true);
+  } else {
+    return res.status(400).json(false);
+  }
 };
 let thumbsUP = async (req, res) => {
   const { user_id, post_id } = req.body;
@@ -110,8 +124,12 @@ let thumbsUP = async (req, res) => {
     .check_liked([user_id, post_id])
     .catch(error => console.log(error));
   if (likeduser[0]) {
-    //if liked user exists
-    res.status(200); //return success
+    //if liked user exists then previously liked and delete
+    await db //and delete from like table
+      .stop_liking_post([user_id, post_id])
+      .catch(error => console.log(error));
+
+    res.sendStatus(200); //return success
   } else {
     await db
       .start_liking_post([user_id, post_id]) //else add like to table
@@ -131,7 +149,10 @@ let thumbsDOWN = async (req, res) => {
     .check_disliked([user_id, post_id])
     .catch(error => console.log(error));
   if (hateduser[0]) {
-    res.status(200); //if userpost is already disliked, exists//return success
+    await db //and delete from dislike table
+      .stop_disliking_post([user_id, post_id])
+      .catch(error => console.log(error));
+    res.sendStatus(200); //if userpost is already disliked, exists ,delete disliked   //return success
   } else {
     await db
       .start_disliking_post([user_id, post_id]) //else add dislike to table
@@ -142,6 +163,17 @@ let thumbsDOWN = async (req, res) => {
       .catch(error => console.log(error));
     return res.sendStatus(200);
   }
+};
+let getFollow = async (req, res) => {
+  // returns all people user_id is following but just following_user_id
+  const { user_id } = req.params;
+  const db = req.app.get("db");
+
+  const user = await db
+    .get_followers(user_id)
+    .catch(error => console.log(error));
+
+  res.json(user);
 };
 
 module.exports = {
@@ -157,5 +189,6 @@ module.exports = {
   checkIfLiked,
   checkIfDisliked,
   thumbsUP,
-  thumbsDOWN
+  thumbsDOWN,
+  getFollow
 };

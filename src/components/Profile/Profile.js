@@ -5,6 +5,8 @@ import { Redirect } from "react-router-dom";
 import { updateUser } from "../../redux/authReducer";
 import "./Profile.scss";
 
+//get rid of redux
+
 class Profile extends Component {
   constructor() {
     super();
@@ -20,22 +22,12 @@ class Profile extends Component {
 
   //Once user logs in or registers they are sent to dashboard, the profile container will display relevant user data provided by backend
   componentDidMount() {
-    let {
-      username,
-      password,
-      user_id,
-      name,
-      email,
-      avatarurl
-    } = this.props.session;
+    // axios to backend, this.props.user_id , app.get("/api/userpost/:user_id", getUserPost);
 
-    this.setState({
-      username: username,
-      password: password,
-      user_id: user_id,
-      name: name,
-      email: email,
-      avatarurl: avatarurl
+    axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
+      this.setState({
+        user_id: res.data
+      });
     });
   }
 
@@ -103,12 +95,4 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
-  return {
-    session: reduxState.authReducer
-  };
-};
-export default connect(
-  mapStateToProps,
-  { updateUser }
-)(Profile);
+export default Profile;

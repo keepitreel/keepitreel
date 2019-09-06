@@ -10,7 +10,10 @@ import axios from "axios";
 class Nav extends Component {
   componentDidMount() {
     axios.get("/api/login/sessionuser").then(res => {
+      console.log("inside nav");
       console.log(res);
+      console.log(res.data.user_id);
+
       if (res.data.user_id) {
         this.props.checkForLogin(res.data);
       }
@@ -26,14 +29,18 @@ class Nav extends Component {
     return (
       <div className="navPage">
         <div className="logoDiv">
-          <h1>KeepItReel</h1>
+          <Link to="/" className="links">
+            <h1>KeepItReel</h1>
+          </Link>
           <img src={Logo2}></img>
         </div>
+
         <div className="linkWrap">
           <Link to="/" className="links">
             Home
           </Link>
         </div>
+
         <div className="linkWrap">
           {this.props.user_id ? (
             <Link to={"/"} onClick={this.handleLogout} className="links">

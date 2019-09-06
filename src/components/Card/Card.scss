@@ -1,29 +1,48 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import '../../App.scss';
 
 .card-wrapper {
-  background: white;
-  height: 50vh;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 2fr;
-  grid-template-areas:
-    "poster info"
-    "poster post"
-}
 
-.blog-info {
-  grid-area: info;
-}
 
-.poster {
-  grid-area: poster;
-}
+  height: 150px;
+  width: 300px;
+  justify-content: space-between;
+  overflow: hidden;
+  margin: 10px;
+  background-image: url('../../img/ticket.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-wrap: wrap;
 
-.blog-post {
-  grid-area: post;
+  a {
+    font-size: 20px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    color: $textColor;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .poster {
+      padding: 5px;
+      width: 33%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .info-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      width: 66%;
+
+      .blog-info {}
+
+      .blog-post {}
+    }
+  }
+
 }

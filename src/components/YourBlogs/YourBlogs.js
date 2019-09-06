@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./YourBlogs.scss";
 
 class YourBlogs extends Component {
   constructor() {
@@ -13,6 +14,7 @@ class YourBlogs extends Component {
   }
 
   //need backend to send user's blogs data******************
+  //pass in user id through props similar to profile comp
   componentDidMount() {
     axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
       this.setState({
@@ -24,8 +26,10 @@ class YourBlogs extends Component {
   render() {
     return (
       <>
-        <h1>Your Blogs</h1>
-        <div className="friends-container">
+        <div className="yourBlogs-wrapper">
+          <div>
+            <h5 className="tabsTitle">Your Blogs</h5>
+          </div>
           <div>
             {this.state.yourBlogs.map(yourBlog => (
               <Link to={`/blog/${yourBlog.post_id}`}>

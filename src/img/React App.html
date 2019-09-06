@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://localhost:3000//#/dashboard -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="shortcut icon" href="http://localhost:3000/favicon.ico">
+    <link href="./React App_files/css" rel="stylesheet">
+    <script src="./React App_files/d4ff99328b.js"></script><link rel="stylesheet" href="./React App_files/free.min.css" media="all"><link rel="stylesheet" href="./React App_files/free-v4-shims.min.css" media="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="http://localhost:3000//logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+    <title>React App</title>
+  <style>body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+</style><style>.App {
+  min-height: 100vh;
+  background-color: #0D0D0D;
+  font-family: "Abel", sans-serif;
+  color: #AFAAAA;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column; }
+</style><style>.App {
+  min-height: 100vh;
+  background-color: #0D0D0D;
+  font-family: "Abel", sans-serif;
+  color: #AFAAAA;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column; }
+
+.navPage {
+  width: 100%;
+  padding: 15px;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: #7E0000;
+  position: fixed;
+  z-index: 100; }
+  .navPage .logoDiv {
+    display: flex;
+    margin-left: 50px; }
+    .navPage .logoDiv h1 {
+      margin: 0;
+      font-size: 40px; }
+    .navPage .logoDiv img {
+      width: 60px; }
+  .navPage .linkWrap {
+    margin-right: 50px; }
+    .navPage .linkWrap a {
+      color: black;
+      text-decoration: none; }
+</style><style>.App {
+  min-height: 100vh;
+  background-color: #0D0D0D;
+  font-family: "Abel", sans-serif;
+  color: #AFAAAA;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column; }
+
+.searchMoviePage {
+  margin: 0;
+  min-height: 100vh;
+  padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-family: "Abel", sans-serif;
+  min-height: 100%; }
+  .searchMoviePage .imageBackground {
+    height: 100%;
+    min-width: 100vw;
+    position: fixed;
+    z-index: 0;
+    background-color: #0D0D0D; }
+  .searchMoviePage .movieContainer {
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6); }
+    .searchMoviePage .movieContainer .buttonsDivContainer {
+      width: 100%;
+      display: flex;
+      justify-content: center; }
+    .searchMoviePage .movieContainer .searchDiv {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 90px; }
+      .searchMoviePage .movieContainer .searchDiv input {
+        height: 35px;
+        font-size: 20px;
+        margin: 5px;
+        border-radius: 5px; }
+      .searchMoviePage .movieContainer .searchDiv button {
+        height: 36px;
+        font-size: 20px;
+        border-radius: 5px; }
+    .searchMoviePage .movieContainer .searchResults {
+      width: 80%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column; }
+      .searchMoviePage .movieContainer .searchResults .displayMovies {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly; }
+      .searchMoviePage .movieContainer .searchResults .movieDiv {
+        width: 17%;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+        .searchMoviePage .movieContainer .searchResults .movieDiv a {
+          width: 100%;
+          text-decoration: none;
+          font-size: 15px;
+          color: #AFAAAA;
+          display: flex;
+          flex-direction: column;
+          align-items: center; }
+          .searchMoviePage .movieContainer .searchResults .movieDiv a img {
+            width: 70%;
+            border: 2px solid #7E0000; }
+</style><style>.App {
+  min-height: 100vh;
+  background-color: #0D0D0D;
+  font-family: "Abel", sans-serif;
+  color: #AFAAAA;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column; }
+
+.buttonsDiv {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  flex-wrap: wrap; }
+  .buttonsDiv .pageButton {
+    background-color: #7E0000;
+    border: 1px solid #F2622E;
+    font-size: 18px;
+    padding: 5px;
+    margin: 5px;
+    min-width: 50px; }
+  .buttonsDiv .pageButton:hover {
+    transform: scale(1.1); }
+</style><style>.App {
+  min-height: 100vh;
+  background-color: #0D0D0D;
+  font-family: "Abel", sans-serif;
+  color: #AFAAAA;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column; }
+
+.CreateBlogPage {
+  margin: 0;
+  min-height: 100vh;
+  padding-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-family: "Abel", sans-serif; }
+  .CreateBlogPage .ContainerBlog {
+    display: flex;
+    width: 100%;
+    justify-content: center; }
+    .CreateBlogPage .ContainerBlog .DisplayMovieDiv {
+      min-height: 800px;
+      width: 40%; }
+    .CreateBlogPage .ContainerBlog .formDiv {
+      width: 40%; }
+      .CreateBlogPage .ContainerBlog .formDiv label {
+        width: 100%;
+        flex-direction: column;
+        display: flex;
+        justify-content: center; }
+        .CreateBlogPage .ContainerBlog .formDiv label input {
+          height: 50px;
+          font-size: 30px;
+          border-radius: 5px; }
+        .CreateBlogPage .ContainerBlog .formDiv label textarea {
+          font-size: 20px;
+          height: 200px;
+          border-radius: 5px; }
+      .CreateBlogPage .ContainerBlog .formDiv .ratingDiv {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row-reverse; }
+        .CreateBlogPage .ContainerBlog .formDiv .ratingDiv label {
+          display: flex; }
+</style><style>.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#background-video {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  float: left;
+  padding: 0;
+  z-index: 0;
+}
+.movie-poster-images {
+  height: 50%;
+  width: 50%;
+  position: absolute;
+
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+
+.batman-poster {
+  position: relative;
+  z-index: 7;
+  width: 27.3%;
+  height: 100%;
+}
+
+.johnwick-poster {
+  position: relative;
+  z-index: 7;
+  width: 27.3%;
+  height: 100%;
+}
+.marvel-poster {
+  position: relative;
+  z-index: 7;
+  width: 27.3%;
+  height: 100%;
+}
+.titanic-poster {
+  position: relative;
+  z-index: 7;
+  width: 27.3%;
+  height: 100%;
+}
+
+.sign-in-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  text-shadow: 1px 1px 1px red;
+  min-width: 100vh;
+  min-height: 50vh;
+  color: black;
+
+  animation: fade 8s ease-in;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+form {
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  width: 100%;
+}
+</style><style>.profile {
+  display: flex;
+  flex-direction: column; }
+</style><style>.card-wrapper {
+  display: flex;
+  border: 1px solid green;
+  height: 170px;
+  width: 300px;
+  justify-content: space-between;
+  overflow: hidden;
+  margin: 10px; }
+  .card-wrapper p {
+    font-size: 0.7em; }
+  .card-wrapper img {
+    height: 200px; }
+</style><style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.friends-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 10px; }
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  width: 33%;
+  flex-grow: 1; }
+</style><style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.community-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px; }
+</style><style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+a {
+  text-decoration: none; }
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 150px 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr;
+  grid-template-areas: "header header header header" "profile main main main" "profile main main main" "button main main main"; }
+
+.tabBtns {
+  margin-top: 90px; }
+
+.tabs-container {
+  height: 7vh;
+  grid-area: header; }
+
+.tab-display {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  padding-left: 40px; }
+
+.profile-container {
+  grid-area: profile; }
+
+.button-container {
+  grid-area: button; }
+</style><style>.App {
+  min-height: 100vh;
+  background-color: #0D0D0D;
+  font-family: "Abel", sans-serif;
+  color: #AFAAAA;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column; }
+
+.BlogPage {
+  margin: 0;
+  min-height: 100vh;
+  padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-family: "Abel", sans-serif; }
+</style><style>.App {
+  min-height: 100vh;
+  background-color: #0D0D0D;
+  font-family: "Abel", sans-serif;
+  color: #AFAAAA;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column; }
+
+.FollowDiv .follow {
+  color: #AFAAAA; }
+
+.FollowDiv .unfollow {
+  color: #7E0000; }
+</style><style></style></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div class="App"><div class="navPage"><div class="logoDiv"><a class="links" href="http://localhost:3000//#/"><h1>KeepItReel</h1></a><img src="./React App_files/Logo2.d7fe862b.png"></div><div class="linkWrap"><a class="links" href="http://localhost:3000//#/">Home</a></div><div class="linkWrap"></div></div><div class="grid-wrapper"><div class="tabs-container"><button class="tabBtns">Friends</button><button class="tabBtns">Community</button><button class="tabBtns">Favorites</button><button class="tabBtns">Your Blogs</button></div><div class="profile-container"><div class="editForm"><div class="profile"><h2>Welcome Tommy</h2><img src="./React App_files/images" alt="tommy"><span>Tommy</span><span>Tommy@callahans.com</span><button>Edit</button></div><form><h2 class="header">Edit Profile</h2><input name="username" placeholder="username"><input name="name" placeholder="name"><input name="password" placeholder="password"><input name="email" placeholder="email"><button type="submit">Update</button></form></div></div><div class="tab-display"><div class="friends-wrapper"><h3>Friends</h3><div class="card"></div></div></div><div class="button-container"><button>Create Blog</button></div></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script src="./React App_files/bundle.js"></script><script src="./React App_files/1.chunk.js"></script><script src="./React App_files/main.chunk.js"></script><script src="./React App_files/main.6da860d7d42df1e883f3.hot-update.js"></script>
+
+</body></html>

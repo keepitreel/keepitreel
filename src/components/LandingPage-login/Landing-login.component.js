@@ -7,7 +7,7 @@ import Titanic from "../../img/movie-posters/Titanic.jpg";
 import { Redirect } from "react-router-dom";
 import { login, updateLogin, register } from "../../redux/authReducer";
 import "./Landing-login.style.css";
-import Axios from "axios";
+import axios from "axios";
 import { connect } from "react-redux";
 
 class Login extends Component {
