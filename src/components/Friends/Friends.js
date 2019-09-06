@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Friends.scss";
+import { checkForLogin } from "../../redux/authReducer";
 
 class Friends extends Component {
   constructor() {
@@ -14,11 +15,22 @@ class Friends extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/friendspost/recent/${this.props.user_id}`).then(res => {
-      this.setState({
-        friends: res.data
-      });
+    axios.get("/api/login/sessionuser").then(res => {
+      if (res.data.user_id) {
+        this.props.checkForLogin(res.data);
+        axios
+          .get(`/api/friendspost/recent/${this.props.user_id}`)
+          .then(res => {
+            console.log(res);
+            this.setState({
+              friends: res.data
+            });
+          })
+          .catch(error => console.log(error));
+      }
     });
+    console.log("friends didmount and this.props.user_id is");
+    console.log(this.props.user_id);
   }
 
   render() {
@@ -51,10 +63,25 @@ class Friends extends Component {
   }
 }
 
-let mapStatetoProps = reduxState => {
+// let mapStatetoProps = reduxState => {
+//   return {
+//     user_id: reduxState.authReducer.user_id
+//   };
+// };
+
+// export default connect(mapStatetoProps)(Friends);
+
+let mapStateToProps = reduxState => {
   return {
-    user_id: reduxState.authReducer.user_id
+    username: reduxState.authReducer.username,
+    password: reduxState.authReducer.password,
+    user_id: reduxState.authReducer.user_id,
+    name: reduxState.authReducer.name,
+    email: reduxState.authReducer.email
   };
 };
 
-export default connect(mapStatetoProps)(Friends);
+export default connect(
+  mapStateToProps,
+  { checkForLogin }
+)(Friends);

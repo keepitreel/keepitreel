@@ -12,6 +12,7 @@ let getFriendsPost = async (req, res) => {
 let getFriendsRecentPost = async (req, res) => {
   // returns all  posts from friends, or followers of user_id MOST RECENT
   const { user_id } = req.params;
+  //let userid = Number(user_id);
   const db = req.app.get("db");
 
   const posts = await db
