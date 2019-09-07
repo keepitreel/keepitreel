@@ -48,8 +48,6 @@ class Blog extends Component {
             </div>
           )}
 
-          <Follow following_user_id={blog.user_id} />
-          <Like post_id={blog.post_id} />
           <StarRating rating={blog.rating} />
           <div className="movieContainer">
             <DisplayMovie ImdbID={blog.imdbid} />

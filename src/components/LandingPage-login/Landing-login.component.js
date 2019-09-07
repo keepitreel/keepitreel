@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import Video from "../../video/curtain.mp4";
-import Batman from "../../img/movie-posters/batman.jpg";
-import JohnWick from "../../img/movie-posters/johnwick.jpeg";
-import Marvel from "../../img/movie-posters/marvel.jpg";
-import Titanic from "../../img/movie-posters/Titanic.jpg";
+// import Batman from "../../img/movie-posters/batman.jpg";
+// import JohnWick from "../../img/movie-posters/johnwick.jpeg";
+// import Marvel from "../../img/movie-posters/marvel.jpg";
+// import Titanic from "../../img/movie-posters/Titanic.jpg";
 import { Redirect } from "react-router-dom";
 import { login, updateLogin, register } from "../../redux/authReducer";
 import "./Landing-login.style.css";
 import axios from "axios";
 import { connect } from "react-redux";
+import Unsplash from "react-unsplash-wrapper";
 
 class Login extends Component {
   handleChange = e => {
@@ -42,29 +43,9 @@ class Login extends Component {
           <source muted src={Video} type="video/mp4" />
         </video>
         <div className="movie-poster-images">
-          <div className="flip-card">
-            <div className="flip-card-inner">
-              <div className="flip-card-front">
-                <img
-                  src={Batman}
-                  alt="Batman-Poster"
-                  className="batman-poster"
-                />
-              </div>
-              <div className="flip-card-back">
-                {/* the back of the card goes in this area */}
-              </div>
-            </div>
-          </div>
-
-          <img
-            src={JohnWick}
-            alt="JohnWick-Poster"
-            className="johnwick-poster"
-          />
-          <img src={Marvel} alt="Marvel-Poster" className="marvel-poster" />
-          <img src={Titanic} alt="Titanic-Poster" className="titanic-poster" />
+          <Unsplash width="1600" height="700" collectionId="8586348" />
         </div>
+
         <div className="sign-in-container">
           <h1>Keep it Reel</h1>
           <p>Social Media for Film Enthusiast. Real People...Reel reviews.</p>
