@@ -36,12 +36,6 @@ class Nav extends Component {
         </div>
 
         <div className="linkWrap">
-          <Link to="/" className="links">
-            Home
-          </Link>
-        </div>
-
-        <div className="linkWrap">
           {this.props.user_id ? (
             <Link to={"/"} onClick={this.handleLogout} className="links">
               Logout

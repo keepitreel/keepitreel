@@ -15,6 +15,11 @@
     display: flex;
     margin-left: 50px;
 
+    a {
+      text-decoration: none;
+      color: $textColor;
+    }
+
 
     h1 {
       margin: 0;
@@ -31,7 +36,7 @@
     margin-right: 50px;
 
     a {
-      color: black;
+      color: $textColor;
       text-decoration: none;
     }
   }

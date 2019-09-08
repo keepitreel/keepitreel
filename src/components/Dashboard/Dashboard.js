@@ -12,14 +12,15 @@ class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      tab: "yourBlogs"
+      tab: "yourBlogs",
+      on: "on"
     };
     this.tabChange = this.tabChange.bind(this);
   }
 
   tabChange(tab) {
     console.log(tab);
-    this.setState({ tab });
+    this.setState({ tab, on: "" });
   }
 
   render() {
@@ -38,6 +39,7 @@ class Dashboard extends Component {
               <button
                 className="tabBtns"
                 onClick={() => this.tabChange("yourBlogs")}
+                autoFocus
               >
                 Your Blogs
               </button>

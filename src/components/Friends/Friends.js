@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
 import "./Friends.scss";
+import DisplayTickets from "../DisplayTickets/DisplayTickets";
 
 class Friends extends Component {
   constructor() {
@@ -21,29 +22,24 @@ class Friends extends Component {
   }
 
   render() {
-    console.log(this.state);
+    let cards = this.state.friends.map(commCard => (
+      <Card
+        name={commCard.name}
+        post_id={commCard.post_id}
+        key={commCard.post_id}
+        user_id={commCard.user_id}
+        text={commCard.text}
+        posterurl={commCard.posterurl}
+        title={commCard.title}
+        blogtitle={commCard.blogtitle}
+        avatarurl={commCard.avatarurl}
+        rating={commCard.rating}
+      />
+    ));
     return (
-      <>
-        <h1>Friends</h1>
-        <div className="friends-container">
-          <div classname="card">
-            {this.state.friends.map(friend => (
-              <Card
-                name={friend.name}
-                post_id={friend.post_id}
-                key={friend.post_id}
-                user_id={friend.user_id}
-                text={friend.text}
-                posterurl={friend.posterurl}
-                title={friend.title}
-                blogtitle={friend.blogtitle}
-                avatarurl={friend.avatarurl}
-                rating={friend.rating}
-              />
-            ))}
-          </div>
-        </div>
-      </>
+      <div className="mappedCard">
+        <DisplayTickets displayName={"Community"} tickets={cards} />
+      </div>
     );
   }
 }
