@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./YourBlogs.scss";
+import "../../App.scss";
 
 class YourBlogs extends Component {
   constructor() {
@@ -13,8 +13,6 @@ class YourBlogs extends Component {
     };
   }
 
-  //need backend to send user's blogs data******************
-  //pass in user id through props similar to profile comp
   componentDidMount() {
     axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
       this.setState({
@@ -26,29 +24,29 @@ class YourBlogs extends Component {
   render() {
     return (
       <>
-        <div className="yourBlogs-wrapper">
-          <div>
-            <h5 className="tabsTitle">Your Blogs</h5>
+        {/* <div className="tabDisplay"> */}
+        <div className="main-wrapper">
+          <div className="tabTitle">
+            <h4>Your Blogs</h4>
           </div>
-          <div>
+          <div className="card">
             {this.state.yourBlogs.map(yourBlog => (
-              <Link to={`/blog/${yourBlog.post_id}`}>
-                <Card
-                  name={yourBlog.name}
-                  post_id={yourBlog.post_id}
-                  key={yourBlog.post_id}
-                  user_id={yourBlog.user_id}
-                  text={yourBlog.text}
-                  posterurl={yourBlog.posterurl}
-                  title={yourBlog.title}
-                  blogtitle={yourBlog.blogtitle}
-                  avatarurl={yourBlog.avatarurl}
-                  rating={yourBlog.rating}
-                />
-              </Link>
+              <Card
+                name={yourBlog.name}
+                post_id={yourBlog.post_id}
+                key={yourBlog.post_id}
+                user_id={yourBlog.user_id}
+                text={yourBlog.text}
+                posterurl={yourBlog.posterurl}
+                title={yourBlog.title}
+                blogtitle={yourBlog.blogtitle}
+                avatarurl={yourBlog.avatarurl}
+                rating={yourBlog.rating}
+              />
             ))}
           </div>
         </div>
+        {/* </div> */}
       </>
     );
   }
