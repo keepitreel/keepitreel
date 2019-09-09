@@ -108,6 +108,17 @@ let updatePost = async (req, res) => {
 
   res.json(post);
 };
+let getPostIMDBID = async (req, res) => {
+  //gets single post given post_id
+  const { imdbid } = req.params;
+  const db = req.app.get("db");
+
+  const post = await db
+    .get_post_imdbid(imdbid)
+    .catch(error => console.log(error));
+
+  res.json(post);
+};
 
 module.exports = {
   getGenres,
@@ -117,5 +128,6 @@ module.exports = {
   communityGenreFilter,
   deletePost,
   getPost,
-  updatePost
+  updatePost,
+  getPostIMDBID
 };
