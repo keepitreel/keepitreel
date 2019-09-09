@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
 import "./Friends.scss";
+import "../../App.scss";
 
 class Friends extends Component {
   constructor() {
@@ -21,11 +22,13 @@ class Friends extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <>
-        <h1>Friends</h1>
-        <div className="friends-container">
+        {/* <div className="tabDisplay"> */}
+        <div className="main-wrapper">
+          <div className="tabTitle">
+            <h4>Friends</h4>
+          </div>
           <div classname="card">
             {this.state.friends.map(friend => (
               <Card
@@ -43,6 +46,7 @@ class Friends extends Component {
             ))}
           </div>
         </div>
+        {/* </div> */}
       </>
     );
   }
@@ -55,5 +59,3 @@ let mapStatetoProps = reduxState => {
 };
 
 export default connect(mapStatetoProps)(Friends);
-
-// export default Friends;

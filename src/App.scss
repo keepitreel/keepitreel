@@ -92,3 +92,36 @@ sans-serif;
   display: flex;
   flex-direction: column;
 }
+
+@mixin dashboardDisplay {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+  .main-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+
+    .tabTitle {
+      border: 1px solid darkcyan;
+      width: 150px;
+      height: 50px;
+    }
+
+    .card {
+      border: 1px solid yellow;
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 100%;
+      width: 100%;
+    }
+  }
+
+}

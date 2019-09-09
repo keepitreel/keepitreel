@@ -1,6 +1,22 @@
 @import "../../App.scss";
 
 .DisplayMovieContainer {
-  .MoviePoster {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $textColor;
+
+  h2 {
+    font-family: $TextFont;
+    border-bottom: 2px solid red;
+  }
+  p {
+    font-size: 15px;
+    font-family: $TextFont;
+  }
+  .Info {
+    font-size: 0.9em;
+    color: white;
   }
 }

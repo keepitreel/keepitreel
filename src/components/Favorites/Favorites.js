@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./Favorites.scss";
+import "../../App.scss";
 
 class Favorites extends Component {
   constructor() {
@@ -18,35 +18,34 @@ class Favorites extends Component {
       this.setState({
         favorites: res.data
       });
-      console.log(this.state);
     });
   }
   render() {
     return (
       <>
-        <div className="favorites-wrapper">
+        {/* <div className="tabDisplay"> */}
+        <div className="main-wrapper">
           <div className="tabTitle">
-            <h5>Favorites</h5>
+            <h4>Favorites</h4>
           </div>
-          <div>
+          <div className="card">
             {this.state.favorites.map(favorite => (
-              <Link to={`/blog/${favorite.post_id}`}>
-                <Card
-                  name={favorite.name}
-                  post_id={favorite.post_id}
-                  key={favorite.post_id}
-                  user_id={favorite.user_id}
-                  text={favorite.text}
-                  posterurl={favorite.posterurl}
-                  title={favorite.title}
-                  blogtitle={favorite.blogtitle}
-                  avatarurl={favorite.avatarurl}
-                  rating={favorite.rating}
-                />
-              </Link>
+              <Card
+                name={favorite.name}
+                post_id={favorite.post_id}
+                key={favorite.post_id}
+                user_id={favorite.user_id}
+                text={favorite.text}
+                posterurl={favorite.posterurl}
+                title={favorite.title}
+                blogtitle={favorite.blogtitle}
+                avatarurl={favorite.avatarurl}
+                rating={favorite.rating}
+              />
             ))}
           </div>
         </div>
+        {/* </div> */}
       </>
     );
   }
