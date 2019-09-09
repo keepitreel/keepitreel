@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Card from "../Card/Card";
 import axios from "axios";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import "./Community.scss";
+//import "../../App.scss";
 
 class Community extends Component {
   constructor() {
@@ -15,9 +15,6 @@ class Community extends Component {
 
   componentDidMount() {
     axios.get("/api/communitypost").then(res => {
-      {
-        console.log(res.data);
-      }
       this.setState({ community: res.data });
     });
   }
@@ -25,11 +22,11 @@ class Community extends Component {
   render() {
     return (
       <>
-        <div className="community-wrapper">
+        <div className="main-wrapper">
           <div className="tabTitle">
             <h4>Community</h4>
           </div>
-          <div className="mappedCard">
+          <div className="card">
             {this.state.community.map(commCard => (
               <Card
                 name={commCard.name}

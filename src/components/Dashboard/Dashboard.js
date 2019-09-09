@@ -4,7 +4,6 @@ import Friends from "../Friends/Friends";
 import Community from "../Community/Community";
 import Favorites from "../Favorites/Favorites";
 import YourBlogs from "../YourBlogs/YourBlogs";
-import axios from "axios";
 import { connect } from "react-redux";
 import "./Dashboard.scss";
 
@@ -27,13 +26,15 @@ class Dashboard extends Component {
     return (
       <div className="Dashboard-wrapper">
         <div className="Content-wrapper">
-          <div className="Profile-container">
-            <div className="button-container">
+          <div className="Profile-wrapper">
+            <div className="Button-wrapper">
               <button>Create Blog</button>
             </div>
-            <Profile user_id={this.props.user_id} />
+            <div className="profile">
+              <Profile user_id={this.props.user_id} />
+            </div>
           </div>
-          <div className="Master-container">
+          <div className="Main-wrapper">
             <div className="tabs-container">
               <button
                 className="tabBtns"
@@ -61,12 +62,17 @@ class Dashboard extends Component {
               </button>
             </div>
             <div className="tab-display">
+              //map each component into display card comp
               {this.state.tab === "friends" ? (
                 <Friends user_id={this.props.user_id} />
               ) : null}
               {this.state.tab === "community" ? <Community /> : null}
-              {this.state.tab === "favorites" ? <Favorites /> : null}
-              {this.state.tab === "yourBlogs" ? <YourBlogs /> : null}
+              {this.state.tab === "favorites" ? (
+                <Favorites user_id={this.props.user_id} />
+              ) : null}
+              {this.state.tab === "yourBlogs" ? (
+                <YourBlogs user_id={this.props.user_id} />
+              ) : null}
             </div>
           </div>
         </div>
