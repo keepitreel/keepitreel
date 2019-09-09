@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Card from "../Card/Card";
 import axios from "axios";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import "./Community.scss";
 import DisplayTickets from "../DisplayTickets/DisplayTickets";
 
@@ -16,9 +15,6 @@ class Community extends Component {
 
   componentDidMount() {
     axios.get("/api/communitypost").then(res => {
-      {
-        console.log(res.data);
-      }
       this.setState({ community: res.data });
     });
   }

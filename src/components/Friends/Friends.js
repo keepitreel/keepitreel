@@ -51,5 +51,3 @@ let mapStatetoProps = reduxState => {
 };
 
 export default connect(mapStatetoProps)(Friends);
-
-// export default Friends;

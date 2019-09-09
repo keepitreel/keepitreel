@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./YourBlogs.scss";
 import DisplayTickets from "../DisplayTickets/DisplayTickets";
 
@@ -14,8 +13,6 @@ class YourBlogs extends Component {
     };
   }
 
-  //need backend to send user's blogs data******************
-  //pass in user id through props similar to profile comp
   componentDidMount() {
     axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
       this.setState({

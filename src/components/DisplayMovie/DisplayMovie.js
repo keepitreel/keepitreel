@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Flippy, { FrontSide, BackSide } from "react-flippy";
+
 import "./DisplayMovie.scss";
+import { tsNonNullExpression } from "@babel/types";
 
 export default class DisplayMovie extends Component {
   constructor() {
@@ -36,27 +39,57 @@ export default class DisplayMovie extends Component {
     let { movie } = this.state;
     let movieInformation = movie.map(res => {
       console.log(res);
+      let divStyle = {
+        backgroundColor: "transparent",
+        borderStyle: "none"
+      };
+
       return (
         <div className="DisplayMovieContainer">
-          <img className="MoviePoster" src={this.state.image}></img>
-          <h2>{res.Title}</h2>
-          <p>{res.Plot}</p>
-          <p>{res.Type}</p>
-          <p>{res.Rated}</p>
-          <p>{res.Actors}</p>
-          <p>{res.Writer}</p>
-          <p>{res.Released}</p>
-          <p>{res.Genre}</p>
-          <p>{res.Production}</p>
+          <span className="Info">
+            <p>Hover Below For More Info!</p>
+          </span>
+          <Flippy
+            flipOnHover={true} // default false
+            flipOnClick={false} // default false
+            flipDirection="vertical" // horizontal or vertical
+            ref={r => (this.flippy = r)} // to use toggle method like this.flippy.toggle()
+            // if you pass isFlipped prop component will be controlled component.
+            // and other props, which will go to div
+            style={{ width: "60%", height: "60%", border: "none" }} /// these are optional style, it is not necessary
+          >
+            <FrontSide style={{ divStyle }}>
+              <img className="MoviePoster" src={this.state.image}></img>
+            </FrontSide>
 
-          {res.Ratings.map(rating => {
-            console.log(rating);
-            return (
-              <p>
-                {rating.Source}- {rating.Value}
-              </p>
-            );
-          })}
+            <BackSide style={this.divStyle}>
+              <h2>{res.Title}</h2>
+              <span className="MovieRated">
+                <p>{res.Rated}</p>
+                <p>{res.Production}</p>
+              </span>
+              <br />
+              <p>{res.Released}</p>
+              <p>{res.Genre}</p>
+              <br />
+              <div className="Plot">
+                <p>{res.Plot}</p>
+              </div>
+              <div className="Actors&Writers">
+                <p>{res.Actors}</p>
+                <p>{res.Writer}</p>
+              </div>
+              <br />
+              {res.Ratings.map(rating => {
+                console.log(rating);
+                return (
+                  <p>
+                    {rating.Source}- {rating.Value}
+                  </p>
+                );
+              })}
+            </BackSide>
+          </Flippy>
         </div>
       );
     });

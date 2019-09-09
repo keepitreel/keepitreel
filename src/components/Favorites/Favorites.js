@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./Favorites.scss";
 import DisplayTickets from "../DisplayTickets/DisplayTickets";
 
@@ -19,7 +18,6 @@ class Favorites extends Component {
       this.setState({
         favorites: res.data
       });
-      console.log(this.state);
     });
   }
   render() {

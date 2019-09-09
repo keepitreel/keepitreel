@@ -6,10 +6,11 @@ import Video from "../../video/curtain.mp4";
 // import Titanic from "../../img/movie-posters/Titanic.jpg";
 import { Redirect } from "react-router-dom";
 import { login, updateLogin, register } from "../../redux/authReducer";
-import "./Landing-login.style.css";
+import "./Landing-login.style.scss";
 import axios from "axios";
 import { connect } from "react-redux";
 import Unsplash from "react-unsplash-wrapper";
+import Flippy, { FrontSide, BackSide } from "react-flippy";
 
 class Login extends Component {
   handleChange = e => {
@@ -42,35 +43,42 @@ class Login extends Component {
         <video id="background-video" autoPlay>
           <source muted src={Video} type="video/mp4" />
         </video>
-        <div className="movie-poster-images">
-          <Unsplash width="1600" height="700" collectionId="8586348" />
+        <div className={"imageBackground"}>
+          <Unsplash width="2200" height="1000" collectionId="8598459" />
         </div>
-
-        <div className="sign-in-container">
-          <h1>Keep it Reel</h1>
-          <p>Social Media for Film Enthusiast. Real People...Reel reviews.</p>
-          <form>
-            <span className="username-input-box">
-              <input
-                name="username"
-                placeholder="Username"
-                type="text"
-                required
-                onChange={this.handleChange}
-              ></input>
-            </span>
-            <br />
-            <span className="password-input-box">
-              <input
-                name="password"
-                placeholder="Password"
-                type="password"
-                onChange={this.handleChange}
-                required
-              ></input>
-            </span>
-            <br />
-            <div className="register-form">
+        <h1>Keep it Reel</h1>
+        <p>Social Media for Film Enthusiast. </p>
+        <p>Real People...Reel reviews.</p>
+        <Flippy ref={r => (this.flippyHorizontal = r)} flipOnClick={false}>
+          <FrontSide>
+            <div>
+              <form>
+                <input
+                  name="username"
+                  placeholder="Username"
+                  type="text"
+                  required
+                  onChange={this.handleChange}
+                ></input>
+                <input
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  onChange={this.handleChange}
+                  required
+                ></input>
+                <button onClick={this.handleLogin}>Login</button>
+              </form>
+              <button
+                type="button"
+                onClick={() => this.flippyHorizontal.toggle()}
+              >
+                Toggle Me!
+              </button>
+            </div>
+          </FrontSide>
+          <BackSide>
+            <form>
               <input
                 name="username"
                 placeholder="username"
@@ -91,13 +99,16 @@ class Login extends Component {
                 placeholder="email"
                 onChange={this.handleChange}
               />
-            </div>
-            <div className="buttons">
               <button onClick={this.handleRegister}>Register</button>
-              <button onClick={this.handleLogin}>Login</button>
-            </div>
-          </form>
-        </div>
+            </form>
+            <button
+              type="button"
+              onClick={() => this.flippyHorizontal.toggle()}
+            >
+              Toggle Me!
+            </button>
+          </BackSide>
+        </Flippy>
         {console.log(this.props.user_id)}
         {this.props.user_id !== "" && <Redirect to="/dashboard" />}
       </div>
