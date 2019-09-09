@@ -17,6 +17,8 @@ const UPDATE_USER = "UPDATE_USER";
 const CHECK_FOR_LOGIN = "CHECK_FOR_LOGIN";
 
 export function checkForLogin(value) {
+  console.log("check for login value is: ");
+  console.log(value);
   return {
     type: CHECK_FOR_LOGIN,
     payload: value
@@ -24,7 +26,12 @@ export function checkForLogin(value) {
 }
 
 export function login(username, password) {
+  console.log("login value is: ");
+  console.log(username, password);
   let data = axios.post("/api/login", { username, password });
+  console.log("data is:");
+  console.log(data);
+  console.log(typeof data);
   return {
     type: LOGIN_USER,
     payload: data
