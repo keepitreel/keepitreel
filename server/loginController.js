@@ -4,29 +4,37 @@ let loginControl = async (req, res) => {
   const { username, password } = req.body;
   const db = req.app.get("db");
 
-  const user = await db.check_user(username).catch(error => console.log(error));
+  if (username && password) {
+    //if login data present
 
-  if (!user[0]) {
-    res.status(401).json("Incorrect username or password");
-  } else {
-    const isAuthorized = await bcrypt
-      .compare(password, user[0].password)
+    const user = await db
+      .check_user(username)
       .catch(error => console.log(error));
 
-    if (!isAuthorized) {
+    if (!user[0]) {
       res.status(401).json("Incorrect username or password");
     } else {
-      //console.log(user[0]);
+      const isAuthorized = await bcrypt
+        .compare(password, user[0].password)
+        .catch(error => console.log(error));
 
-      req.session.user = {
-        user_id: user[0].user_id,
-        username: user[0].username,
-        name: user[0].name,
-        email: user[0].email,
-        avatarurl: user[0].avatarurl
-      };
-      res.json(req.session.user);
+      if (!isAuthorized) {
+        res.status(401).json("Incorrect username or password");
+      } else {
+        //console.log(user[0]);
+
+        req.session.user = {
+          user_id: user[0].user_id,
+          username: user[0].username,
+          name: user[0].name,
+          email: user[0].email,
+          avatarurl: user[0].avatarurl
+        };
+        res.json(req.session.user);
+      }
     }
+  } else {
+    res.status(401).json("Need username and password");
   }
 };
 
@@ -34,28 +42,35 @@ let register = async (req, res) => {
   const { username, name, password, email } = req.body;
   const db = req.app.get("db");
 
-  const user = await db.check_user(username).catch(error => console.log(error));
-  if (user[0]) {
-    res.status(401).json("Username is already taken");
-  } else {
-    const hash = await bcrypt
-      .hash(password, 10)
+  if (username && password) {
+    //if register data present
+    const user = await db
+      .check_user(username)
       .catch(error => console.log(error));
+    if (user[0]) {
+      res.status(401).json("Username is already taken");
+    } else {
+      const hash = await bcrypt
+        .hash(password, 10)
+        .catch(error => console.log(error));
 
-    const newUser = await db.create_user([
-      username,
-      name,
-      hash, // hashed pasword into sql database
-      email
-    ]);
+      const newUser = await db.create_user([
+        username,
+        name,
+        hash, // hashed pasword into sql database
+        email
+      ]);
 
-    req.session.user = {
-      user_id: newUser[0].user_id,
-      username,
-      name,
-      email
-    };
-    res.json(req.session.user);
+      req.session.user = {
+        user_id: newUser[0].user_id,
+        username,
+        name,
+        email
+      };
+      res.json(req.session.user);
+    }
+  } else {
+    res.status(401).json("Fill all register fields ");
   }
 };
 
