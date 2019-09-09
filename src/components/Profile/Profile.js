@@ -92,7 +92,6 @@ class Profile extends Component {
         <div className="profile">
           <h4>Welcome {this.state.name}</h4>
           <img
-            // profileImage: `url(${this.state.user.avatarurl})`
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVjKzdLZoS1L8JcE5MovJ7_AzHxbWaqY2okboaJV5hyummhVT4"
             alt="commando"
           />
@@ -129,7 +128,9 @@ class Profile extends Component {
                 placeholder="avatarurl"
                 onChange={this.handleChange}
               />
-              <button onClick={this.handleSubmit}>Update</button>
+              <div className="button-container">
+                <button onClick={this.handleSubmit}>Update</button>
+              </div>
             </form>
           </div>
         )}
