@@ -33,8 +33,18 @@ let getComments = async (req, res) => {
 
 //   res.json(comments);
 // };
+let deleteComment = async (req, res) => {
+  //deletes comment given comment_id
+  const { comment_id } = req.params;
+  const db = req.app.get("db");
+
+  await db.delete_comment(comment_id).catch(error => console.log(error));
+
+  return res.sendStatus(200);
+};
 
 module.exports = {
   createComment,
-  getComments
+  getComments,
+  deleteComment
 };
