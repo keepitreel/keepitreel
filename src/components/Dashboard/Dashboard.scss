@@ -30,19 +30,12 @@ a {
 
     .Profile-container {
       width: 20%;
-      align-self: flex-start;
       z-index: 10;
 
-      button {
-        width: 80px;
-        height: 20px;
-        border-radius: 5px;
-        background-color: $primaryColor;
-        color: $accentColor;
-        margin-right: 2px;
-        font-size: 14px;
-        border: none;
-        margin-top: 30px;
+      a {
+        button {
+          @include button;
+        }
       }
     }
 
@@ -91,7 +84,9 @@ a {
 
       .tab-display {
         width: 100%;
-        background-color: $accentColor
+        background-color: $accentColor;
+        border-radius: 5px;
+        border-top-left-radius: 0px;
       }
     }
   }
