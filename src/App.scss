@@ -46,21 +46,21 @@ sans-serif;
   .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
   }
 
   .tooltip .tooltiptext {
     visibility: hidden;
+    height: 30px;
+    font-weight: bold;
     width: 100px;
-    background-color: $primaryColor;
-    color: $textColor;
+    background-color: $accentColor;
+    color: $primaryColor;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
     /* Position the tooltip */
     top: 40px;
     font-size: 15px;
-
     position: absolute;
     z-index: 1;
   }
@@ -81,6 +81,7 @@ sans-serif;
   border-color: $accentColor;
   color: $accentColor;
 }
+
 
 
 
@@ -118,7 +119,7 @@ sans-serif;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $primaryColor;
+  background: $accentColor;
   border-radius: 10px;
 }
 
