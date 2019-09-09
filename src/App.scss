@@ -1,8 +1,8 @@
 $primaryColor: #7e0000;
 $secondaryColor: #f29763;
-$accentColor: #f54504;
+$accentColor: #C6AC61;
 $buttonColor: #404040;
-$pageColor: #0d0d0d;
+$pageColor: #262626;
 $textColor: #afaaaa;
 
 $HeaderFont: "Montserrat",
@@ -35,6 +35,7 @@ sans-serif;
   min-width: 100vw;
   position: fixed;
   z-index: 0;
+  overflow: hidden;
 }
 
 @mixin overlay() {
@@ -91,4 +92,25 @@ sans-serif;
   font-size: 2rem;
   display: flex;
   flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primaryColor;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primaryColor;
 }

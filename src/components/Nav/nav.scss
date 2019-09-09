@@ -9,6 +9,7 @@
   background-color: $primaryColor;
   position: fixed;
   z-index: 100;
+  border-bottom: 2px solid $accentColor;
 
 
   .logoDiv {
@@ -17,7 +18,8 @@
 
     a {
       text-decoration: none;
-      color: $textColor;
+      color: $accentColor;
+
     }
 
 
@@ -35,8 +37,9 @@
   .linkWrap {
     margin-right: 50px;
 
+
     a {
-      color: $textColor;
+      color: $accentColor;
       text-decoration: none;
     }
   }

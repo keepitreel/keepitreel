@@ -4,6 +4,7 @@ import Friends from "../Friends/Friends";
 import Community from "../Community/Community";
 import Favorites from "../Favorites/Favorites";
 import YourBlogs from "../YourBlogs/YourBlogs";
+import Unsplash from "react-unsplash-wrapper";
 import axios from "axios";
 import { connect } from "react-redux";
 import "./Dashboard.scss";
@@ -27,6 +28,9 @@ class Dashboard extends Component {
     console.log(this.state.tab);
     return (
       <div className="Dashboard-wrapper">
+        <div className={"imageBackground"}>
+          <Unsplash width="2200" height="1000" collectionId="8598365" />
+        </div>
         <div className="Content-wrapper">
           <div className="Profile-container">
             <div className="button-container">

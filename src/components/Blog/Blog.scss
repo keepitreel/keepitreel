@@ -1,15 +1,53 @@
 @import '../../App.scss';
 
 .BlogPage {
-  @include pageCenter(100%, 90px);
+  @include pageCenter(100%, 150px);
+
+  .mainContent {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .top {
+      display: flex;
+      justify-content: space-around;
+
+      .movieContainer {
+        width: 45%;
+      }
+
+      .blogContent {
+        width: 45%;
+      }
+    }
+
+    .bottom {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
 
 
-  .top {
+      .comments {
+        margin-top: 50px;
+        min-width: 80%;
+      }
 
-    .movieContainer {}
+      .otherBlogs {
+        // width: 60%;
+        display: flex;
+        flex-wrap: wrap;
+        border: red 2px solid;
+        flex-direction: column;
+        justify-content: center;
 
-    .blogStuff {}
+        h3 {
+          color: $accentColor;
+        }
+
+        ;
+      }
+    }
   }
-
-  .bottom {}
 }
