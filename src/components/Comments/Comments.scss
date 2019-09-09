@@ -35,14 +35,8 @@
     }
 
     button {
-      height: 40px;
-      padding: 5px;
-      border-radius: 5px;
-      margin-top: 3px;
-      align-self: flex-end;
-      background-color: $primaryColor;
-      border-color: $accentColor;
-      color: $accentColor;
+      @include button;
+
     }
 
 
