@@ -32,7 +32,11 @@ const { getCommunityPost } = require("./communityController");
 const { getLikedPost } = require("./favoriteController");
 const { getFriendsPost, getFriendsRecentPost } = require("./friendsController");
 const { createPost } = require("./createBlogController");
-const { createComment, getComments } = require("./commentContoller");
+const {
+  createComment,
+  getComments,
+  deleteComment
+} = require("./commentContoller");
 const {
   getGenres,
   userPostGenreFilter,
@@ -93,7 +97,7 @@ app.put("/api/viewcard/followed", checkIfFollowed); // check if followed
 app.put("/api/viewcard/liked", checkIfLiked); // check if liked
 app.put("/api/viewcard/disliked", checkIfDisliked); // check if disliked
 app.put("/api/viewcard/thumbsup", thumbsUP); // thumbs up adds to like table and deletes from dislike
-app.put("/api/viewcard/thumbsdown", thumbsDOWN); // thumbs down adds to dislike table and deletes from like
+app.put("rs", thumbsDOWN); // thumbs down adds to dislike table and deletes from like
 //
 app.get("/api/viewcard/getfollow/:user_id", getFollow); //get list of users that user_id is following
 
@@ -119,6 +123,7 @@ app.post("/api/comment/createcomment", createComment); //creates comment
 app.get("/api/comment/:post_id", getComments); //get all comments for post_id //written with req.params //postman call http://localhost:4050/api/comment/1
 //
 //app.get("/api/comment", getComments); //get all comments for post_id using req.query  //postman call http://localhost:4050/api/comment/?post_id=1
+app.delete("/api/comment/deletecomment/:comment_id", deleteComment); //deletes comment given comment_id
 
 //dashboardController.js
 app.get("/api/dashboard/usergenrefilter/:user_id/:genre", userPostGenreFilter); // returns filtered user posts by user_id and genre

@@ -1,8 +1,8 @@
 $primaryColor: #7e0000;
 $secondaryColor: #f29763;
-$accentColor: #f54504;
+$accentColor: #C6AC61;
 $buttonColor: #404040;
-$pageColor: #0d0d0d;
+$pageColor: #262626;
 $textColor: #afaaaa;
 
 $HeaderFont: "Montserrat",
@@ -24,7 +24,7 @@ sans-serif;
   padding-top: $marginTop;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: $pagewidth;
   font-family: $TextFont;
@@ -35,6 +35,7 @@ sans-serif;
   min-width: 100vw;
   position: fixed;
   z-index: 0;
+  overflow: hidden;
 }
 
 @mixin overlay() {
@@ -45,21 +46,21 @@ sans-serif;
   .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
   }
 
   .tooltip .tooltiptext {
     visibility: hidden;
+    height: 30px;
+    font-weight: bold;
     width: 100px;
-    background-color: $primaryColor;
-    color: $textColor;
+    background-color: $accentColor;
+    color: $primaryColor;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
     /* Position the tooltip */
     top: 40px;
     font-size: 15px;
-
     position: absolute;
     z-index: 1;
   }
@@ -68,6 +69,19 @@ sans-serif;
     visibility: visible;
   }
 }
+
+
+@mixin button() {
+  height: 40px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 3px;
+  align-self: flex-end;
+  background-color: $primaryColor;
+  border-color: $accentColor;
+  color: $accentColor;
+}
+
 
 
 
@@ -91,4 +105,25 @@ sans-serif;
   font-size: 2rem;
   display: flex;
   flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $accentColor;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primaryColor;
 }

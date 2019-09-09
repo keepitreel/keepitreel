@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import StarRating from "../StarRating/StarRating";
 import "./Card.scss";
 
 class Card extends Component {
@@ -29,11 +30,15 @@ class Card extends Component {
           </div>
           <div className="info-wrapper">
             <div className="blog-info">
-              <h5>{blogtitle}</h5>
+              <div className="starRating">
+                <StarRating rating={rating} />
+              </div>
+
+              <h5>{blogtitle.slice(0, 15) + "..."}</h5>
               <h6>by {name}</h6>
             </div>
             <div className="blog-post">
-              <p>{text}</p>
+              <p>{text.slice(0, 60) + "..."}</p>
             </div>
           </div>
         </Link>

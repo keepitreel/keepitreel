@@ -7,29 +7,37 @@ import YourBlogs from "../YourBlogs/YourBlogs";
 import axios from "axios";
 import { connect } from "react-redux";
 import "./Dashboard.scss";
+import { Link } from "react-router-dom";
+import Unsplash from "react-unsplash-wrapper/dist/components/Unsplash";
 
 class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      tab: "yourBlogs"
+      tab: "yourBlogs",
+      on: "on"
     };
     this.tabChange = this.tabChange.bind(this);
   }
 
   tabChange(tab) {
     console.log(tab);
-    this.setState({ tab });
+    this.setState({ tab, on: "" });
   }
 
   render() {
     console.log(this.state.tab);
     return (
       <div className="Dashboard-wrapper">
+        <div className={"imageBackground"}>
+          <Unsplash width="2200" height="1000" collectionId="8598365" />
+        </div>
         <div className="Content-wrapper">
           <div className="Profile-container">
             <div className="button-container">
-              <button>Create Blog</button>
+              <Link to="/search">
+                <button>Movie Search</button>
+              </Link>
             </div>
             <Profile user_id={this.props.user_id} />
           </div>
@@ -38,6 +46,7 @@ class Dashboard extends Component {
               <button
                 className="tabBtns"
                 onClick={() => this.tabChange("yourBlogs")}
+                autoFocus
               >
                 Your Blogs
               </button>
@@ -65,8 +74,12 @@ class Dashboard extends Component {
                 <Friends user_id={this.props.user_id} />
               ) : null}
               {this.state.tab === "community" ? <Community /> : null}
-              {this.state.tab === "favorites" ? <Favorites /> : null}
-              {this.state.tab === "yourBlogs" ? <YourBlogs /> : null}
+              {this.state.tab === "favorites" ? (
+                <Favorites user_id={this.props.user_id} />
+              ) : null}
+              {this.state.tab === "yourBlogs" ? (
+                <YourBlogs user_id={this.props.user_id} />
+              ) : null}
             </div>
           </div>
         </div>

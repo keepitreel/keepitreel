@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./YourBlogs.scss";
+import DisplayTickets from "../DisplayTickets/DisplayTickets";
 
 class YourBlogs extends Component {
   constructor() {
@@ -13,8 +13,6 @@ class YourBlogs extends Component {
     };
   }
 
-  //need backend to send user's blogs data******************
-  //pass in user id through props similar to profile comp
   componentDidMount() {
     axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
       this.setState({
@@ -24,40 +22,26 @@ class YourBlogs extends Component {
   }
 
   render() {
+    let cards = this.state.yourBlogs.map(commCard => (
+      <Card
+        name={commCard.name}
+        post_id={commCard.post_id}
+        key={commCard.post_id}
+        user_id={commCard.user_id}
+        text={commCard.text}
+        posterurl={commCard.posterurl}
+        title={commCard.title}
+        blogtitle={commCard.blogtitle}
+        avatarurl={commCard.avatarurl}
+        rating={commCard.rating}
+      />
+    ));
     return (
-      <>
-        <div className="yourBlogs-wrapper">
-          <div>
-            <h5 className="tabsTitle">Your Blogs</h5>
-          </div>
-          <div>
-            {this.state.yourBlogs.map(yourBlog => (
-              <Link to={`/blog/${yourBlog.post_id}`}>
-                <Card
-                  name={yourBlog.name}
-                  post_id={yourBlog.post_id}
-                  key={yourBlog.post_id}
-                  user_id={yourBlog.user_id}
-                  text={yourBlog.text}
-                  posterurl={yourBlog.posterurl}
-                  title={yourBlog.title}
-                  blogtitle={yourBlog.blogtitle}
-                  avatarurl={yourBlog.avatarurl}
-                  rating={yourBlog.rating}
-                />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </>
+      <div className="mappedCard">
+        <DisplayTickets displayName={"Community"} tickets={cards} />
+      </div>
     );
   }
 }
 
-let mapStatetoProps = reduxState => {
-  return {
-    user_id: reduxState.authReducer.user_id
-  };
-};
-
-export default connect(mapStatetoProps)(YourBlogs);
+export default connect(null)(YourBlogs);

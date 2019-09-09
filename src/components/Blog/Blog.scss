@@ -4,12 +4,88 @@
   @include pageCenter(100%, 90px);
 
 
-  .top {
+  .BlogContainer {
+    width: 100%;
 
-    .movieContainer {}
 
-    .blogStuff {}
+
+    .imageBackground {
+      @include backgroundDisplay();
+      background-color: $pageColor;
+
+
+    }
+
+    .mainContent {
+      width: 100%;
+      margin-top: 20px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+
+      .top {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .movieContainer {
+          width: 60%;
+        }
+
+        .blogContent {
+          z-index: 20;
+          color: $accentColor;
+          background-color: $primaryColor;
+
+          min-height: 500px;
+          overflow: auto;
+          border-radius: 10px;
+          border: solid 2px $accentColor;
+          width: 45%;
+          padding: 15px;
+
+
+          a {
+            h3 {
+              color: $accentColor;
+            }
+
+          }
+
+
+          .features {
+            i {
+              @include button
+            }
+
+
+          }
+        }
+
+      }
+
+      .bottom {
+        width: 80%;
+        margin-top: 50px;
+        display: flex;
+        justify-content: flex-end;
+
+        .comments {
+          align-self: flex-end;
+          width: 100%;
+          z-index: 100;
+          max-height: 200px;
+
+          background-color: $primaryColor;
+
+        }
+      }
+    }
+
   }
 
-  .bottom {}
 }

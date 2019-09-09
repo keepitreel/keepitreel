@@ -1,0 +1,23 @@
+@import '../../App.scss';
+
+.display2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 70vh;
+  overflow: auto;
+  border: 2px solid $accentColor;
+  border-radius: 5px;
+  // background-color: $accentColor;
+
+
+  .tabTitle {}
+
+  .displayTickets {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

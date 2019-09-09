@@ -1,4 +1,46 @@
-.profile {
+@import '../../App.scss';
+
+
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+
+.main-wrapper {
+ height: 100%;
+ width: 20%;
  display: flex;
  flex-direction: column;
+ flex-wrap: wrap;
+ justify-content: space-evenly;
+
+
+ // .tabTitle {
+ //  border: 1px solid darkcyan;
+ //  width: 150px;
+ //  height: 50px;
+ // }
+
+ .profile {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100%;
+  width: 100%;
+  font-size: .8em;
+
+ }
+   button {
+ width: 80px;
+ height: 30px;
+ border-radius: 5px;
+ background-color: $primaryColor;
+ color: $accentColor;
+ margin-right: 2px;
+ font-size: 14px;
+ border: none;
+ margin-top: 30px;
+}
+
 }

@@ -1,100 +1,139 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { updateUser } from "../../redux/authReducer";
 import "./Profile.scss";
-
-//get rid of redux
 
 class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      user: []
+      name: "",
+      username: "",
+      email: "",
+      avatarurl: "",
+      showEdit: false,
+      nameUpdate: "",
+      usernameUpdate: "",
+      emailUpdate: "",
+      avatarurlUpdate: ""
+      // user: []
     };
   }
-  // componentDidMount() {
-  //   axios.get(`/api/userpost/${this.props.user_id}`).then(res => {
-  //     this.setState({
-  //       username: res.data,
-  //       password: res.data,
-  //       user_id: res.data,
-  //       name: res.data,
-  //       email: res.data
-  //     });
-  //   });
-  // }
 
   componentDidMount() {
     axios.get(`/api/login/data/user/${this.props.user_id}`).then(res => {
+      console.log(res.data[0]);
       this.setState({
-        user: res.data
+        name: res.data[0].name,
+        username: res.data[0].username,
+        email: res.data[0].email,
+        avatarurl: res.data[0].avatarurl,
+        showEdit: false
+        // user: res.data
       });
     });
   }
 
-  editForm = e => {
-    e.preventDefault();
+  handleChange = e => {
+    console.log(this.state);
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
+  handleEdit = e => {
+    this.setState({
+      showEdit: !this.state.showEdit
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const {
+      nameUpdate,
+      usernameUpdate,
+      emailUpdate,
+      avatarurlUpdate
+    } = this.state;
+    let user_id = this.props.user_id;
+    let username = usernameUpdate;
+    let name = nameUpdate;
+    let email = emailUpdate;
+    let avatarurl = avatarurlUpdate;
+    console.log(user_id, username, name, email, avatarurl);
     axios
-      .put("/api/login/update/user", this.state)
+      .put("/api/login/update/user", {
+        user_id,
+        username,
+        name,
+        email,
+        avatarurl
+      })
       .then(res => {
-        this.props.updateUser(res.data);
+        console.log(res.data);
+        this.componentDidMount();
+        // this.setState({
+        //   name: res.data.name,
+        //   username: res.data.username,
+        //   email: res.data.email,
+        //   avatarurl: res.data.avatarurl,
+        //   showEdit: false
+        // });
       })
       .catch(error => {
         console.log(error);
       });
   };
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  handleSubmit = e => {
-    this.setState({});
-  };
-
   render() {
-    console.log(this.state);
+    console.log(this.state.user);
 
     return (
-      <div className="editForm">
+      <div className="main-wrapper">
         <div className="profile">
-          <h2>Welcome {this.state.name}</h2>
+          <h4>Welcome {this.state.name}</h4>
           <img
-            // profileImage: `url(${profile-image})`
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREYl2tzcj9JJH4GwR2KU1Y5r15kp1e8Tumw9e81XBnupbru1UA"
-            alt="tommy"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVjKzdLZoS1L8JcE5MovJ7_AzHxbWaqY2okboaJV5hyummhVT4"
+            alt="commando"
           />
-          <span>Tommy</span>
-          <span>Tommy@callahans.com</span>
-          <button>Edit</button>
+          <span>{this.state.username}</span>
+          <span>{this.state.email}</span>
         </div>
-        <form onSubmit>
-          <h2 className="header">Edit Profile</h2>
-          <input
-            name="username"
-            placeholder="username"
-            onChange={this.handleChange}
-          />
-          <input name="name" placeholder="name" onChange={this.handleChange} />
-          <input
-            name="password"
-            placeholder="password"
-            onChange={this.handleChange}
-          />
-          <input
-            name="email"
-            placeholder="email"
-            onChange={this.handleChange}
-          />
-          <button onClick={this.handleSubmit} type="submit">
-            Update
-          </button>
-        </form>
+        <button onClick={this.handleEdit}>Edit</button>
+        {this.state.showEdit && (
+          <div className="editForm">
+            <form>
+              <h5 className="header">Edit Profile</h5>
+              <input
+                name="usernameUpdate"
+                placeholder="username"
+                onChange={this.handleChange}
+              />
+              <input
+                name="nameUpdate"
+                placeholder="name"
+                onChange={this.handleChange}
+              />
+              <input
+                name="passwordUpdate"
+                placeholder="password"
+                onChange={this.handleChange}
+              />
+              <input
+                name="emailUpdate"
+                placeholder="email"
+                onChange={this.handleChange}
+              />
+              <input
+                name="avatarurlUpdate"
+                placeholder="avatarurl"
+                onChange={this.handleChange}
+              />
+              <div className="button-container">
+                <button onClick={this.handleSubmit}>Update</button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
     );
   }
