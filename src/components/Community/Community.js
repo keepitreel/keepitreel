@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import axios from "axios";
 import { connect } from "react-redux";
 import "./Community.scss";
-//import "../../App.scss";
+import DisplayTickets from "../DisplayTickets/DisplayTickets";
 
 class Community extends Component {
   constructor() {
@@ -20,30 +20,24 @@ class Community extends Component {
   }
 
   render() {
+    let cards = this.state.community.map(commCard => (
+      <Card
+        name={commCard.name}
+        post_id={commCard.post_id}
+        key={commCard.post_id}
+        user_id={commCard.user_id}
+        text={commCard.text}
+        posterurl={commCard.posterurl}
+        title={commCard.title}
+        blogtitle={commCard.blogtitle}
+        avatarurl={commCard.avatarurl}
+        rating={commCard.rating}
+      />
+    ));
     return (
-      <>
-        <div className="main-wrapper">
-          <div className="tabTitle">
-            <h4>Community</h4>
-          </div>
-          <div className="card">
-            {this.state.community.map(commCard => (
-              <Card
-                name={commCard.name}
-                post_id={commCard.post_id}
-                key={commCard.post_id}
-                user_id={commCard.user_id}
-                text={commCard.text}
-                posterurl={commCard.posterurl}
-                title={commCard.title}
-                blogtitle={commCard.blogtitle}
-                avatarurl={commCard.avatarurl}
-                rating={commCard.rating}
-              />
-            ))}
-          </div>
-        </div>
-      </>
+      <div className="mappedCard">
+        <DisplayTickets displayName={"Community"} tickets={cards} />
+      </div>
     );
   }
 }

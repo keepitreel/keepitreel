@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
 import "./Favorites.scss";
-import "../../App.scss";
+import DisplayTickets from "../DisplayTickets/DisplayTickets";
 
 class Favorites extends Component {
   constructor() {
@@ -21,32 +21,24 @@ class Favorites extends Component {
     });
   }
   render() {
+    let cards = this.state.favorites.map(commCard => (
+      <Card
+        name={commCard.name}
+        post_id={commCard.post_id}
+        key={commCard.post_id}
+        user_id={commCard.user_id}
+        text={commCard.text}
+        posterurl={commCard.posterurl}
+        title={commCard.title}
+        blogtitle={commCard.blogtitle}
+        avatarurl={commCard.avatarurl}
+        rating={commCard.rating}
+      />
+    ));
     return (
-      <>
-        {/* <div className="tabDisplay"> */}
-        <div className="main-wrapper">
-          <div className="tabTitle">
-            <h4>Favorites</h4>
-          </div>
-          <div className="card">
-            {this.state.favorites.map(favorite => (
-              <Card
-                name={favorite.name}
-                post_id={favorite.post_id}
-                key={favorite.post_id}
-                user_id={favorite.user_id}
-                text={favorite.text}
-                posterurl={favorite.posterurl}
-                title={favorite.title}
-                blogtitle={favorite.blogtitle}
-                avatarurl={favorite.avatarurl}
-                rating={favorite.rating}
-              />
-            ))}
-          </div>
-        </div>
-        {/* </div> */}
-      </>
+      <div className="mappedCard">
+        <DisplayTickets displayName={"Community"} tickets={cards} />
+      </div>
     );
   }
 }

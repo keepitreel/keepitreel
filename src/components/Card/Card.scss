@@ -1,13 +1,16 @@
 @import '../../App.scss';
 
+
+
 .card-wrapper {
 
 
-  height: 150px;
+  height: 145px;
   width: 300px;
   justify-content: space-between;
   overflow: hidden;
-  margin: 10px;
+  margin: 30px;
+
   background-image: url('../../img/ticket.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -17,32 +20,60 @@
   a {
     font-size: 20px;
     font-weight: bold;
-    background: rgba(0, 0, 0, 0.6);
     text-decoration: none;
     color: $textColor;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 10px;
 
     .poster {
-      padding: 5px;
-      width: 33%;
+      display: flex;
+      justify-content: center;
+      width: 30%;
+
 
       img {
-        width: 100%;
+        width: 70%;
+        border-radius: 15px;
       }
     }
 
     .info-wrapper {
+      align-self: flex-start;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      max-height: 50%;
 
       width: 66%;
 
-      .blog-info {}
+      .blog-info {
+        margin-top: 10px;
 
-      .blog-post {}
+        .starRating {
+          font-size: 17.5px;
+        }
+
+        h5 {
+          font-size: 20px;
+        }
+
+      }
+
+      .blog-post {
+
+        width: 90%;
+        font-size: 10px;
+      }
     }
   }
 
+}
+
+.card-wrapper:hover {
+  transform: scale(1.2)
 }

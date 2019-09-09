@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import Video from "../../video/curtain.mp4";
+// import Batman from "../../img/movie-posters/batman.jpg";
+// import JohnWick from "../../img/movie-posters/johnwick.jpeg";
+// import Marvel from "../../img/movie-posters/marvel.jpg";
+// import Titanic from "../../img/movie-posters/Titanic.jpg";
 import { Redirect } from "react-router-dom";
 import { login, updateLogin, register } from "../../redux/authReducer";
 import "./Landing-login.style.scss";

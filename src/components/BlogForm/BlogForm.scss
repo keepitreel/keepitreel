@@ -1,0 +1,39 @@
+@import '../../App.scss';
+
+.formDiv {
+  width: 40%;
+
+  label {
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+
+
+    input {
+      height: 50px;
+      font-size: 30px;
+      border-radius: 5px;
+
+    }
+
+    textarea {
+      font-size: 20px;
+      height: 200px;
+      border-radius: 5px;
+    }
+
+
+  }
+
+  .ratingDiv {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+
+    label {
+      display: flex;
+    }
+  }
+
+}
