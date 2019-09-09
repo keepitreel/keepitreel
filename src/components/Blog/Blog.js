@@ -15,9 +15,52 @@ class Blog extends Component {
   constructor() {
     super();
     this.state = {
-      post: []
+      post: [],
+      editTitle: "",
+      editText: "",
+      editRating: ""
     };
   }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  editPost = updatePost => {
+    let { post } = this.state;
+    let post_id = post[0].post_id;
+    let user_id = post[0].user_id;
+    let imdbid = post[0].imbdid;
+    let posterurl = post[0].posterurl;
+    let time = post[0].time;
+    let genre = post[0].genre;
+    let title = post[0].title;
+
+    let rating = this.state.editrating;
+    let blogtitle = this.state.editTitle;
+    let text = this.state.editText;
+    axios
+      .put("/api/dashboard/update/post", {
+        post_id,
+        user_id,
+        text,
+        imdbid,
+        posterurl,
+        rating,
+        time,
+        genre,
+        title,
+        blogtitle
+      })
+      .then(response => {
+        this.setState({ post: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   componentDidMount() {
     axios
@@ -33,7 +76,6 @@ class Blog extends Component {
     let { post } = this.state;
 
     let blogStuff = post.map(blog => {
-      console.log("RATING", blog.rating);
       return (
         <div className="BlogContainer">
           <div className={"imageBackground"}>
@@ -52,14 +94,15 @@ class Blog extends Component {
                 </Link>
                 {this.props.user_id == blog.user_id ? (
                   <div className="features">
+                    <i class="fas fa-edit"></i>
+
                     <DeletePost post_id={blog.post_id} />
                   </div>
-                ) : (
+                ) : this.props.user_id ? (
                   <div className="features">
-                    <Follow following_user_id={blog.user_id} />
                     <Like post_id={blog.post_id} post_user_id={blog.user_id} />
                   </div>
-                )}
+                ) : null}
 
                 <StarRating rating={blog.rating} />
                 <p>{blog.text}</p>
@@ -70,6 +113,7 @@ class Blog extends Component {
                 <Comments post_id={this.props.match.params.id} />
               </div>
             </div>
+            <h1>test</h1>
           </div>
         </div>
       );

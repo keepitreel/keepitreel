@@ -32,6 +32,10 @@
         justify-content: space-between;
         align-items: center;
 
+        .movieContainer {
+          width: 60%;
+        }
+
         .blogContent {
           z-index: 20;
           color: $accentColor;
@@ -44,10 +48,21 @@
           width: 45%;
           padding: 15px;
 
+
+          a {
+            h3 {
+              color: $accentColor;
+            }
+
+          }
+
+
           .features {
             i {
               @include button
             }
+
+
           }
         }
 
