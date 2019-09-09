@@ -42,7 +42,7 @@ let register = async (req, res) => {
   const { username, name, password, email } = req.body;
   const db = req.app.get("db");
 
-  if (username && password) {
+  if (username && name && password && email) {
     //if register data present
     const user = await db
       .check_user(username)
