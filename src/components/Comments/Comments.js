@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-
+import "./Comments.scss";
 class Comments extends Component {
   constructor() {
     super();
@@ -26,7 +26,10 @@ class Comments extends Component {
       })
       .then(res => {
         console.log(res.data[0]);
-        this.setState({ comments: [res.data[0], ...this.state.comments] });
+        this.setState({
+          comments: [res.data[0], ...this.state.comments],
+          text: ""
+        });
       })
       .catch(error => {
         console.log(error);
@@ -48,22 +51,26 @@ class Comments extends Component {
     console.log(this.state);
     let { comments } = this.state;
     let displayComments = comments.map(comment => {
+      console.log(comment);
       return (
-        <div>
+        <div className="commentDiv">
           <h5>{comment.title}</h5>
           <p>{comment.text}</p>
         </div>
       );
     });
     return (
-      <div>
+      <div className="CommentPage">
         <h1>Comments: </h1>
-        <textarea
-          name="text"
-          placeholder="What are your thoughts?"
-          onChange={this.handleChange}
-        ></textarea>
-        <button onClick={this.handleClick}>Submit Comment</button>
+        <div className="makeComment">
+          <textarea
+            value={this.state.text}
+            name="text"
+            placeholder="What are your thoughts?"
+            onChange={this.handleChange}
+          ></textarea>
+          <button onClick={this.handleClick}>Submit Comment</button>
+        </div>
         {displayComments}
       </div>
     );

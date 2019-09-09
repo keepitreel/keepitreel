@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import { connect } from "react-redux";
 import axios from "axios";
 import "./YourBlogs.scss";
-import "../../App.scss";
+import DisplayTickets from "../DisplayTickets/DisplayTickets";
 
 class YourBlogs extends Component {
   constructor() {
@@ -22,32 +22,24 @@ class YourBlogs extends Component {
   }
 
   render() {
+    let cards = this.state.yourBlogs.map(commCard => (
+      <Card
+        name={commCard.name}
+        post_id={commCard.post_id}
+        key={commCard.post_id}
+        user_id={commCard.user_id}
+        text={commCard.text}
+        posterurl={commCard.posterurl}
+        title={commCard.title}
+        blogtitle={commCard.blogtitle}
+        avatarurl={commCard.avatarurl}
+        rating={commCard.rating}
+      />
+    ));
     return (
-      <>
-        {/* <div className="tabDisplay"> */}
-        <div className="main-wrapper">
-          <div className="tabTitle">
-            <h4>Your Blogs</h4>
-          </div>
-          <div className="card">
-            {this.state.yourBlogs.map(yourBlog => (
-              <Card
-                name={yourBlog.name}
-                post_id={yourBlog.post_id}
-                key={yourBlog.post_id}
-                user_id={yourBlog.user_id}
-                text={yourBlog.text}
-                posterurl={yourBlog.posterurl}
-                title={yourBlog.title}
-                blogtitle={yourBlog.blogtitle}
-                avatarurl={yourBlog.avatarurl}
-                rating={yourBlog.rating}
-              />
-            ))}
-          </div>
-        </div>
-        {/* </div> */}
-      </>
+      <div className="mappedCard">
+        <DisplayTickets displayName={"Community"} tickets={cards} />
+      </div>
     );
   }
 }

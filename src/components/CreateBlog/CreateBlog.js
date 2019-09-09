@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import "../CreateBlog/CreateBlog.scss";
+import MovieBlogs from "../MovieBlogs/MovieBlogs";
 import DisplayMovie from "../DisplayMovie/DisplayMovie";
 import { Redirect } from "react-router-dom";
 import Rating from "../Star/Rating";
@@ -114,6 +115,8 @@ class CreateBlog extends Component {
             </form>
           </div>
         </div>
+        <h1>Reel Reviews</h1>
+        <MovieBlogs ImdbID={this.props.match.params.id} />
       </div>
     );
   }

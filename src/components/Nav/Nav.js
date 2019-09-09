@@ -30,15 +30,9 @@ class Nav extends Component {
       <div className="navPage">
         <div className="logoDiv">
           <Link to="/" className="links">
-            <h1>KeepItReel</h1>
+            <h1 className="logo">KeepItReel</h1>
           </Link>
           <img src={Logo2}></img>
-        </div>
-
-        <div className="linkWrap">
-          <Link to="/" className="links">
-            Home
-          </Link>
         </div>
 
         <div className="linkWrap">
