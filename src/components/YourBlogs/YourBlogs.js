@@ -44,10 +44,4 @@ class YourBlogs extends Component {
   }
 }
 
-let mapStatetoProps = reduxState => {
-  return {
-    user_id: reduxState.authReducer.user_id
-  };
-};
-
-export default connect(mapStatetoProps)(YourBlogs);
+export default connect(null)(YourBlogs);

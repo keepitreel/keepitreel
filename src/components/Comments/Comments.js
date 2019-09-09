@@ -61,15 +61,17 @@ class Comments extends Component {
     });
     return (
       <div className="CommentPage">
-        <h1>Comments: </h1>
-        <div className="makeComment">
-          <textarea
-            value={this.state.text}
-            name="text"
-            placeholder="What are your thoughts?"
-            onChange={this.handleChange}
-          ></textarea>
-          <button onClick={this.handleClick}>Submit Comment</button>
+        <div className="commentHeader">
+          <h1>Comments: </h1>
+          <div className="makeComment">
+            <textarea
+              value={this.state.text}
+              name="text"
+              placeholder="What are your thoughts?"
+              onChange={this.handleChange}
+            ></textarea>
+            <button onClick={this.handleClick}>Submit Comment</button>
+          </div>
         </div>
         {displayComments}
       </div>

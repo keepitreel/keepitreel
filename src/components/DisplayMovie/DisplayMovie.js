@@ -25,7 +25,7 @@ export default class DisplayMovie extends Component {
           : this.setState({ movie: [], error: response.data.Error });
         axios
           .get(
-            `http://img.omdbapi.com/?i=${this.props.ImdbID}&h=900&apikey=579b4fff`
+            `http://img.omdbapi.com/?i=${this.props.ImdbID}&h=500&apikey=579b4fff`
           )
           .then(res => {
             console.log(res.config.url);

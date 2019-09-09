@@ -1,0 +1,30 @@
+@import "../../App.scss";
+
+.UserPageDiv {
+  @include pageCenter(100%, 90px);
+
+  .imageBackground {
+    @include backgroundDisplay();
+    background-color: $pageColor;
+  }
+
+  .contentDiv {
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .profileDiv {
+      // display: flex;
+
+
+    }
+
+    .yourblog {
+      width: 70%;
+    }
+  }
+
+}

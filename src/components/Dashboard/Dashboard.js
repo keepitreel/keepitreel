@@ -74,8 +74,12 @@ class Dashboard extends Component {
                 <Friends user_id={this.props.user_id} />
               ) : null}
               {this.state.tab === "community" ? <Community /> : null}
-              {this.state.tab === "favorites" ? <Favorites /> : null}
-              {this.state.tab === "yourBlogs" ? <YourBlogs /> : null}
+              {this.state.tab === "favorites" ? (
+                <Favorites user_id={this.props.user_id} />
+              ) : null}
+              {this.state.tab === "yourBlogs" ? (
+                <YourBlogs user_id={this.props.user_id} />
+              ) : null}
             </div>
           </div>
         </div>

@@ -7,10 +7,18 @@
   align-items: flex-start;
   width: 100%;
   max-height: 500px;
+  background-color: $primaryColor;
+
   overflow: auto;
   border: 2px solid $accentColor;
   border-radius: 5px;
-  padding: 10px;
+
+  .commentHeader {
+    width: 100%;
+    position: sticky;
+    top: -2px;
+    background-color: $primaryColor;
+  }
 
   h1 {
     color: $accentColor;
