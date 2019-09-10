@@ -4,6 +4,7 @@
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -13,6 +14,10 @@
     animation: fade 10s ease-in;
   }
 
+  .frontpagetext {
+    position: relative;
+    z-index: 12;
+  }
   #background-video {
     height: 100%;
     width: 100%;
@@ -30,6 +35,21 @@
     justify-content: space-around;
     align-content: center;
     align-items: center;
+  }
+  .frontpagetext {
+    color: red;
+
+    border: 1px solid white;
+  }
+  .frontpagetext:hover {
+    position: relative;
+    top: -3px;
+    left: -3px;
+    text-shadow: -1px 1px 0 #ddd, -2px 2px 0 #c8c8c8, -3px 3px 0 #ccc,
+      -4px 4px 0 #b8b8b8, -4px 4px 0 #bbb, 0px 1px 1px rgba(0, 0, 0, 0.4),
+      0px 2px 2px rgba(0, 0, 0, 0.3), -1px 3px 3px rgba(0, 0, 0, 0.2),
+      -1px 5px 5px rgba(0, 0, 0, 0.1), -2px 8px 8px rgba(0, 0, 0, 0.1),
+      -2px 13px 13px rgba(0, 0, 0, 0.1);
   }
 
   .sign-in-container {

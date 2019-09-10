@@ -40,8 +40,7 @@
           z-index: 20;
           color: $accentColor;
           background-color: $primaryColor;
-
-          min-height: 500px;
+          max-height: 500px;
           overflow: auto;
           border-radius: 10px;
           border: solid 2px $accentColor;

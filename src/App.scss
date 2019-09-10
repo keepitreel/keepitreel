@@ -1,14 +1,12 @@
-$primaryColor: #7e0000;
+$primaryColor: #cf2116;
 $secondaryColor: #f29763;
-$accentColor: #C6AC61;
+$accentColor: #c6ac61;
 $buttonColor: #404040;
 $pageColor: #262626;
 $textColor: #afaaaa;
 
-$HeaderFont: "Montserrat",
-sans-serif;
-$TextFont: "Abel",
-sans-serif;
+$HeaderFont: "Montserrat", sans-serif;
+$TextFont: "Abel", sans-serif;
 
 // quotes: single quotes;
 // events: use e
@@ -70,7 +68,6 @@ sans-serif;
   }
 }
 
-
 @mixin button() {
   height: 40px;
   padding: 5px;
@@ -80,13 +77,10 @@ sans-serif;
   background-color: $primaryColor;
   border-color: $accentColor;
   color: $accentColor;
+  min-width: 75px;
 }
 
-
-
-
-
-@mixin pageHeader () {
+@mixin pageHeader() {
   font-family: $HeaderFont;
   color: black;
   font-size: 50px;

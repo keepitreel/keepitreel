@@ -6,6 +6,7 @@ import LandingPageLogin from "../components/LandingPage-login/Landing-login.comp
 import Dashboard from "../components/Dashboard/Dashboard";
 import Blog from "../components/Blog/Blog";
 import UserPage from "../components/UserPage/UserPage";
+import BlogForm from "../components/BlogForm/BlogForm";
 
 export default (
   <Switch>
@@ -14,6 +15,7 @@ export default (
     <Route path="/search" component={SearchMovie}></Route>
     <Route path="/dashboard" component={Dashboard}></Route>
     <Route path="/blog/:id" component={Blog}></Route>
+    <Route path="/editblog/:id" component={BlogForm}></Route>
     <Route path="/userpage/:id" component={UserPage}></Route>
   </Switch>
 );
