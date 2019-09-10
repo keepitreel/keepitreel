@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./Profile.scss";
-
+import Flippy, { FrontSide, BackSide } from "react-flippy";
 class Profile extends Component {
   constructor() {
     super();
@@ -15,7 +15,6 @@ class Profile extends Component {
       usernameUpdate: "",
       emailUpdate: "",
       avatarurlUpdate: ""
-      // user: []
     };
   }
 
@@ -26,9 +25,7 @@ class Profile extends Component {
         name: res.data[0].name,
         username: res.data[0].username,
         email: res.data[0].email,
-        avatarurl: res.data[0].avatarurl,
-        showEdit: false
-        // user: res.data
+        avatarurl: res.data[0].avatarurl
       });
     });
   }
@@ -89,51 +86,71 @@ class Profile extends Component {
 
     return (
       <div className="main-wrapper">
-        <div className="profile">
-          <h4>Welcome {this.state.name}</h4>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVjKzdLZoS1L8JcE5MovJ7_AzHxbWaqY2okboaJV5hyummhVT4"
-            alt="commando"
-          />
-          <span>{this.state.username}</span>
-          <span>{this.state.email}</span>
-        </div>
-        <button onClick={this.handleEdit}>Edit</button>
-        {this.state.showEdit && (
-          <div className="editForm">
-            <form>
-              <h5 className="header">Edit Profile</h5>
-              <input
-                name="usernameUpdate"
-                placeholder="username"
-                onChange={this.handleChange}
+        <Flippy
+          ref={r => (this.flippyHorizontal = r)}
+          flipOnClick={false}
+          style={{ width: "100%", height: "100%" }}
+        >
+          <FrontSide style={{ width: "100%", height: "100%" }}>
+            <div className="profile-info">
+              <h4>Welcome {this.state.name}</h4>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVjKzdLZoS1L8JcE5MovJ7_AzHxbWaqY2okboaJV5hyummhVT4"
+                alt="commando"
               />
-              <input
-                name="nameUpdate"
-                placeholder="name"
-                onChange={this.handleChange}
-              />
-              <input
-                name="passwordUpdate"
-                placeholder="password"
-                onChange={this.handleChange}
-              />
-              <input
-                name="emailUpdate"
-                placeholder="email"
-                onChange={this.handleChange}
-              />
-              <input
-                name="avatarurlUpdate"
-                placeholder="avatarurl"
-                onChange={this.handleChange}
-              />
-              <div className="button-container">
-                <button onClick={this.handleSubmit}>Update</button>
-              </div>
-            </form>
-          </div>
-        )}
+              <p>{this.state.username}</p>
+              <p>{this.state.email}</p>
+              <button
+                type="button"
+                onClick={() => this.flippyHorizontal.toggle()}
+              >
+                Edit
+              </button>
+            </div>
+          </FrontSide>
+          <BackSide style={{ width: "100%", height: "100%" }}>
+            <div className="editForm">
+              <form>
+                <h5 className="header">Edit Profile</h5>
+                <input
+                  name="usernameUpdate"
+                  placeholder="username"
+                  onChange={this.handleChange}
+                />
+                <input
+                  name="nameUpdate"
+                  placeholder="name"
+                  onChange={this.handleChange}
+                />
+                <input
+                  name="passwordUpdate"
+                  type="password"
+                  placeholder="password"
+                  onChange={this.handleChange}
+                />
+                <input
+                  name="emailUpdate"
+                  placeholder="email"
+                  onChange={this.handleChange}
+                />
+                <input
+                  name="avatarurlUpdate"
+                  placeholder="avatarurl"
+                  onChange={this.handleChange}
+                />
+                <div className="button-container">
+                  <button onClick={this.handleSubmit}>Update</button>
+                  <button
+                    type="button"
+                    onClick={() => this.flippyHorizontal.toggle()}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </BackSide>
+        </Flippy>
       </div>
     );
   }
