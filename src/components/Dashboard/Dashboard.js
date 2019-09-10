@@ -36,7 +36,7 @@ class Dashboard extends Component {
           <div className="Profile-container">
             <div className="button-container">
               <Link to="/search">
-                <button>Movie Search</button>
+                <button data-cy="movie-search-button">Movie Search</button>
               </Link>
             </div>
             <div className="profile">
