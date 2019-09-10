@@ -65,8 +65,12 @@ export default class DisplayMovie extends Component {
     let { movie } = this.state;
     let movieInformation = movie.map(res => {
       console.log(res);
-      let divStyle = {
+      let divStyle1 = {
         backgroundColor: "transparent",
+        borderStyle: "none"
+      };
+      let divStyle2 = {
+        backgroundColor: "#7e0000",
         borderStyle: "none"
       };
 
@@ -84,11 +88,11 @@ export default class DisplayMovie extends Component {
             // and other props, which will go to div
             style={{ width: "60%", height: "60%", border: "none" }} /// these are optional style, it is not necessary
           >
-            <FrontSide style={{ divStyle }}>
+            <FrontSide style={{ divStyle1 }}>
               <img className="MoviePoster" src={this.state.image}></img>
             </FrontSide>
 
-            <BackSide style={this.divStyle}>
+            <BackSide style={divStyle2}>
               <h2>{res.Title}</h2>
               <span className="MovieRated">
                 <p>{res.Rated}</p>

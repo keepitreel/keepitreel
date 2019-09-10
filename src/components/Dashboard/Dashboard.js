@@ -39,7 +39,9 @@ class Dashboard extends Component {
                 <button>Movie Search</button>
               </Link>
             </div>
-            <Profile user_id={this.props.user_id} />
+            <div className="profile">
+              <Profile user_id={this.props.user_id} />
+            </div>
           </div>
           <div className="Master-container">
             <div className="tabs-container">
