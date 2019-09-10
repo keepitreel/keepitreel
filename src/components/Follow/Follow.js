@@ -51,7 +51,6 @@ class Follow extends Component {
     let { user_id, following_user_id } = this.props;
     return (
       <div className="FollowComponent">
-        <p>{user_id}</p>
         {this.state.follow ? (
           <div className="tooltip">
             <i class="fas fa-user-plus unfollow" onClick={this.unfollow}></i>

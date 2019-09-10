@@ -18,7 +18,6 @@ export default class UserPage extends Component {
             <div className={"pro"}>
               <Profile user_id={this.props.match.params.id} />
             </div>
-            <Follow following_user_id={this.props.match.params.id} />
           </div>
           <div className="yourblog">
             <YourBlogs user_id={this.props.match.params.id} />
