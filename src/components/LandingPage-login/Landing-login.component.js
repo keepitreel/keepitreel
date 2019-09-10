@@ -58,6 +58,7 @@ class Login extends Component {
             <div>
               <form>
                 <input
+                  id="username-login"
                   name="username"
                   placeholder="Username"
                   type="text"
@@ -65,6 +66,7 @@ class Login extends Component {
                   onChange={this.handleChange}
                 ></input>
                 <input
+                  id="password-login"
                   name="password"
                   placeholder="Password"
                   type="password"
