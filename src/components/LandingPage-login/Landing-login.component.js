@@ -42,10 +42,18 @@ class Login extends Component {
         <div className={"imageBackground"}>
           <Unsplash width="2200" height="1000" collectionId="8598459" />
         </div>
-        <h1>Keep it Reel</h1>
-        <p>Social Media for Film Enthusiast. </p>
-        <p>Real People...Reel reviews.</p>
-        <Flippy ref={r => (this.flippyHorizontal = r)} flipOnClick={false}>
+        <div className="frontpagetext">
+          <h1>Keep it Reel</h1>
+          <p>Social Media for Film Enthusiast. </p>
+          <p>Real People...Reel reviews.</p>
+        </div>
+        <br />
+
+        <Flippy
+          className="flippycard"
+          ref={r => (this.flippyHorizontal = r)}
+          flipOnClick={false}
+        >
           <FrontSide>
             <div>
               <form>
