@@ -105,12 +105,12 @@ class Profile extends Component {
               />
               <p>{this.state.username}</p>
               <p>{this.state.email}</p>
-              {this.props.redux_user_id == this.state.user_id ? <button
+              {this.props.redux_user_id == this.state.user_id && <button
                 type="button"
                 onClick={() => this.flippyHorizontal.toggle()}
               >
                 Edit
-              </button>:<Follow following_user_id={this.state.user_id} />
+              </button>
 }
              
             </div>

@@ -34,8 +34,12 @@ class Follow extends Component {
     this.setState({ follow: !this.state.follow });
   };
 
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.id !== this.props.ImdbID) {}
+  // }
   componentDidMount() {
     let { user_id, following_user_id } = this.props;
+    console.log(user_id)
     axios
       .put("/api/viewcard/followed", { user_id, following_user_id })
       .then(res => {
@@ -46,8 +50,25 @@ class Follow extends Component {
       });
   }
 
+  componentDidUpdate(prevProps) {
+        let { user_id, following_user_id } = this.props;
+
+    prevProps.user_id !== user_id &&
+      axios
+      .put("/api/viewcard/followed", { user_id, following_user_id })
+      .then(res => {
+        this.setState({ follow: res.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    
+  }
+
   render() {
     console.log(this.props);
+    console.log(this.state);
     let { user_id, following_user_id } = this.props;
     return (
       <div className="FollowComponent">
