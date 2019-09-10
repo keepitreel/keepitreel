@@ -10,11 +10,14 @@
   position: fixed;
   z-index: 100;
 
-
   .logoDiv {
     display: flex;
     margin-left: 50px;
 
+    a {
+      text-decoration: none;
+      color: $accentColor;
+    }
 
     h1 {
       margin: 0;
@@ -23,7 +26,6 @@
 
     img {
       width: 60px;
-
     }
   }
 
@@ -35,5 +37,4 @@
       text-decoration: none;
     }
   }
-
 }

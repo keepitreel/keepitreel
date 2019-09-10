@@ -37,19 +37,16 @@
     align-items: center;
   }
   .frontpagetext {
-    color: red;
-
+    color: black;
     border: 1px solid white;
+    animation-name: animatetext;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
   }
   .frontpagetext:hover {
     position: relative;
     top: -3px;
     left: -3px;
-    text-shadow: -1px 1px 0 #ddd, -2px 2px 0 #c8c8c8, -3px 3px 0 #ccc,
-      -4px 4px 0 #b8b8b8, -4px 4px 0 #bbb, 0px 1px 1px rgba(0, 0, 0, 0.4),
-      0px 2px 2px rgba(0, 0, 0, 0.3), -1px 3px 3px rgba(0, 0, 0, 0.2),
-      -1px 5px 5px rgba(0, 0, 0, 0.1), -2px 8px 8px rgba(0, 0, 0, 0.1),
-      -2px 13px 13px rgba(0, 0, 0, 0.1);
   }
 
   .sign-in-container {
@@ -79,6 +76,11 @@
     }
   }
 
+  input {
+    border-radius: 10px;
+    height: 20px;
+  }
+
   form {
     display: flex;
     align-content: space-between;
@@ -87,9 +89,33 @@
   }
 
   .buttons {
-    display: flex;
-    justify-content: space-between;
-    align-content: space-between;
     width: 100%;
+    margin-top: 5%;
+    display: flex;
+
+    button {
+      width: 50%;
+      height: 50%;
+      border-radius: 5px;
+      background-color: $primaryColor;
+      color: $accentColor;
+      margin: 3px;
+      font-size: 12px;
+      border: none;
+    }
+
+    button:focus {
+      background-color: $accentColor;
+      border: none;
+      color: $primaryColor;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    button:active {
+      transform: scale(0.8);
+    }
   }
 }
