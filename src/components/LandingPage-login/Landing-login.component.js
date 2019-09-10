@@ -55,31 +55,29 @@ class Login extends Component {
           flipOnClick={false}
         >
           <FrontSide>
-            <div>
-              <form>
-                <input
-                  id="username-login"
-                  name="username"
-                  placeholder="Username"
-                  type="text"
-                  required
-                  onChange={this.handleChange}
-                ></input>
-                <input
-                  id="password-login"
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  onChange={this.handleChange}
-                  required
-                ></input>
-                <button onClick={this.handleLogin}>Login</button>
-              </form>
+            <form>
+              <input
+                name="username"
+                placeholder="Username"
+                type="text"
+                required
+                onChange={this.handleChange}
+              ></input>
+              <input
+                name="password"
+                placeholder="Password"
+                type="password"
+                onChange={this.handleChange}
+                required
+              ></input>
+            </form>
+            <div className="buttons">
+              <button onClick={this.handleLogin}>Login</button>
               <button
                 type="button"
                 onClick={() => this.flippyHorizontal.toggle()}
               >
-                Toggle Me!
+                Register
               </button>
             </div>
           </FrontSide>
@@ -105,14 +103,16 @@ class Login extends Component {
                 placeholder="email"
                 onChange={this.handleChange}
               />
-              <button onClick={this.handleRegister}>Register</button>
             </form>
-            <button
-              type="button"
-              onClick={() => this.flippyHorizontal.toggle()}
-            >
-              Toggle Me!
-            </button>
+            <div className="buttons">
+              <button
+                type="button"
+                onClick={() => this.flippyHorizontal.toggle()}
+              >
+                Cancel
+              </button>
+              <button onClick={this.handleRegister}>Register</button>
+            </div>
           </BackSide>
         </Flippy>
         {console.log(this.props.user_id)}
