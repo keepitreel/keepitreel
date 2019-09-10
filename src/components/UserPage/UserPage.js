@@ -3,6 +3,7 @@ import Profile from "../Profile/Profile";
 import Follow from "../Follow/Follow";
 import YourBlogs from "../YourBlogs/YourBlogs";
 import Unsplash from "react-unsplash-wrapper/dist/components/Unsplash";
+import FollowNumber from "../FollowNumber/FollowNumber";
 
 import "./UserPage.scss";
 
@@ -15,12 +16,18 @@ export default class UserPage extends Component {
         </div>
         <div className="contentDiv">
           <div className={"profileDiv"}>
-            <div className={"pro"}>
+            <div className="pro">
               <Profile user_id={this.props.match.params.id} />
+              <div className="followDiv">
+              <Follow following_user_id={this.props.match.params.id} />
+              <FollowNumber id={this.props.match.params.id}/>
+              </div>
             </div>
-            <Follow following_user_id={this.props.match.params.id} />
+                      
+
           </div>
           <div className="yourblog">
+
             <YourBlogs user_id={this.props.match.params.id} />
           </div>
         </div>

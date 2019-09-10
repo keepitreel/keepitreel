@@ -13,15 +13,25 @@
     background-color: rgba(0, 0, 0, .5);
     z-index: 10;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
+    min-height: 100vh;
+    position:fixed;
+    top:0;
 
     .profileDiv {
-      // display: flex;
+      
+      .pro{
+        background-color: $primaryColor;
+        border-radius: 15px;
+        border: 2px solid $accentColor;
+      }
 
-
+      .followDiv{
+        padding: 10px;
+      }
+      
     }
-
     .yourblog {
       width: 70%;
     }
