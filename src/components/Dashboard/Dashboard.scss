@@ -26,20 +26,18 @@ a {
     align-items: center;
     z-index: 100;
 
-
-
     .Profile-container {
       width: 20%;
       z-index: 10;
+
 
       a {
         button {
           @include button;
         }
       }
+
     }
-
-
 
     .Master-container {
       position: relative;
@@ -51,15 +49,11 @@ a {
       justify-content: flex-start;
       align-items: flex-start;
 
-
-
-
       .tabs-container {
         display: flex;
         width: 100%;
         justify-content: flex;
         background: transparent;
-
 
         button {
           width: 100px;
@@ -70,7 +64,6 @@ a {
           margin-right: 2px;
           font-size: 18px;
           border: none;
-
         }
 
         button:focus {
@@ -80,23 +73,20 @@ a {
           border: none;
           border-radius: 5px;
         }
+        button:hover {
+          transform: scale(1.1);
+        }
+        button:active {
+          transform: scale(0.8);
+        }
       }
 
       .tab-display {
         width: 100%;
-        background-color: $accentColor;
+        background-color: rgba(0, 0, 0, 0.8);
         border-radius: 5px;
         border-top-left-radius: 0px;
       }
     }
   }
-
-
-
-
-
-
-
-
-
 }

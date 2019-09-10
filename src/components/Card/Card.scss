@@ -1,17 +1,13 @@
-@import '../../App.scss';
-
-
+@import "../../App.scss";
 
 .card-wrapper {
-
-
   height: 145px;
   width: 300px;
   justify-content: space-between;
   overflow: hidden;
   margin: 30px;
 
-  background-image: url('../../img/ticket.png');
+  background-image: url("../../img/ticket3.png");
   background-size: contain;
   background-repeat: no-repeat;
   display: flex;
@@ -33,7 +29,6 @@
       display: flex;
       justify-content: center;
       width: 30%;
-
 
       img {
         width: 70%;
@@ -61,19 +56,16 @@
         h5 {
           font-size: 20px;
         }
-
       }
 
       .blog-post {
-
         width: 90%;
         font-size: 10px;
       }
     }
   }
-
 }
 
 .card-wrapper:hover {
-  transform: scale(1.2)
+  transform: scale(1.2);
 }

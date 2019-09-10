@@ -6,14 +6,14 @@ import { HashRouter } from "react-router-dom";
 import routes from "./routes/routes";
 import Landing from "./components/LandingPage-login/Landing-login.component";
 import Register from "./components/LandingPage-register/Landing-register.component";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
     <HashRouter>
       <div className="App">
-        <Nav />
+        <Route component={Nav}></Route>
         {routes}
       </div>
     </HashRouter>

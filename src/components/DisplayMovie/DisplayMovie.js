@@ -15,17 +15,20 @@ export default class DisplayMovie extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount(prevProps) {
     console.log("hit");
+
+    
     axios
       .get(` http://www.omdbapi.com/?i=${this.props.ImdbID}&apikey=579b4fff`)
       .then(response => {
+        console.log({response})
         response.data.Response === "True"
           ? this.setState({ movie: [response.data], error: "" })
           : this.setState({ movie: [], error: response.data.Error });
         axios
           .get(
-            `http://img.omdbapi.com/?i=${this.props.ImdbID}&h=900&apikey=579b4fff`
+            `http://img.omdbapi.com/?i=${this.props.ImdbID}&h=500&apikey=579b4fff`
           )
           .then(res => {
             console.log(res.config.url);
@@ -33,6 +36,29 @@ export default class DisplayMovie extends Component {
           });
       })
       .catch(error => console.log(error));
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.ImdbID !== this.props.ImdbID) {
+
+    
+    axios
+      .get(` http://www.omdbapi.com/?i=${this.props.ImdbID}&apikey=579b4fff`)
+      .then(response => {
+        console.log({response})
+        response.data.Response === "True"
+          ? this.setState({ movie: [response.data], error: "" })
+          : this.setState({ movie: [], error: response.data.Error });
+        axios
+          .get(
+            `http://img.omdbapi.com/?i=${this.props.ImdbID}&h=500&apikey=579b4fff`
+          )
+          .then(res => {
+            console.log(res.config.url);
+            this.setState({ image: res.config.url });
+          });
+      })
+      .catch(error => console.log(error));
+    }
   }
   render() {
     console.log(this.state.movie);
@@ -42,6 +68,11 @@ export default class DisplayMovie extends Component {
       let divStyle = {
         backgroundColor: "transparent",
         borderStyle: "none"
+      };
+      let divStyle1 = {
+        backgroundColor: "#cf2116",
+        overflow: "auto",
+        color: "#c6ac61"
       };
 
       return (
@@ -56,13 +87,13 @@ export default class DisplayMovie extends Component {
             ref={r => (this.flippy = r)} // to use toggle method like this.flippy.toggle()
             // if you pass isFlipped prop component will be controlled component.
             // and other props, which will go to div
-            style={{ width: "60%", height: "60%", border: "none" }} /// these are optional style, it is not necessary
+            style={{ width: "60%", height: "70%", border: "none" }} /// these are optional style, it is not necessary
           >
             <FrontSide style={{ divStyle }}>
               <img className="MoviePoster" src={this.state.image}></img>
             </FrontSide>
 
-            <BackSide style={this.divStyle}>
+            <BackSide style={divStyle1}>
               <h2>{res.Title}</h2>
               <span className="MovieRated">
                 <p>{res.Rated}</p>

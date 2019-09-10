@@ -25,7 +25,9 @@ const {
   checkIfDisliked,
   thumbsUP,
   thumbsDOWN,
-  getFollow
+  getFollow,
+  getNumPostLikes,
+  getNumPostDislikes
 } = require("./viewCardController");
 const { getUserPost } = require("./yourBlogsController");
 const { getCommunityPost } = require("./communityController");
@@ -95,12 +97,14 @@ app.post("/api/viewcard/like", startLikingPost); //start LikingPost given user_i
 app.put("/api/viewcard/stoplike", stopLikingPost); //stop LikingPost given user_id, post_id //thumbs down we hit
 app.post("/api/viewcard/dislike", startDislikingPost); //start DisikingPost given user_id, post_id //thumbs down we hit
 app.put("/api/viewcard/stopdislike", stopDislikingPost); //stop DislikingPost given user_id, post_id //thumbsup we hit
+app.get("/api/viewcard/postlikes/:post_id", getNumPostLikes); ///get number of likes a post has
+app.get("/api/viewcard/postdislikes/:post_id", getNumPostDislikes); ///get number of Dislikes a post has
 //
 app.put("/api/viewcard/followed", checkIfFollowed); // check if followed
 app.put("/api/viewcard/liked", checkIfLiked); // check if liked
 app.put("/api/viewcard/disliked", checkIfDisliked); // check if disliked
 app.put("/api/viewcard/thumbsup", thumbsUP); // thumbs up adds to like table and deletes from dislike
-app.put("rs", thumbsDOWN); // thumbs down adds to dislike table and deletes from like
+app.put("api/viewcard/thumbsdown", thumbsDOWN); // thumbs down adds to dislike table and deletes from like
 //
 app.get("/api/viewcard/getfollow/:user_id", getFollow); //get list of users that user_id is following
 

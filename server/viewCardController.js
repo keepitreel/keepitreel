@@ -180,6 +180,28 @@ let getFollow = async (req, res) => {
 
   res.json(user);
 };
+let getNumPostLikes = async (req, res) => {
+  //get number of likes a post has
+  const { post_id } = req.params;
+  const db = req.app.get("db");
+
+  const post = await db
+    .get_num_post_likes(post_id)
+    .catch(error => console.log(error));
+
+  res.json(post);
+};
+let getNumPostDislikes = async (req, res) => {
+  //get number of Dislikes a post has
+  const { post_id } = req.params;
+  const db = req.app.get("db");
+
+  const post = await db
+    .get_num_post_dislikes(post_id)
+    .catch(error => console.log(error));
+
+  res.json(post);
+};
 
 module.exports = {
   follow,
@@ -195,5 +217,7 @@ module.exports = {
   checkIfDisliked,
   thumbsUP,
   thumbsDOWN,
-  getFollow
+  getFollow,
+  getNumPostLikes,
+  getNumPostDislikes
 };

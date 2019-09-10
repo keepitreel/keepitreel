@@ -26,23 +26,27 @@ class Nav extends Component {
   };
 
   render() {
-    return (
-      <div className="navPage">
-        <div className="logoDiv">
-          <Link to="/" className="links">
-            <h1 className="logo">KeepItReel</h1>
-          </Link>
-          <img src={Logo2}></img>
-        </div>
+    let path = this.props.location.pathname;
 
-        <div className="linkWrap">
-          {this.props.user_id ? (
-            <Link to={"/"} onClick={this.handleLogout} className="links">
-              Logout
+    return (
+      path !== "/" && (
+        <div className="navPage">
+          <div className="logoDiv">
+            <Link to="/" className="links">
+              <h1 className="logo">KeepItReel</h1>
             </Link>
-          ) : null}
+            <img src={Logo2}></img>
+          </div>
+
+          <div className="linkWrap">
+            {this.props.user_id ? (
+              <Link to={"/"} onClick={this.handleLogout} className="links">
+                Logout
+              </Link>
+            ) : null}
+          </div>
         </div>
-      </div>
+      )
     );
   }
 }

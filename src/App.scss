@@ -1,14 +1,12 @@
-$primaryColor: #7e0000;
+$primaryColor: #cf2116;
 $secondaryColor: #f29763;
-$accentColor: #C6AC61;
+$accentColor: #c6ac61;
 $buttonColor: #404040;
 $pageColor: #262626;
 $textColor: #afaaaa;
 
-$HeaderFont: "Montserrat",
-sans-serif;
-$TextFont: "Abel",
-sans-serif;
+$HeaderFont: "Montserrat", sans-serif;
+$TextFont: "Abel", sans-serif;
 
 // quotes: single quotes;
 // events: use e
@@ -46,21 +44,21 @@ sans-serif;
   .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
   }
 
   .tooltip .tooltiptext {
     visibility: hidden;
+    height: 30px;
+    font-weight: bold;
     width: 100px;
-    background-color: $primaryColor;
-    color: $textColor;
+    background-color: $accentColor;
+    color: $primaryColor;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
     /* Position the tooltip */
     top: 40px;
     font-size: 15px;
-
     position: absolute;
     z-index: 1;
   }
@@ -69,7 +67,6 @@ sans-serif;
     visibility: visible;
   }
 }
-
 
 @mixin button() {
   height: 40px;
@@ -80,12 +77,10 @@ sans-serif;
   background-color: $primaryColor;
   border-color: $accentColor;
   color: $accentColor;
+  min-width: 75px;
 }
 
-
-
-
-@mixin pageHeader () {
+@mixin pageHeader() {
   font-family: $HeaderFont;
   color: black;
   font-size: 50px;
@@ -118,7 +113,7 @@ sans-serif;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $primaryColor;
+  background: $accentColor;
   border-radius: 10px;
 }
 

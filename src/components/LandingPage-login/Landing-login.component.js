@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import Video from "../../video/curtain.mp4";
-// import Batman from "../../img/movie-posters/batman.jpg";
-// import JohnWick from "../../img/movie-posters/johnwick.jpeg";
-// import Marvel from "../../img/movie-posters/marvel.jpg";
-// import Titanic from "../../img/movie-posters/Titanic.jpg";
 import { Redirect } from "react-router-dom";
 import { login, updateLogin, register } from "../../redux/authReducer";
 import "./Landing-login.style.scss";
@@ -46,14 +42,23 @@ class Login extends Component {
         <div className={"imageBackground"}>
           <Unsplash width="2200" height="1000" collectionId="8598459" />
         </div>
-        <h1>Keep it Reel</h1>
-        <p>Social Media for Film Enthusiast. </p>
-        <p>Real People...Reel reviews.</p>
-        <Flippy ref={r => (this.flippyHorizontal = r)} flipOnClick={false}>
+        <div className="frontpagetext">
+          <h1>Keep it Reel</h1>
+          <p>Social Media for Film Enthusiast. </p>
+          <p>Real People...Reel reviews.</p>
+        </div>
+        <br />
+
+        <Flippy
+          className="flippycard"
+          ref={r => (this.flippyHorizontal = r)}
+          flipOnClick={false}
+        >
           <FrontSide>
             <div>
               <form>
                 <input
+                  id="username-login"
                   name="username"
                   placeholder="Username"
                   type="text"
@@ -61,6 +66,7 @@ class Login extends Component {
                   onChange={this.handleChange}
                 ></input>
                 <input
+                  id="password-login"
                   name="password"
                   placeholder="Password"
                   type="password"
