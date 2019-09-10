@@ -1,39 +1,43 @@
 @import '../../App.scss';
 
-.formDiv {
-  width: 40%;
+.EditBlogPage {
+  @include pageCenter(100%, 90px);
 
-  label {
-    width: 100%;
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-
-
-    input {
-      height: 50px;
-      font-size: 30px;
-      border-radius: 5px;
-
-    }
-
-    textarea {
-      font-size: 20px;
-      height: 200px;
-      border-radius: 5px;
-    }
-
-
-  }
-
-  .ratingDiv {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row-reverse;
+  form {
+    width: 40%;
+    z-index: 10;
 
     label {
+      width: 100%;
+      flex-direction: column;
       display: flex;
+      justify-content: center;
+
+
+      input {
+        height: 50px;
+        font-size: 30px;
+        border-radius: 5px;
+
+      }
+
+      textarea {
+        font-size: 20px;
+        height: 200px;
+        border-radius: 5px;
+      }
+
+
+    }
+
+    .ratingDiv {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: row-reverse;
+
+      label {
+        display: flex;
+      }
     }
   }
-
 }
