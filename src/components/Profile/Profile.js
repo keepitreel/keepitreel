@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Follow from '../Follow/Follow.js';
 import "./Profile.scss";
+ 
 import Flippy, { FrontSide, BackSide } from "react-flippy";
+import { connect } from "react-redux";
+
 class Profile extends Component {
   constructor() {
     super();
@@ -25,9 +29,10 @@ class Profile extends Component {
         name: res.data[0].name,
         username: res.data[0].username,
         email: res.data[0].email,
-        avatarurl: res.data[0].avatarurl
+        avatarurl: res.data[0].avatarurl,
+        user_id: res.data[0].user_id
       });
-    });
+    }).catch(error=>{console.log(error)})
   }
 
   handleChange = e => {
@@ -100,12 +105,14 @@ class Profile extends Component {
               />
               <p>{this.state.username}</p>
               <p>{this.state.email}</p>
-              <button
+              {this.props.redux_user_id == this.state.user_id && <button
                 type="button"
                 onClick={() => this.flippyHorizontal.toggle()}
               >
                 Edit
               </button>
+}
+             
             </div>
           </FrontSide>
           <BackSide style={{ width: "100%", height: "100%" }}>
@@ -156,4 +163,10 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = reduxState => {
+  return {
+    session: reduxState.authReducer,
+    redux_user_id: reduxState.authReducer.user_id
+  };
+};
+export default connect(mapStateToProps)(Profile);

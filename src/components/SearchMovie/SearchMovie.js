@@ -68,12 +68,15 @@ class SearchMovie extends Component {
         <div className="movieContainer">
           <div idName={"searchDiv"} className="searchDiv">
             <input
+              id="input-search-movie"
               name="movie"
               onChange={this.handleChnage}
               placeholder="search for movie"
               autoFocus
             />
-            <button onClick={this.search}>Search</button>
+            <button id="search-mov-btn" onClick={this.search}>
+              Search
+            </button>
           </div>
           {error && error}
           {this.props.loading && (

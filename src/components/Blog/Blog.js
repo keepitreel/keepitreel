@@ -69,6 +69,7 @@ class Blog extends Component {
                 ) : this.props.user_id ? (
                   <div className="features">
                     <Like post_id={blog.post_id} post_user_id={blog.user_id} />
+                   <Follow following_user_id={blog.user_id}/>
                   </div>
                 ) : null}
                 <StarRating rating={blog.rating} />
