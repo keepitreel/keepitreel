@@ -15,11 +15,14 @@ export default class DisplayMovie extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount(prevProps) {
     console.log("hit");
+
+    
     axios
       .get(` http://www.omdbapi.com/?i=${this.props.ImdbID}&apikey=579b4fff`)
       .then(response => {
+        console.log({response})
         response.data.Response === "True"
           ? this.setState({ movie: [response.data], error: "" })
           : this.setState({ movie: [], error: response.data.Error });
@@ -33,6 +36,29 @@ export default class DisplayMovie extends Component {
           });
       })
       .catch(error => console.log(error));
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.ImdbID !== this.props.ImdbID) {
+
+    
+    axios
+      .get(` http://www.omdbapi.com/?i=${this.props.ImdbID}&apikey=579b4fff`)
+      .then(response => {
+        console.log({response})
+        response.data.Response === "True"
+          ? this.setState({ movie: [response.data], error: "" })
+          : this.setState({ movie: [], error: response.data.Error });
+        axios
+          .get(
+            `http://img.omdbapi.com/?i=${this.props.ImdbID}&h=500&apikey=579b4fff`
+          )
+          .then(res => {
+            console.log(res.config.url);
+            this.setState({ image: res.config.url });
+          });
+      })
+      .catch(error => console.log(error));
+    }
   }
   render() {
     console.log(this.state.movie);

@@ -44,7 +44,7 @@ class Blog extends Component {
     let blogStuff = post.map(blog => {
       return (
         <div className="BlogContainer">
-          <div className={"imageBackground"}>
+          <div className="imageBackground">
             <Unsplash width="2200" height="1000" collectionId="8598365" />
           </div>
           <div className="mainContent">
@@ -72,7 +72,7 @@ class Blog extends Component {
                   </div>
                 ) : null}
                 <StarRating rating={blog.rating} />
-                <p>{blog.text}</p>={" "}
+                <p>{blog.text}</p>
               </div>
             </div>
             <div className="bottom">

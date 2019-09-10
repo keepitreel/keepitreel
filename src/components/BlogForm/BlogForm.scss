@@ -1,10 +1,54 @@
 @import '../../App.scss';
 
+
 .EditBlogPage {
   @include pageCenter(100%, 90px);
 
+  .imageBackground {
+      @include backgroundDisplay();
+
+
+    }
+.overlay{
+  width: 100%;
+  background-color: rgba(0,0,0,.5);
+  position: fixed;
+  min-heigth: 100vh;
+  min-width: 100vw;
+  z-index:5;
+  .contentwrapper {
+   width: 100%;
+   display:flex;
+   justify-content: space-evenly;
+   background-color: rgba(0,0,0,.5);
+   z-index:5;
+   min-height:100vh;
+   padding-top: 50px;
+
+  .movieContainer{
+
+  }
+  .formDiv{
+    margin-top: 30px;
+    background-color:$primaryColor;
+    max-height: 500px;
+    z-index:10;
+    padding: 10px;
+    border-radius: 15px;
+    width: 45%;
+    border: 2px solid $accentColor;
+
+
+    
   form {
-    width: 40%;
+    .buttonDiv{
+      display:flex;
+      width: 100%;
+      justify-content: space-evenly;
+    }
+    button{
+      @include button;
+    }
     z-index: 10;
 
     label {
@@ -12,32 +56,33 @@
       flex-direction: column;
       display: flex;
       justify-content: center;
+      color: $accentColor;
 
 
       input {
         height: 50px;
         font-size: 30px;
         border-radius: 5px;
-
+        border: 2px solid $accentColor;
       }
 
       textarea {
         font-size: 20px;
         height: 200px;
         border-radius: 5px;
+        border: 2px solid $accentColor;
       }
-
-
+    
+        
     }
 
     .ratingDiv {
       display: flex;
       align-items: flex-start;
       flex-direction: row-reverse;
-
-      label {
-        display: flex;
-      }
     }
-  }
+  }}
+
+        }
+        }
 }
