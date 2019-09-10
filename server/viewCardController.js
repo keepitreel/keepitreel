@@ -2,11 +2,16 @@ let follow = async (req, res) => {
   const { user_id, following_user_id } = req.body;
   const db = req.app.get("db");
 
-  await db
-    .start_following([user_id, following_user_id])
-    .catch(error => console.log(error));
-  return res.sendStatus(200);
-  //res.status(200).json(user) example of return status with promise
+  if (user_id == following_user_id) {
+    //cannot follow self
+    return res.sendStatus(200);
+  } else {
+    await db
+      .start_following([user_id, following_user_id])
+      .catch(error => console.log(error));
+    return res.sendStatus(200);
+    //res.status(200).json(user) example of return status with promise
+  }
 };
 let unFollow = async (req, res) => {
   const { user_id, following_user_id } = req.body;

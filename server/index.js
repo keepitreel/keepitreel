@@ -53,9 +53,12 @@ require("dotenv").config(); //get access to environmental variables
 
 const { SESSION_SECRET, SERVER_PORT, CONNECTION_STRING } = process.env;
 
-//const path = require("path");
-
 const app = express();
+const path = require("path");
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 //app.use(express.static(`${__dirname}/../build`));
 app.use(express.json()); //gives us access to req.body
 
