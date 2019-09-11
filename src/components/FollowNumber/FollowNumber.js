@@ -18,6 +18,7 @@ export default class FollowNumber extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log('hit');
     let {id} = this.props;
     prevProps.id !== id &&
       axios.get(`/api/viewcard/followcount/${id}`).then(res=>{

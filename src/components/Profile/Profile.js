@@ -98,7 +98,7 @@ class Profile extends Component {
         >
           <FrontSide style={{ width: "100%", height: "100%" }}>
             <div className="profile-info">
-              <h4>Welcome {this.state.name}</h4>
+              <h4>Welcome {this.state.name}!</h4>
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVjKzdLZoS1L8JcE5MovJ7_AzHxbWaqY2okboaJV5hyummhVT4"
                 alt="commando"

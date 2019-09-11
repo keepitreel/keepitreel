@@ -104,7 +104,7 @@ app.put("/api/viewcard/followed", checkIfFollowed); // check if followed
 app.put("/api/viewcard/liked", checkIfLiked); // check if liked
 app.put("/api/viewcard/disliked", checkIfDisliked); // check if disliked
 app.put("/api/viewcard/thumbsup", thumbsUP); // thumbs up adds to like table and deletes from dislike
-app.put("api/viewcard/thumbsdown", thumbsDOWN); // thumbs down adds to dislike table and deletes from like
+app.put("/api/viewcard/thumbsdown", thumbsDOWN); // thumbs down adds to dislike table and deletes from like
 //
 app.get("/api/viewcard/getfollow/:user_id", getFollow); //get list of users that user_id is following
 

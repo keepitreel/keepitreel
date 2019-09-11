@@ -62,7 +62,7 @@ class SearchMovie extends Component {
       <div ref="hello" className="searchMoviePage">
         {!this.props.user_id && <Redirect to="/" />}
         <div className={"imageBackground"}>
-          <Unsplash width="1800" height="1000" collectionId="3677449" />
+          <Unsplash width="2000" height="1000" collectionId="3677449" />
         </div>
 
         <div className="movieContainer">
