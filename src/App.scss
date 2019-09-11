@@ -71,7 +71,7 @@ $TextFont: "Abel", sans-serif;
 @mixin button() {
   height: 40px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-top: 3px;
   align-self: flex-end;
   background-color: $primaryColor;

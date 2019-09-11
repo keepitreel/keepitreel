@@ -44,8 +44,8 @@ class Login extends Component {
         </div>
         <div className="frontpagetext">
           <h1>Keep it Reel</h1>
-          <p>Social Media for Film Enthusiast. </p>
-          <p>Real People...Reel reviews.</p>
+          <p>Social Media for Film Enthusiasts. </p>
+          <p>Real People...Reel Reviews.</p>
         </div>
         <br />
 
