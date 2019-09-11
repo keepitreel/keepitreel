@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Follow from '../Follow/Follow.js';
+import Follow from "../Follow/Follow.js";
 import "./Profile.scss";
- 
+
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import { connect } from "react-redux";
 
@@ -23,16 +23,21 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/login/data/user/${this.props.user_id}`).then(res => {
-      console.log(res.data[0]);
-      this.setState({
-        name: res.data[0].name,
-        username: res.data[0].username,
-        email: res.data[0].email,
-        avatarurl: res.data[0].avatarurl,
-        user_id: res.data[0].user_id
+    axios
+      .get(`/api/login/data/user/${this.props.user_id}`)
+      .then(res => {
+        console.log(res.data[0]);
+        this.setState({
+          name: res.data[0].name,
+          username: res.data[0].username,
+          email: res.data[0].email,
+          avatarurl: res.data[0].avatarurl,
+          user_id: res.data[0].user_id
+        });
+      })
+      .catch(error => {
+        console.log(error);
       });
-    }).catch(error=>{console.log(error)})
   }
 
   handleChange = e => {
@@ -73,13 +78,6 @@ class Profile extends Component {
       .then(res => {
         console.log(res.data);
         this.componentDidMount();
-        // this.setState({
-        //   name: res.data.name,
-        //   username: res.data.username,
-        //   email: res.data.email,
-        //   avatarurl: res.data.avatarurl,
-        //   showEdit: false
-        // });
       })
       .catch(error => {
         console.log(error);
@@ -87,7 +85,7 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this.state.user);
+    console.log(this.state);
 
     return (
       <div className="main-wrapper">
@@ -105,14 +103,14 @@ class Profile extends Component {
               />
               <p>{this.state.username}</p>
               <p>{this.state.email}</p>
-              {this.props.redux_user_id == this.state.user_id && <button
-                type="button"
-                onClick={() => this.flippyHorizontal.toggle()}
-              >
-                Edit
-              </button>
-}
-             
+              {this.props.redux_user_id == this.state.user_id && (
+                <button
+                  type="button"
+                  onClick={() => this.flippyHorizontal.toggle()}
+                >
+                  Edit
+                </button>
+              )}
             </div>
           </FrontSide>
           <BackSide style={{ width: "100%", height: "100%" }}>
@@ -123,11 +121,13 @@ class Profile extends Component {
                   name="usernameUpdate"
                   placeholder="username"
                   onChange={this.handleChange}
+                  value={this.state.username}
                 />
                 <input
                   name="nameUpdate"
                   placeholder="name"
                   onChange={this.handleChange}
+                  value={this.state.name}
                 />
                 <input
                   name="passwordUpdate"
@@ -139,11 +139,7 @@ class Profile extends Component {
                   name="emailUpdate"
                   placeholder="email"
                   onChange={this.handleChange}
-                />
-                <input
-                  name="avatarurlUpdate"
-                  placeholder="avatarurl"
-                  onChange={this.handleChange}
+                  value={this.state.email}
                 />
                 <div className="button-container">
                   <button onClick={this.handleSubmit}>Update</button>
