@@ -46,6 +46,11 @@
           border: solid 2px $accentColor;
           width: 45%;
           padding: 15px;
+          
+          .GoToUserPage {
+  @include tooltip();
+  color: $primaryColor;
+}
 
 
           a {

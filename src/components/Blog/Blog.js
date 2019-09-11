@@ -55,9 +55,15 @@ class Blog extends Component {
               <div className="blogContent">
                 <p>{blog.post_id}</p>
                 <h1 className="blogtitle">{blog.blogtitle}</h1>
-                <Link to={`/userpage/${blog.user_id}`}>
-                  <h3 className={"username"}>{blog.username}</h3>
-                </Link>
+
+                <div className="GoToUserPage">
+                  <Link to={`/userpage/${blog.user_id}`}>
+                    <div className="tooltip">
+                      <h3 className={"username"}>{blog.username}</h3>
+                      <span className="tooltiptext">go to userpage</span>
+                    </div>
+                  </Link>
+                </div>
                 {this.props.user_id == blog.user_id ? (
                   <div className="features">
                     <Link to={`/editblog/${blog.post_id}`}>
@@ -69,7 +75,7 @@ class Blog extends Component {
                 ) : this.props.user_id ? (
                   <div className="features">
                     <Like post_id={blog.post_id} post_user_id={blog.user_id} />
-                   <Follow following_user_id={blog.user_id}/>
+                    <Follow following_user_id={blog.user_id} />
                   </div>
                 ) : null}
                 <StarRating rating={blog.rating} />

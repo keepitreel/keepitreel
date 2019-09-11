@@ -42,6 +42,15 @@ class Comments extends Component {
     });
   };
 
+  delete=(value)=>{
+    axios.delete(`/api/comment/deletecomment/${value}`).then(res=>{
+      console.log(res);
+      this.componentDidMount();
+    }).catch(error =>{
+      console.log(error)
+    })}
+  
+
   componentDidMount() {
     axios.get(`/api/comment/${this.props.post_id}`).then(res => {
       this.setState({ comments: res.data });
@@ -56,6 +65,7 @@ class Comments extends Component {
         <div className="commentDiv">
           <h5>{comment.title}</h5>
           <p>{comment.text}</p>
+          {this.props.user_id === comment.user_id &&<i class="fas fa-trash-alt" onClick={()=>this.delete(comment.comment_id)}></i>}
         </div>
       );
     });

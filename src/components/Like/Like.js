@@ -74,15 +74,10 @@ class Like extends Component {
               dislike: false,
               dislikeClass: ""
             })
-          : this.setState({
-              like: false,
-              likeClass: "",
-              dislikeClass: ""
-            });
-
-        axios
-          .put("/api/viewcard/disliked", { user_id, post_id })
+          : 
+      axios.put("/api/viewcard/disliked", { user_id, post_id })
           .then(respond => {
+             console.log(res);
             respond.data
               ? this.setState({
                   dislike: true,
