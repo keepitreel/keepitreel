@@ -34,13 +34,14 @@ class Dashboard extends Component {
         </div>
         <div className="Content-wrapper">
           <div className="Profile-container">
+            
+            <div className="profile">
+              <Profile user_id={this.props.user_id} />
+            </div>
             <div className="button-container">
               <Link to="/search">
                 <button data-cy="movie-search-button">Movie Search</button>
               </Link>
-            </div>
-            <div className="profile">
-              <Profile user_id={this.props.user_id} />
             </div>
           </div>
           <div className="Master-container">
@@ -70,6 +71,7 @@ class Dashboard extends Component {
               >
                 Favorites
               </button>
+              
             </div>
             <div className="tab-display">
               {this.state.tab === "friends" ? (

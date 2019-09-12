@@ -51,17 +51,20 @@ const {
   getPostIMDBID
 } = require("./dashboardController");
 
+// const authRoutes = require("./routes/auth");
+// const fileRoutes = require("./routes/file-upload");
+
 require("dotenv").config(); //get access to environmental variables
 
 const { SESSION_SECRET, SERVER_PORT, CONNECTION_STRING } = process.env;
 
 const app = express();
 const path = require("path");
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "public", "index.html"));
+// });
 
-//app.use(express.static(`${__dirname}/../build`));
+app.use(express.static(`${__dirname}/../build`));
 app.use(express.json()); //gives us access to req.body
 
 app.use(
@@ -77,6 +80,10 @@ massive(CONNECTION_STRING)
     console.log("database connected :)");
   })
   .catch(e => console.log(e));
+
+//AWS image uploads
+// app.use("/api/v1/", authRoutes);
+// app.use("/api/v1/", fileRoutes);
 
 // Authentication loginController.js
 app.post("/api/login", loginControl);

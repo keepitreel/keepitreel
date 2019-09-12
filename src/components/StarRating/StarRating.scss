@@ -1,21 +1,30 @@
 @import "../../App.scss";
 
 .StarContainer {
+  // background-color: rgba(0, 0, 0, .5);
+ // border: 2px solid $accentColor;
+ // border-radius: 15px;
+
   .Star1 {
-    color: #ff0000;
+    color: $accentColor;
   }
+
   .Star2 {
-    color: #ff4d4d;
+    color: $accentColor;
   }
+
   .Star3 {
-    color: #ff8000;
+    color: $accentColor;
   }
+
   .Star4 {
-    color: #ff9933;
+    color: $accentColor;
   }
+
   .Star5 {
-    color: yellow;
+    color: $accentColor;
   }
+
   // .emoji {
   // }
 }

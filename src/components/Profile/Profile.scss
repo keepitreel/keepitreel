@@ -20,30 +20,20 @@
   border: 2px solid $accentColor;
   border-radius: 15px;
 
-  .flippy-container {
-    width: 100%;
-
-    .flippy-cardContainer-wrapper horizontal {
-      width: 100%;
-
-      .flippy-cardContainer {
-        width: 100%;
-
-        .flippy-card .flippy-front {
-          width: 100%;
-        }
-      }
-    }
-  }
+ 
 
   .profile-info {
     width: 100%;
-
-
+color: $accentColor;
+  h1{
+  
+  }
 
 
     img {
       width: 100%;
+      border-radius: 15px;
+      border: 2px solid $accentColor;
     }
 
     p {
@@ -52,26 +42,24 @@
   }
 
 
-
-  // .tabTitle {
-  //  border: 1px solid darkcyan;
-  //  width: 150px;
-  //  height: 50px;
-  // }
-
   .editForm {
     width: 100%;
     min-height: 100%;
     display: flex;
 
+  h5{
+    color: $accentColor;
+  }
     form {
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
 
       input {
         border-radius: 10px;
-        height: 20px;
+        border: 2px solid $accentColor;
+        height: 30px;
       }
 
       .button-container {

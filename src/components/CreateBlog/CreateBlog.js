@@ -17,7 +17,8 @@ class CreateBlog extends Component {
       rating: 0,
       submit: false,
       text: "",
-      blogTitle: ""
+      blogTitle: "",
+      movietitle: ""
     };
   }
 
@@ -73,7 +74,11 @@ class CreateBlog extends Component {
       .then(response => {
         console.log(response);
         response.data.Response === "True"
-          ? this.setState({ movie: [response.data], error: "" })
+          ? this.setState({
+              movie: [response.data],
+              error: "",
+              movietitle: response.data.Title
+            })
           : this.setState({ movie: [], error: response.data.Error });
         axios
           .get(
@@ -108,7 +113,16 @@ class CreateBlog extends Component {
               </label>
               <label>
                 Blog
-                <textarea name="text" onChange={this.handleChange}></textarea>
+                <textarea
+                  name="text"
+                  onChange={this.handleChange}
+                  placeholder={
+                    "Hello " +
+                    this.props.username +
+                    "! Write a REEL review about " +
+                    this.state.movietitle
+                  }
+                ></textarea>
               </label>
               <Rating updateRating={this.updateRating} />
               <button onClick={this.handleSubmit}>Submit</button>
@@ -124,6 +138,7 @@ class CreateBlog extends Component {
 
 const mapStateToProps = reduxState => {
   return {
+    username: reduxState.authReducer.username,
     user_id: reduxState.authReducer.user_id
   };
 };
