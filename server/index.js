@@ -51,8 +51,8 @@ const {
   getPostIMDBID
 } = require("./dashboardController");
 
-const authRoutes = require("./routes/auth");
-const fileRoutes = require("./routes/file-upload");
+// const authRoutes = require("./routes/auth");
+// const fileRoutes = require("./routes/file-upload");
 
 require("dotenv").config(); //get access to environmental variables
 
@@ -82,8 +82,8 @@ massive(CONNECTION_STRING)
   .catch(e => console.log(e));
 
 //AWS image uploads
-app.use("/api/v1/", authRoutes);
-app.use("/api/v1/", fileRoutes);
+// app.use("/api/v1/", authRoutes);
+// app.use("/api/v1/", fileRoutes);
 
 // Authentication loginController.js
 app.post("/api/login", loginControl);
