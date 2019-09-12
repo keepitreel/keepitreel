@@ -11,9 +11,11 @@ class DeletePost extends Component {
     };
   }
   blogKiller = () => {
+    console.log("hit");
     axios
       .delete(`/api/dashboard/deletepost/${this.props.post_id}`)
       .then(res => {
+        console.log("res: " + res);
         this.setState({
           deletePost: true
         });

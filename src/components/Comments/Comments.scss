@@ -17,7 +17,8 @@
     width: 100%;
     position: sticky;
     top: -2px;
-    background-color: $primaryColor;
+    background-color: black;
+
   }
 
   h1 {
@@ -44,7 +45,7 @@
 
     button {
       @include button;
-
+      background-color: black;
     }
 
 

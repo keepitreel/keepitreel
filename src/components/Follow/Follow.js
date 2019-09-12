@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import FollowNumber from "../FollowNumber/FollowNumber";
+
 import { connect } from "react-redux";
 import "./Follow.scss";
 import axios from "axios";
@@ -7,7 +9,8 @@ class Follow extends Component {
   constructor() {
     super();
     this.state = {
-      follow: false
+      follow: false,
+      num: 0
     };
   }
   follow = () => {
@@ -20,6 +23,7 @@ class Follow extends Component {
       })
       .catch(error => console.log(error));
     this.setState({ follow: !this.state.follow });
+    this.updateNum();
   };
 
   unfollow = () => {
@@ -32,6 +36,7 @@ class Follow extends Component {
       })
       .catch(error => console.log(error));
     this.setState({ follow: !this.state.follow });
+    this.updateNum();
   };
 
   // componentDidUpdate(prevProps) {
@@ -39,7 +44,7 @@ class Follow extends Component {
   // }
   componentDidMount() {
     let { user_id, following_user_id } = this.props;
-    console.log(user_id)
+    console.log(user_id);
     axios
       .put("/api/viewcard/followed", { user_id, following_user_id })
       .then(res => {
@@ -51,18 +56,34 @@ class Follow extends Component {
   }
 
   componentDidUpdate(prevProps) {
-        let { user_id, following_user_id } = this.props;
+    let { user_id, following_user_id } = this.props;
 
     prevProps.user_id !== user_id &&
       axios
-      .put("/api/viewcard/followed", { user_id, following_user_id })
+        .put("/api/viewcard/followed", { user_id, following_user_id })
+        .then(res => {
+          this.setState({ follow: res.data });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    this.updateNum();
+  }
+
+  updateNum = () => {
+    console.log("hit");
+    let { following_user_id } = this.props;
+    axios
+      .get(`/api/viewcard/followcount/${following_user_id}`)
       .then(res => {
-        this.setState({ follow: res.data });
+        this.setState({
+          num: res.data[0].count
+        });
       })
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   render() {
     console.log(this.props);
@@ -81,6 +102,7 @@ class Follow extends Component {
             <span class="tooltiptext">Follow User</span>
           </div>
         )}
+        <p>{this.state.num}</p>
       </div>
     );
   }

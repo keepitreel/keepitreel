@@ -53,17 +53,18 @@ class Blog extends Component {
                 <DisplayMovie ImdbID={blog.imdbid} />
               </div>
               <div className="blogContent">
-                <p>{blog.post_id}</p>
-                <h1 className="blogtitle">{blog.blogtitle}</h1>
-
                 <div className="GoToUserPage">
                   <Link to={`/userpage/${blog.user_id}`}>
                     <div className="tooltip">
-                      <h3 className={"username"}>{blog.username}</h3>
+                      <p className={"username"}>
+                        {"Review by: " + blog.username}
+                      </p>
                       <span className="tooltiptext">go to userpage</span>
                     </div>
                   </Link>
                 </div>
+                <h1 className="blogtitle">{blog.blogtitle}</h1>
+
                 {this.props.user_id == blog.user_id ? (
                   <div className="features">
                     <Link to={`/editblog/${blog.post_id}`}>
@@ -75,10 +76,10 @@ class Blog extends Component {
                 ) : this.props.user_id ? (
                   <div className="features">
                     <Like post_id={blog.post_id} post_user_id={blog.user_id} />
-                    <Follow following_user_id={blog.user_id} />
                   </div>
                 ) : null}
-                <StarRating rating={blog.rating} />
+
+                <StarRating rating={Number(blog.rating)} />
                 <p>{blog.text}</p>
               </div>
             </div>
