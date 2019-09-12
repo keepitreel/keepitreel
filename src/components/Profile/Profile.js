@@ -98,8 +98,8 @@ class Profile extends Component {
             <div className="profile-info">
               <h4>Welcome {this.state.name}</h4>
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVjKzdLZoS1L8JcE5MovJ7_AzHxbWaqY2okboaJV5hyummhVT4"
-                alt="commando"
+                src="https://scontent-dfw5-1.xx.fbcdn.net/v/l/t1.0-9/1461299_1435857813311687_1043945670_n.jpg?_nc_cat=101&_nc_oc=AQnG40wLc9Fc-OrWBcVDl62u2JMMMIu3J4xGQfDF50LtGuKCEZJfziLrC82pf_ZeT9s&_nc_ht=scontent-dfw5-1.xx&oh=0ebff747f07f68ebf25a9aaad5e49da1&oe=5DF3D5B9"
+                alt="Alex"
               />
               <p>{this.state.username}</p>
               <p>{this.state.email}</p>
