@@ -64,7 +64,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-//app.use(express.static(`${__dirname}/../build`));
+app.use(express.static(`${__dirname}/../build`));
 app.use(express.json()); //gives us access to req.body
 
 app.use(

@@ -18,7 +18,7 @@ class Like extends Component {
 
   getLikeNum = () => {
     let { post_id } = this.props;
-
+    console.log(post_id + " this is getLike Num");
     axios
       .get(`/api/viewcard/postlikes/${post_id}`)
       .then(res => {
@@ -37,7 +37,6 @@ class Like extends Component {
       .get(`/api/viewcard/postdislikes/${post_id}`)
       .then(res => {
         this.setState({ dislikenum: res.data[0].count });
-        this.getLikeNum();
       })
       .catch(error => {
         console.log(error);
@@ -101,7 +100,7 @@ class Like extends Component {
               likeClass: "",
               like: false
             });
-        this.getDislikeNum();
+        this.getLikeNum();
       })
       .catch(error => console.log(error));
   };
@@ -111,7 +110,6 @@ class Like extends Component {
     axios
       .put("/api/viewcard/liked", { user_id, post_id })
       .then(res => {
-        console.log(res);
         res.data
           ? this.setState({
               like: true,
@@ -135,11 +133,11 @@ class Like extends Component {
                       dislikeClass: ""
                     });
                 this.getLikeNum();
-                this.getDislikeNum();
               })
               .catch(error2 => {
                 console.log(error2);
               });
+        this.getLikeNum();
       })
       .catch(error => {
         console.log(error);

@@ -19,7 +19,7 @@ class SearchMovie extends Component {
     };
   }
 
-  handleChnage = e => {
+  handleChange = e => {
     this.setState({ [e.target.name]: e.target.value.replace(" ", "-") });
   };
 
@@ -62,7 +62,7 @@ class SearchMovie extends Component {
       <div ref="hello" className="searchMoviePage">
         {!this.props.user_id && <Redirect to="/" />}
         <div className={"imageBackground"}>
-          <Unsplash width="2000" height="1000" collectionId="3677449" />
+          <Unsplash width="1800" height="1000" collectionId="3677449" />
         </div>
 
         <div className="movieContainer">
@@ -70,7 +70,7 @@ class SearchMovie extends Component {
             <input
               id="input-search-movie"
               name="movie"
-              onChange={this.handleChnage}
+              onChange={this.handleChange}
               placeholder="search for movie"
               autoFocus
             />
