@@ -126,8 +126,9 @@ let thumbsUP = async (req, res) => {
   const db = req.app.get("db");
 
   const likeduser = await db
-    .check_liked([user_id, post_id])
+    .check_liked([user_id, post_id]) //SELECT * FROM favorite WHERE user_id = $1 AND post_id = $2;
     .catch(error => console.log(error));
+
   if (likeduser[0]) {
     //if liked user exists then previously liked and delete
     await db //and delete from like table
@@ -151,20 +152,21 @@ let thumbsDOWN = async (req, res) => {
   const db = req.app.get("db");
 
   const hateduser = await db
-    .check_disliked([user_id, post_id])
+    .check_disliked([user_id, post_id]) ////SELECT * FROM unfavorite WHERE user_id = $1 AND post_id = $2;
     .catch(error => console.log(error));
   if (hateduser[0]) {
+    //if dislike already exists
     await db //and delete from dislike table
-      .stop_disliking_post([user_id, post_id])
+      .stop_disliking_post([user_id, post_id]) ///DELETE FROM unfavorite WHERE user_id = $1 AND post_id = $2;
       .catch(error => console.log(error));
     res.sendStatus(200); //if userpost is already disliked, exists ,delete disliked   //return success
   } else {
     await db
-      .start_disliking_post([user_id, post_id]) //else add dislike to table
+      .start_disliking_post([user_id, post_id]) //else add dislike to table//INSERT INTO unfavorite (user_id,post_id) VALUES ($1,$2);
       .catch(error => console.log(error));
 
     await db //and delete from like table
-      .stop_liking_post([user_id, post_id])
+      .stop_liking_post([user_id, post_id]) ///DELETE FROM favorite WHERE user_id = $1 AND post_id = $2;
       .catch(error => console.log(error));
     return res.sendStatus(200);
   }

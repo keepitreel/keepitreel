@@ -19,7 +19,7 @@ class SearchMovie extends Component {
     };
   }
 
-  handleChnage = e => {
+  handleChange = e => {
     this.setState({ [e.target.name]: e.target.value.replace(" ", "-") });
   };
 
@@ -70,7 +70,7 @@ class SearchMovie extends Component {
             <input
               id="input-search-movie"
               name="movie"
-              onChange={this.handleChnage}
+              onChange={this.handleChange}
               placeholder="search for movie"
               autoFocus
             />

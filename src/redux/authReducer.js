@@ -94,7 +94,7 @@ export function authReducer(state = initialState, action) {
     case `${LOGIN_USER}_REJECTED`:
       return {
         ...state,
-        error: "email or password incorrect",
+        error: "Username or password incorrect",
         pending: false
       };
     case `${LOGIN_USER}_PENDING`:

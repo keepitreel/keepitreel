@@ -70,7 +70,7 @@ let register = async (req, res) => {
       res.json(req.session.user);
     }
   } else {
-    res.status(401).json("Fill all register fields ");
+    res.status(401).json("Fill all register fields");
   }
 };
 

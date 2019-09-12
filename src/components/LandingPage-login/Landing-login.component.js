@@ -39,82 +39,102 @@ class Login extends Component {
         <video id="background-video" autoPlay>
           <source muted src={Video} type="video/mp4" />
         </video>
+        <div className="overlay"></div>
         <div className={"imageBackground"}>
-          <Unsplash width="2200" height="1000" collectionId="8598459" />
+          <Unsplash width="2000" height="1000" collectionId="8620684" />
         </div>
-        <div className="frontpagetext">
-          <h1>Keep it Reel</h1>
-          <p>Social Media for Film Enthusiast. </p>
-          <p>Real People...Reel reviews.</p>
-        </div>
-        <br />
+        <div className="content">
+          <div className="logotext">
+            <h1>Keep it Reel</h1>
+          </div>
 
-        <Flippy
-          className="flippycard"
-          ref={r => (this.flippyHorizontal = r)}
-          flipOnClick={false}
-        >
-          <FrontSide>
-            <form>
-              <input
-                name="username"
-                placeholder="Username"
-                type="text"
-                required
-                onChange={this.handleChange}
-              ></input>
-              <input
-                name="password"
-                placeholder="Password"
-                type="password"
-                onChange={this.handleChange}
-                required
-              ></input>
-            </form>
-            <div className="buttons">
-              <button onClick={this.handleLogin}>Login</button>
-              <button
-                type="button"
-                onClick={() => this.flippyHorizontal.toggle()}
-              >
-                Register
-              </button>
-            </div>
-          </FrontSide>
-          <BackSide>
-            <form>
-              <input
-                name="username"
-                placeholder="username"
-                onChange={this.handleChange}
-              />
-              <input
-                name="name"
-                placeholder="name"
-                onChange={this.handleChange}
-              />
-              <input
-                name="password"
-                placeholder="password"
-                onChange={this.handleChange}
-              />
-              <input
-                name="email"
-                placeholder="email"
-                onChange={this.handleChange}
-              />
-            </form>
-            <div className="buttons">
-              <button
-                type="button"
-                onClick={() => this.flippyHorizontal.toggle()}
-              >
-                Cancel
-              </button>
-              <button onClick={this.handleRegister}>Register</button>
-            </div>
-          </BackSide>
-        </Flippy>
+          <Flippy
+            ref={r => (this.flippyHorizontal = r)}
+            flipOnClick={false}
+            style={{
+              width: "20vw",
+              height: "25vh",
+              border: "none",
+              marginLeft: "40%",
+              marginTop: "10%",
+              display: "flex"
+            }}
+          >
+            <FrontSide
+              style={{
+                padding: "0"
+              }}
+            >
+              <form className="formfront">
+                <div className="frontpagetext">
+                  <p>Real People...Reel reviews.</p>
+                </div>
+                <input
+                  name="username"
+                  placeholder="Username"
+                  type="text"
+                  required
+                  onChange={this.handleChange}
+                  required={true}
+                ></input>
+                <input
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  onChange={this.handleChange}
+                  required
+                ></input>
+                <div className="buttons">
+                  <button onClick={this.handleLogin}>Login</button>
+                  <button
+                    type="button"
+                    onClick={() => this.flippyHorizontal.toggle()}
+                  >
+                    Register
+                  </button>
+                </div>
+              </form>
+            </FrontSide>
+            <BackSide
+              style={{
+                padding: "0"
+              }}
+            >
+              <form className="formback">
+                <input
+                  name="username"
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                />
+                <input
+                  name="name"
+                  placeholder="Name"
+                  onChange={this.handleChange}
+                />
+                <input
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  onChange={this.handleChange}
+                />
+                <input
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                />
+                <div className="buttons">
+                  <button
+                    type="button"
+                    onClick={() => this.flippyHorizontal.toggle()}
+                  >
+                    Cancel
+                  </button>
+                  <button onClick={this.handleRegister}>Register</button>
+                </div>
+              </form>
+            </BackSide>
+          </Flippy>
+        </div>
         {console.log(this.props.user_id)}
         {this.props.user_id !== "" && <Redirect to="/dashboard" />}
       </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout, checkForLogin } from "../../redux/authReducer";
 import Logo2 from "../../img/Logo2.png";
-import "./nav.scss";
+import "./NavBar.scss";
 import axios from "axios";
 
 class Nav extends Component {

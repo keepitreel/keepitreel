@@ -47,9 +47,15 @@
           width: 45%;
           padding: 15px;
 
+          .GoToUserPage {
+            @include tooltip();
+            color: $primaryColor;
+          }
+
 
           a {
-            h3 {
+            p {
+
               color: $accentColor;
             }
 
@@ -58,7 +64,8 @@
 
           .features {
             i {
-              @include button
+              @include button;
+              // color: blue;
             }
 
 
@@ -79,7 +86,6 @@
           z-index: 100;
           max-height: 200px;
 
-          background-color: $primaryColor;
 
         }
       }

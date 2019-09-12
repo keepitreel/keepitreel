@@ -16,24 +16,27 @@
     align-items: center;
     justify-content: space-evenly;
     min-height: 100vh;
-    position:fixed;
-    top:0;
+    position: fixed;
+    top: 0;
 
     .profileDiv {
-      
-      .pro{
+
+      .pro {
         background-color: $primaryColor;
         border-radius: 15px;
         border: 2px solid $accentColor;
       }
 
-      .followDiv{
+      .followDiv {
         padding: 10px;
       }
-      
+
     }
+
     .yourblog {
+      border: 2px solid $accentColor;
       width: 70%;
+      border-radius: 15px;
     }
   }
 
