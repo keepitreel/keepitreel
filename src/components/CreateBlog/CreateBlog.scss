@@ -6,6 +6,9 @@
 .CreateBlogPage {
   @include pageCenter(100%, 150px);
 
+  button {
+    @include button
+  }
 
   .ContainerBlog {
 
@@ -21,27 +24,30 @@
     .formDiv {
       width: 40%;
 
-      label {
-        width: 100%;
-        flex-direction: column;
-        display: flex;
-        justify-content: center;
+      form {
+
+        label {
+          width: 100%;
+          flex-direction: column;
+          display: flex;
+          justify-content: center;
 
 
-        input {
-          height: 50px;
-          font-size: 30px;
-          border-radius: 5px;
+          input {
+            height: 50px;
+            font-size: 30px;
+            border-radius: 5px;
+
+          }
+
+          textarea {
+            font-size: 20px;
+            height: 200px;
+            border-radius: 5px;
+          }
+
 
         }
-
-        textarea {
-          font-size: 20px;
-          height: 200px;
-          border-radius: 5px;
-        }
-
-
       }
 
       .ratingDiv {

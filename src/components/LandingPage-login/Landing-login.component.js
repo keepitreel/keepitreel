@@ -41,7 +41,7 @@ class Login extends Component {
         </video>
         <div className="overlay"></div>
         <div className={"imageBackground"}>
-          <Unsplash width="2000" height="1000" collectionId="8620684" />
+          <Unsplash width="2200" height="1500" collectionId="8620684" />
         </div>
         <div className="content">
           <div className="logotext">
