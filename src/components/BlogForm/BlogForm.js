@@ -3,6 +3,7 @@ import Rating from "../Star/Rating";
 import DisplayMovie from "../DisplayMovie/DisplayMovie";
 import Comments from "../Comments/Comments";
 import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./BlogForm.scss";
 import Unsplash from "react-unsplash-wrapper";
@@ -39,9 +40,9 @@ export default class BlogForm extends Component {
     this.setState({ rating: value });
   };
 
-  editPost = (e) => {
+  editPost = e => {
     e.preventDefault();
-    
+
     let {
       post_id,
       user_id,
@@ -87,7 +88,7 @@ export default class BlogForm extends Component {
           user_id: response.data[0].user_id,
           imdbid: response.data[0].imdbid,
           posterurl: response.data[0].posterurl,
-          
+
           time: response.data[0].time,
           genre: response.data[0].genre,
           title: response.data[0].title
@@ -99,48 +100,54 @@ export default class BlogForm extends Component {
   }
 
   render() {
-    
     return (
       <div className="EditBlogPage">
-      {this.state.test && <Redirect to={`/blog/${this.props.match.params.id}`} />}
-    <div className={"imageBackground"}>
-            <Unsplash width="2200" height="1000" collectionId="8598365" />
-          </div>
-          <div className="overlay">
-        <div className="contentwrapper">
-            <div className="movieContainer">
-       <DisplayMovie ImdbID={this.state.imdbid} />
-       </div>
-          <div className={"formDiv"}>
-            <form>
-              <label>
-                Title
-                <input
-                  value={this.state.blogtitle}
-                  required
-                  name="blogtitle"
-                  onChange={this.handleChange}
-                  autoFocus
-                ></input>
-              </label>
-              <label>
-                Blog
-                <textarea
-                  value={this.state.text}
-                  name="text"
-                  onChange={this.handleChange}
-                ></textarea>
-              </label>
-              <Rating updateRating={this.updateRating} />
-              <div className="buttonDiv">
-              <button className="submitButton" onClick={this.editPost}>Update</button>
-              <button className="submitButton" onClick={this.cancel}>Cancel</button>
-              </div>
-            </form>
-          </div>
-          
+        {this.state.test && (
+          <Redirect to={`/blog/${this.props.match.params.id}`} />
+        )}
+        <div className={"imageBackground"}>
+          <Unsplash width="2200" height="1000" collectionId="8598365" />
         </div>
-              </div>
+        <div className="overlay">
+          <div className="contentwrapper">
+            <div className="movieContainer">
+              <DisplayMovie ImdbID={this.state.imdbid} />
+            </div>
+            <div className={"formDiv"}>
+              <form>
+                <label>
+                  Title
+                  <input
+                    value={this.state.blogtitle}
+                    required
+                    name="blogtitle"
+                    onChange={this.handleChange}
+                    autoFocus
+                  ></input>
+                </label>
+                <label>
+                  Blog
+                  <textarea
+                    value={this.state.text}
+                    name="text"
+                    onChange={this.handleChange}
+                  ></textarea>
+                </label>
+                <Rating updateRating={this.updateRating} />
+                <div className="buttonDiv">
+                  <button className="submitButton" onClick={this.editPost}>
+                    Update
+                  </button>
+                  <Link to={`/blog/${this.props.match.params.id}`}>
+                    <button className="submitButton" onClick={this.cancel}>
+                      Cancel
+                    </button>
+                  </Link>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

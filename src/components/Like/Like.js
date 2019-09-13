@@ -28,8 +28,8 @@ class Like extends Component {
       .catch(error => {
         console.log(error);
       });
-    console.log(this.state);
   };
+
   getDislikeNum = () => {
     let { post_id } = this.props;
 
@@ -45,20 +45,6 @@ class Like extends Component {
 
   like = () => {
     let { user_id, post_id } = this.props;
-    console.log(this.state.like);
-    // this.state.like
-    //   ? this.setState({
-    //       like: !this.state.like,
-    //       likeClass: "",
-    //       dislikeClass: "",
-    //       dislike: false
-    //     })
-    //   : this.setState({
-    //       like: !this.state.like,
-    //       likeClass: "likeActive",
-    //       dislikeClass: "",
-    //       dislike: false
-    //     });
     axios
       .put("/api/viewcard/thumbsup", { user_id, post_id })
       .then(res => {
@@ -75,9 +61,9 @@ class Like extends Component {
               dislikeClass: "",
               dislike: false
             });
+        this.getLikeNum();
       })
       .catch(error => console.log(error));
-    this.getLikeNum();
   };
 
   unlike = () => {

@@ -125,7 +125,9 @@ class CreateBlog extends Component {
                 ></textarea>
               </label>
               <Rating updateRating={this.updateRating} />
-              <button onClick={this.handleSubmit}>Submit</button>
+              <button className="submit" onClick={this.handleSubmit}>
+                Submit
+              </button>
             </form>
           </div>
         </div>
