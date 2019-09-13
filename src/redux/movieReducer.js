@@ -57,7 +57,8 @@ export default function movieReducer(state = initialState, action) {
             loading: false,
             movies: payload.data.Search,
             totalResults: Number(payload.data.totalResults),
-            buttons: Math.ceil(Number(payload.data.totalResults) / 10)
+            buttons: Math.ceil(Number(payload.data.totalResults) / 10),
+            error: ""
           }
         : {
             movies: [],
